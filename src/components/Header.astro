@@ -1,0 +1,31 @@
+---
+import "../styles/header.css";
+---
+
+<header class="header">
+  <div class="container header-inner">
+    
+    <div class="logo">
+      <img src="/logo_piace_batterie.webp" alt="Piace Batterie" />
+    </div>
+
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#">Prodotti</a>
+      <a href="#">Servizi</a>
+      <a href="#">Contatti</a>
+    </nav>
+
+ <div class="header-cta">
+    <a class="btn primary">Chiama ora</a>
+  </div>
+
+  </div>
+</header>
+
+<script is:inline>
+  window.addEventListener("scroll", () => {
+    const header = document.querySelector(".header");
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  });
+</script>

@@ -1,0 +1,162 @@
+/* =========================
+   HEADER — FINAL PRO
+========================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  will-change: backdrop-filter, background;
+  background: rgba(11, 31, 58, 0.25);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+
+  border-bottom: 1px solid transparent;
+
+  transition: 
+    background 0.35s ease,
+    backdrop-filter 0.35s ease,
+    border 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* =========================
+   SCROLL STATE
+========================= */
+
+.header.scrolled {
+  background: rgba(11, 31, 58, 0.8);
+
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.header-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  height: 82px;
+  gap: 24px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo img {
+  height: 48px;
+  transition: 
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 14px rgba(255,107,0,0.25));
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+
+.nav a {
+  position: relative;
+
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+
+  transition: 
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 0%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    var(--orange),
+    rgba(255,107,0,0.6)
+  );
+
+  border-radius: 2px;
+
+  transition: width 0.35s ease;
+}
+
+.nav a:hover {
+  color: rgba(255,255,255,0.95);
+  transform: translateY(-1px);
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.header-cta {
+  display: flex;
+  align-items: center;
+}
+
+.header-cta .btn {
+  font-size: 0.95rem;
+  padding: 0.7rem 1.7rem;
+
+  border-radius: 999px;
+
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.header .btn.primary {
+  background: linear-gradient(
+    135deg,
+    #ff6b00,
+    #ff8c1a
+  );
+
+  box-shadow: 
+    0 8px 20px rgba(255,107,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.header .btn.primary:hover {
+  transform: translateY(-2px) scale(1.03);
+
+  box-shadow: 
+    0 15px 35px rgba(255,107,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.header .btn.primary:active {
+  transform: scale(0.97);
+}

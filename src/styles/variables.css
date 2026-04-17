@@ -1,0 +1,10 @@
+:root {
+    --blue-dark: #0B1F3A;
+    --blue: #0056A0;
+    --orange: #FF6B00;
+    --green: #4CAF50;
+    --white: #ffffff;
+  
+    --radius: 12px;
+    --container: 1200px;
+  }

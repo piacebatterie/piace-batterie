@@ -1,0 +1,267 @@
+/* =========================
+   SERVICES — FINAL CLEAN
+========================= */
+
+.services {
+  position: relative;
+  padding: 140px 0;
+  overflow: hidden;
+  z-index: 1;
+
+  isolation: isolate; /* 🔥 evita glitch/linee strane */
+
+  background:
+  radial-gradient(
+    circle at 75% 45%,
+    rgba(255,107,0,0.12),
+    transparent 55%
+  ),
+  linear-gradient(
+    180deg,
+    #0F2A4D 0%,
+    #0B1F3A 100%
+  );
+}
+
+/* =========================
+   FULMINE (UNICO, GIUSTO)
+========================= */
+
+.services::before {
+  content: "";
+  position: absolute;
+
+  top: -30%;
+  right: -25%;
+
+  width: 1800px;
+  height: 1800px;
+
+  background: url('/fulmine.svg') no-repeat center / contain;
+
+  opacity: 0.12;
+
+  filter: drop-shadow(0 0 80px rgba(255,107,0,0.25));
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================
+   CONTENUTO SOPRA
+========================= */
+
+.services .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.services-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.services-header h2 {
+  font-size: clamp(36px, 3vw, 46px);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.services-header h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 14px auto 0;
+  background: linear-gradient(90deg, #ff6b00, transparent);
+  border-radius: 2px;
+}
+
+.services-header p {
+  font-size: 1.15rem;
+  opacity: 0.75;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+/* =========================
+   CARD — GLASS PREMIUM
+========================= */
+
+.card {
+  position: relative;
+  z-index: 1;
+
+  padding: 42px;
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.07),
+      rgba(255,255,255,0.02)
+    );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    border 0.3s ease;
+
+  overflow: hidden;
+}
+
+.card > * {
+  transform: translateZ(30px);
+}
+
+/* luce */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    500px circle at var(--x, 50%) var(--y, 50%),
+    rgba(255,107,0,0.18),
+    transparent 60%
+  );
+
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    600px circle at var(--x, 50%) var(--y, 50%),
+    rgba(255,255,255,0.12),
+    transparent 40%
+  );
+
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+/* hover */
+.card:hover {
+  transform: translateY(-6px);
+
+  border: 1px solid rgba(255,107,0,0.28);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(255,107,0,0.06),
+    0 0 50px rgba(255,107,0,0.15);
+}
+
+.card:hover::before,
+.card:hover::after {
+  opacity: 1;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+/* =========================
+   WHY INLINE
+========================= */
+
+.why-inline {
+  position: relative;
+  margin-top: 160px;
+  text-align: center;
+}
+
+.why-inline::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 700px;
+  height: 160px;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255,255,255,0.08),
+    transparent 70%
+  );
+}
+
+.why-inline h2 {
+  font-size: clamp(40px, 4vw, 52px);
+  line-height: 1.12;
+  margin-bottom: 22px;
+  letter-spacing: -0.6px;
+}
+
+.why-inline h2 span {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 600;
+}
+
+.why-inline p {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  opacity: 0.75;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .card {
+    padding: 30px;
+  }
+
+  .why-inline {
+    margin-top: 120px;
+  }
+}

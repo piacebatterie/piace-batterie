@@ -1,0 +1,138 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import "../styles/button.css";
+---
+
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Piace Batterie</title>
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+
+    const groups = document.querySelectorAll(".reveal-group");
+    const singles = document.querySelectorAll(".reveal:not(.card)");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+
+          if (entry.target.classList.contains("reveal-group")) {
+            const items = entry.target.querySelectorAll(".reveal");
+
+            items.forEach((el, index) => {
+              setTimeout(() => {
+                el.classList.add("in-view");
+              }, index * 180);
+            });
+          } else {
+            entry.target.classList.add("in-view");
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.65
+    });
+
+    groups.forEach(group => observer.observe(group));
+    singles.forEach(el => observer.observe(el));
+
+    /* =========================
+       CARD 3D
+    ========================= */
+
+    document.querySelectorAll(".card").forEach(card => {
+
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const midX = rect.width / 2;
+        const midY = rect.height / 2;
+
+        const rotateY = ((x - midX) / midX) * 5.5;
+        const rotateX = ((midY - y) / midY) * 5.5;
+
+        card.style.transform = `
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+          scale(1.02)
+        `;
+
+        card.style.setProperty("--x", `${x}px`);
+        card.style.setProperty("--y", `${y}px`);
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = `
+          rotateX(0deg)
+          rotateY(0deg)
+          scale(1)
+        `;
+      });
+
+    });
+
+    /* =========================
+       CTA GLOW (INERZIA)
+    ========================= */
+
+    const cta = document.querySelector(".cta");
+
+    if (cta) {
+      let targetX = 0;
+      let targetY = 0;
+
+      let currentX = 0;
+      let currentY = 0;
+
+      cta.addEventListener("mousemove", (e) => {
+        const rect = cta.getBoundingClientRect();
+
+        targetX = e.clientX - rect.left;
+        targetY = e.clientY - rect.top;
+      });
+
+      function animate() {
+        currentX += (targetX - currentX) * 0.07;
+        currentY += (targetY - currentY) * 0.07;
+
+        cta.style.setProperty("--lx", `${currentX}px`);
+        cta.style.setProperty("--ly", `${currentY}px`);
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
+
+  });
+</script>
+
+  </body>
+</html>
