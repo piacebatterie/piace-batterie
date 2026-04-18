@@ -31,21 +31,39 @@
   content: "";
   position: absolute;
 
-  top: -30%;
-  right: -25%;
+  top: -1%;
+  right: -5%;
 
-  width: 1800px;
-  height: 1800px;
+  width: 1000px;
+  height: 1000px;
 
-  background: url('/fulmine.svg') no-repeat center / contain;
+  background: url('/fulmine.webp') no-repeat center / contain;
 
   opacity: 0.12;
-
   filter: drop-shadow(0 0 80px rgba(255,107,0,0.25));
 
   pointer-events: none;
   z-index: 0;
+
+  animation: floatLightning 12s ease-in-out infinite alternate;
 }
+
+@keyframes floatLightning {
+  0% {
+    transform:
+      translateY(var(--parallaxY, 0))
+      translate(0px, 0px)
+      scale(1);
+  }
+  100% {
+    transform:
+      translateY(var(--parallaxY, 0))
+      translate(-40px, 30px)
+      scale(1.03);
+  }
+}
+
+
 
 /* =========================
    CONTENUTO SOPRA

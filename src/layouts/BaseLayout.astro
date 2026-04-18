@@ -2,20 +2,55 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import "../styles/button.css";
+import "../styles/sticky.css";
+import Footer from "../components/Footer.astro";
 ---
 
 <!DOCTYPE html>
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Vendita e assistenza batterie auto e industriali a Piacenza. Controllo gratuito immediato e intervento rapido. Affidabilità e competenza al tuo servizio." />
 
+    <!-- RESPONSIVE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- SEO BASE -->
+    <title>Piace Batterie | Batterie Auto e Industriali a Piacenza</title>
+
+    <meta name="description" content="Vendita e assistenza batterie auto e industriali a Piacenza. Controllo gratuito immediato, senza appuntamento. Intervento rapido e professionale." />
+
+    <meta name="keywords" content="batterie auto Piacenza, batterie industriali, sostituzione batteria, assistenza batterie, controllo batteria gratuito" />
+
+    <meta name="author" content="Piace Batterie" />
+
+    <!-- OPEN GRAPH (SOCIAL) -->
+    <meta property="og:title" content="Piace Batterie | Batterie Auto a Piacenza" />
+    <meta property="og:description" content="Controllo batteria gratuito immediato. Nessuna attesa, nessun appuntamento. Servizio rapido e professionale a Piacenza." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.piacebatterie.it/" />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Piace Batterie" />
+    <meta name="twitter:description" content="Controllo batteria gratuito immediato a Piacenza." />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
+    <!-- FAVICON -->
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- PERFORMANCE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <title>Piace Batterie</title>
+    <!-- THEME COLOR (mobile browser) -->
+    <meta name="theme-color" content="#020814" />
+
+    <!-- CANONICAL -->
+    <link rel="canonical" href="https://www.piacebatterie.it/" />
   </head>
 
   <body>
@@ -25,48 +60,53 @@ import "../styles/button.css";
       <slot />
     </main>
 
-    <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+    <Footer />
 
-    /* =========================
-       SCROLL REVEAL
-    ========================= */
+    <div class="sticky-cta">
+  <a href="tel:+3905231656743" class="sticky-call">
+    📞 Chiama ora
+  </a>
+</div>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =====================================================
+     REVEAL ON SCROLL
+  ===================================================== */
+  const initReveal = () => {
     const groups = document.querySelectorAll(".reveal-group");
     const singles = document.querySelectorAll(".reveal:not(.card)");
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (!entry.isIntersecting) return;
 
-          if (entry.target.classList.contains("reveal-group")) {
-            const items = entry.target.querySelectorAll(".reveal");
+        if (entry.target.classList.contains("reveal-group")) {
+          const items = entry.target.querySelectorAll(".reveal");
 
-            items.forEach((el, index) => {
-              setTimeout(() => {
-                el.classList.add("in-view");
-              }, index * 180);
-            });
-          } else {
-            entry.target.classList.add("in-view");
-          }
+          items.forEach((el, index) => {
+            setTimeout(() => el.classList.add("in-view"), index * 180);
+          });
 
-          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.add("in-view");
         }
+
+        observer.unobserve(entry.target);
       });
-    }, {
-      threshold: 0.65
-    });
+    }, { threshold: 0.65 });
 
-    groups.forEach(group => observer.observe(group));
+    groups.forEach(el => observer.observe(el));
     singles.forEach(el => observer.observe(el));
+  };
 
-    /* =========================
-       CARD 3D
-    ========================= */
 
+  /* =====================================================
+     CARD 3D
+  ===================================================== */
+  const initCard3D = () => {
     document.querySelectorAll(".card").forEach(card => {
-
       card.addEventListener("mousemove", e => {
         const rect = card.getBoundingClientRect();
 
@@ -90,50 +130,190 @@ import "../styles/button.css";
       });
 
       card.addEventListener("mouseleave", () => {
-        card.style.transform = `
-          rotateX(0deg)
-          rotateY(0deg)
-          scale(1)
-        `;
+        card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
       });
+    });
+  };
 
+
+  /* =====================================================
+     CTA GLOW
+  ===================================================== */
+  const initCtaGlow = () => {
+    const cta = document.querySelector(".cta");
+    if (!cta) return;
+
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+
+    cta.addEventListener("mousemove", (e) => {
+      const rect = cta.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
     });
 
-    /* =========================
-       CTA GLOW (INERZIA)
-    ========================= */
+    const animate = () => {
+      currentX += (targetX - currentX) * 0.07;
+      currentY += (targetY - currentY) * 0.07;
 
-    const cta = document.querySelector(".cta");
+      cta.style.setProperty("--lx", `${currentX}px`);
+      cta.style.setProperty("--ly", `${currentY}px`);
 
-    if (cta) {
-      let targetX = 0;
-      let targetY = 0;
+      requestAnimationFrame(animate);
+    };
 
-      let currentX = 0;
-      let currentY = 0;
+    animate();
+  };
 
-      cta.addEventListener("mousemove", (e) => {
-        const rect = cta.getBoundingClientRect();
 
-        targetX = e.clientX - rect.left;
-        targetY = e.clientY - rect.top;
+  /* =====================================================
+     BUTTON GLOW
+  ===================================================== */
+  const initButtonGlow = () => {
+    document.querySelectorAll(".btn").forEach(btn => {
+      btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+
+        btn.style.setProperty("--lx", `${e.clientX - rect.left}px`);
+        btn.style.setProperty("--ly", `${e.clientY - rect.top}px`);
       });
+    });
+  };
 
-      function animate() {
-        currentX += (targetX - currentX) * 0.07;
-        currentY += (targetY - currentY) * 0.07;
 
-        cta.style.setProperty("--lx", `${currentX}px`);
-        cta.style.setProperty("--ly", `${currentY}px`);
+  /* =====================================================
+     SERVICES PARALLAX
+  ===================================================== */
+  const initServicesParallax = () => {
+    const services = document.querySelector(".services");
+    if (!services) return;
 
-        requestAnimationFrame(animate);
+    window.addEventListener("scroll", () => {
+      const rect = services.getBoundingClientRect();
+      const offset = Math.max(-200, Math.min(200, rect.top * 0.12));
+
+      services.style.setProperty("--parallaxY", `${offset}px`);
+    });
+  };
+
+
+  /* =====================================================
+     BRANDS ANIMATION
+  ===================================================== */
+  const initBrands = () => {
+    const logos = document.querySelectorAll(".brands-grid img");
+
+    logos.forEach((logo, i) => {
+      logo.style.opacity = "0";
+      logo.style.transform = "translateY(20px)";
+
+      setTimeout(() => {
+        logo.style.transition = "all 0.5s ease";
+        logo.style.opacity = "0.5";
+        logo.style.transform = "translateY(0)";
+      }, i * 80);
+    });
+  };
+
+
+  /* =====================================================
+     BRANDS PARALLAX
+  ===================================================== */
+  const initBrandsParallax = () => {
+    const brands = document.querySelector(".brands");
+    if (!brands) return;
+
+    let target = 0;
+    let current = 0;
+
+    window.addEventListener("scroll", () => {
+      const rect = brands.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      const progress = 1 - (rect.top / vh);
+      const clamped = Math.max(0, Math.min(1, progress));
+
+      target = (clamped - 0.4) * 45;
+    });
+
+    const animate = () => {
+      current += (target - current) * 0.08;
+
+      brands.style.setProperty("--parallaxY", `${current}px`);
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+  };
+
+
+  /* =====================================================
+     BRANDS MOUSE
+  ===================================================== */
+  const initBrandsMouse = () => {
+    const brands = document.querySelector(".brands");
+    if (!brands) return;
+
+    brands.addEventListener("mousemove", (e) => {
+      const rect = brands.getBoundingClientRect();
+
+      const mx = (e.clientX - rect.left - rect.width / 2) * 0.02;
+      const my = (e.clientY - rect.top - rect.height / 2) * 0.02;
+
+      brands.style.setProperty("--mx", `${mx}px`);
+      brands.style.setProperty("--my", `${my}px`);
+    });
+  };
+
+
+  /* =====================================================
+     STICKY CTA
+  ===================================================== */
+  const initStickyCTA = () => {
+    const cta = document.querySelector(".sticky-cta");
+    const footer = document.querySelector("footer");
+
+    if (!cta) return;
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+
+      // mostra dopo scroll
+      if (scrollY > 300) {
+        cta.classList.add("visible");
+      } else {
+        cta.classList.remove("visible");
       }
 
-      animate();
-    }
+      // nascondi vicino al footer
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
 
-  });
+        if (rect.top < window.innerHeight) {
+          cta.style.opacity = "0";
+        } else {
+          cta.style.opacity = "";
+        }
+      }
+    });
+  };
+
+
+  /* =====================================================
+     INIT ALL
+  ===================================================== */
+  initReveal();
+  initCard3D();
+  initCtaGlow();
+  initButtonGlow();
+  initServicesParallax();
+  initBrands();
+  initBrandsParallax();
+  initBrandsMouse();
+  initStickyCTA();
+
+});
 </script>
-
   </body>
 </html>

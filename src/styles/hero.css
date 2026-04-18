@@ -9,7 +9,9 @@
   overflow: visible;
   z-index: 0;
   overflow: hidden;
+  min-height: 92vh;
 }
+
 
 /* =========================
    BACKGROUND
@@ -180,6 +182,9 @@
 @media (max-width: 768px) {
   .hero {
     padding: 150px 0 100px;
+    min-height: 92vh;
+  min-height: 92dvh;
+
   }
 
   .hero-inner {

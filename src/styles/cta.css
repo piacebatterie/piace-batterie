@@ -1,216 +1,177 @@
 /* =========================
-   CTA — APPLE WOW CLEAN
+   CTA — CLEAN PREMIUM
 ========================= */
 
 .cta {
-    position: relative;
-    padding: 140px 0;
-    text-align: center;
-    overflow: hidden;
-  
-    background: linear-gradient(180deg, #0F2A4D 0%, #0B1F3A 100%);
-  
-    margin-top: -80px;
-    border-top-left-radius: 36px;
-    border-top-right-radius: 36px;
-  }
-  
+  position: relative;
+  padding: 140px 0;
+  text-align: center;
+  overflow: hidden;
 
-  
-  /* =========================
-     GLOW DINAMICO (shared light)
-  ========================= */
-  
-  .cta::after {
-    content: "";
-    position: absolute;
-  
-    width: 480px;
-    height: 480px;
-  
-    top: 0;
-    left: 0;
-  
-    transform: translate(var(--lx, 50%), var(--ly, 50%)) translate(-50%, -50%);
-  
-    background: radial-gradient(
-      circle,
-      rgba(255,107,0,0.16),
-      transparent 70%
-    );
-  
-    filter: blur(28px);
-    opacity: 0.75;
-  
-    pointer-events: none;
-    z-index: 0;
-  
-    will-change: transform;
+  background: linear-gradient(180deg, #0F2A4D 0%, #0B1F3A 100%);
+
+  margin-top: -80px;
+}
+
+/* =========================
+   GLOW PRINCIPALE (FOLLOW)
+========================= */
+
+.cta::after {
+  content: "";
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  top: 0;
+  left: 0;
+
+  transform:
+    translate(var(--lx, 50%), var(--ly, 50%))
+    translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(255,107,0,0.28) 0%,
+    rgba(255,107,0,0.12) 35%,
+    rgba(255,107,0,0.04) 60%,
+    transparent 75%
+  );
+
+  filter: blur(40px);
+  opacity: 0.4;
+
+  pointer-events: none;
+  z-index: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+/* leggero boost quando hover */
+.cta:hover::after {
+  opacity: 0.85;
+}
+
+/* =========================
+   CONTENUTO
+========================= */
+
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* =========================
+   BADGE
+========================= */
+
+.cta-badge {
+  position: relative;
+  overflow: hidden;
+
+  display: inline-block;
+  margin-bottom: 18px;
+
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  backdrop-filter: blur(10px);
+}
+
+/* glow badge (usa lo stesso sistema globale) */
+.cta-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    140px circle at var(--lx, 50%) var(--ly, 50%),
+    rgba(255,255,255,0.25),
+    transparent 60%
+  );
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cta:hover .cta-badge::after {
+  opacity: 1;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+.cta h2 {
+  font-size: clamp(36px, 4vw, 48px);
+  line-height: 1.1;
+  margin-bottom: 22px;
+}
+
+.cta h2 span {
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  opacity: 0.85;
+}
+
+/* =========================
+   ACTIONS (NO DUPLICATI!)
+========================= */
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+/* ❌ RIMOSSI override inutili dei bottoni */
+/* ora usa SOLO button.css */
+
+/* =========================
+   TRUST
+========================= */
+
+.cta-trust {
+  margin-top: 26px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .cta {
+    padding: 100px 0;
   }
-  
-  /* =========================
-     LIGHT AMBIENT
-  ========================= */
-  
-  .cta-inner {
-    position: relative;
-    z-index: 2;
-  
-    max-width: 720px;
-    margin: 0 auto;
-  }
-  
-  .cta-inner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-  
-    background: radial-gradient(
-      circle at 70% 60%,
-      rgba(255,107,0,0.08),
-      transparent 60%
-    );
-  
-    opacity: 0.6;
-    pointer-events: none;
-  }
-  
-  /* =========================
-     BADGE
-  ========================= */
-  
-  .cta-badge {
-    position: relative;
-    overflow: hidden;
-  
-    display: inline-block;
-    margin-bottom: 18px;
-  
-    padding: 6px 14px;
-    border-radius: 999px;
-  
-    font-size: 0.85rem;
-    letter-spacing: 0.3px;
-  
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-  
-    backdrop-filter: blur(10px);
-  }
-  
-  /* luce condivisa badge */
-  .cta-badge::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-  
-    background: radial-gradient(
-      180px circle at var(--lx, 50%) var(--ly, 50%),
-      rgba(255,255,255,0.18),
-      transparent 60%
-    );
-  
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  
-    pointer-events: none;
-  }
-  
-  .cta:hover .cta-badge::after {
-    opacity: 1;
-  }
-  
-  /* =========================
-     TITOLI
-  ========================= */
-  
+
   .cta h2 {
-    font-size: clamp(36px, 4vw, 48px);
-    line-height: 1.1;
-    margin-bottom: 22px;
+    font-size: 30px;
   }
-  
-  .cta h2 span {
-    color: rgba(255,255,255,0.6);
-    font-weight: 600;
-  }
-  
-  /* =========================
-     TESTO
-  ========================= */
-  
-  .cta p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 40px;
-    opacity: 0.85;
-  }
-  
-  /* =========================
-     BOTTONI
-  ========================= */
-  
+
   .cta-actions {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
   }
-  
-  /* primary */
-  .cta .btn.primary {
-    box-shadow:
-      0 12px 30px rgba(255,107,0,0.35),
-      0 0 0 rgba(255,107,0,0);
-  
-    transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease;
+
+  .cta .btn {
+    width: 100%;
+    max-width: 280px;
   }
-  
-  .cta .btn.primary:hover {
-    transform: translateY(-3px) scale(1.03);
-  
-    box-shadow:
-      0 20px 50px rgba(255,107,0,0.45),
-      0 0 25px rgba(255,107,0,0.25);
-  }
-  
-  /* secondary */
-  .cta .btn.secondary {
-    backdrop-filter: blur(10px);
-  }
-  
-  /* =========================
-     TRUST
-  ========================= */
-  
-  .cta-trust {
-    margin-top: 26px;
-    font-size: 0.9rem;
-    opacity: 0.7;
-  }
-  
-  /* =========================
-     MOBILE
-  ========================= */
-  
-  @media (max-width: 768px) {
-    .cta {
-      padding: 100px 0;
-    }
-  
-    .cta h2 {
-      font-size: 30px;
-    }
-  
-    .cta-actions {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .cta .btn {
-      width: 100%;
-      max-width: 280px;
-    }
-  }
+}
