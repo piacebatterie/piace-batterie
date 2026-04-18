@@ -159,26 +159,39 @@
      MOBILE
   ========================= */
   
-  @media (max-width: 800px) {
+  @media (max-width: 768px) {
+
     .footer {
-      padding: 100px 0 50px;
+      padding-top: 80px; /* meno aria sopra */
     }
   
     .footer-inner {
-      gap: 70px;
-    }
-  
-    .footer-info {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 30px;
-    }
-  
-    .footer-actions {
-      flex-direction: column;
+      gap: 50px; /* prima 80 ❌ */
     }
   
     .footer-cta h3 {
       font-size: 1.6rem;
+    }
+  
+    .footer-cta p {
+      margin-bottom: 20px;
+    }
+  
+    .footer-actions {
+      gap: 10px;
+    }
+  
+    .footer-info {
+      gap: 25px; /* prima 40 ❌ */
+    }
+  
+    .footer-info p {
+      margin: 2px 0;
+    }
+  
+    .footer-bottom {
+      margin-top: 50px; /* prima 80 ❌ */
+      padding: 20px 0;
+      font-size: 0.75rem;
     }
   }

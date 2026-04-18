@@ -180,27 +180,44 @@
 ========================= */
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 150px 0 100px;
-    min-height: 92vh;
-  min-height: 92dvh;
 
+  .hero {
+    min-height: auto; /* ❌ niente 100vh */
+    margin-top: 0;    /* ❌ niente overlap mobile */
+
+    padding: 95px 20px 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .hero-inner {
-    text-align: center;
     flex-direction: column;
-  }
-
-  .hero-buttons {
     justify-content: center;
   }
 
+  .hero-text {
+    max-width: 100%;
+  }
+
   .hero h1 {
-    font-size: 38px;
+    font-size: 1.9rem;
+    line-height: 1.2;
   }
 
   .hero p {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin: 15px 0 22px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
   }
 }
