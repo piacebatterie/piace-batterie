@@ -1,0 +1,105 @@
+.location-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+  
+  .location-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* overlay */
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(6px);
+  }
+  
+  /* box */
+  .modal-box {
+    position: relative;
+    z-index: 2;
+  
+    background: linear-gradient(
+      145deg,
+      rgba(10,25,55,0.95),
+      rgba(5,15,35,0.95)
+    );
+  
+    border: 1px solid rgba(255,255,255,0.08);
+  
+    border-radius: 18px;
+    padding: 40px 30px;
+  
+    max-width: 420px;
+    width: 90%;
+  
+    box-shadow:
+      0 40px 80px rgba(0,0,0,0.6),
+      0 0 60px rgba(255,120,0,0.08);
+  
+    transform: scale(0.95);
+    transition: 0.3s ease;
+  }
+  
+  .location-modal.active .modal-box {
+    transform: scale(1);
+  }
+  
+  /* contenuto */
+  .modal-content {
+    text-align: center;
+  }
+  
+  .modal-badge {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  
+  .modal-box h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .modal-address {
+    opacity: 0.75;
+    margin-bottom: 25px;
+  }
+  
+  /* bottoni */
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  /* chiudi */
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+  
+    background: none;
+    border: none;
+    color: white;
+  
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+  
+  .modal-close:hover {
+    opacity: 1;
+  }

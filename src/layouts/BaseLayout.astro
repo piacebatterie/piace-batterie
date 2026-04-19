@@ -5,6 +5,7 @@ import "../styles/button.css";
 import "../styles/sticky.css";
 import Footer from "../components/Footer.astro";
 import FreeCheck from '../components/cta/FreeCheck.astro';
+import LocationModal from "../components/LocationModal.astro";
 ---
 
 <!DOCTYPE html>
@@ -60,7 +61,7 @@ import FreeCheck from '../components/cta/FreeCheck.astro';
 
     <main>
       <slot />
-
+<LocationModal />
         <FreeCheck />
     </main>
 

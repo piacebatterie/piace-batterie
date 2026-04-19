@@ -1,0 +1,235 @@
+/* =========================
+   WHY — FINAL PRO
+========================= */
+
+.why {
+  position: relative;
+  padding: 110px 0 90px;
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255,255,255,0.04),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      #0B1F3A 0%,
+      #0F2A4D 100%
+    );
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.why h2 {
+  font-size: clamp(34px, 4vw, 46px);
+  line-height: 1.2;
+  margin-bottom: 14px;
+  letter-spacing: -0.5px;
+}
+
+.why h2 span {
+  display: block;
+  margin-top: 6px;
+  color: var(--orange);
+}
+
+.why-intro {
+  max-width: 620px;
+  margin: 0 auto 50px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 50px;
+}
+
+/* =========================
+   CARD — GLASS CLEAN
+========================= */
+
+.why-card {
+  position: relative;
+
+  padding: 28px;
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.10),
+      rgba(255,255,255,0.03)
+    );
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border 0.3s ease;
+}
+
+/* glow leggero */
+.why-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: radial-gradient(
+    400px circle at 50% 0%,
+    rgba(255,107,0,0.15),
+    transparent 60%
+  );
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* hover */
+.why-card:hover {
+  transform: translateY(-6px);
+
+  border: 1px solid rgba(255,107,0,0.25);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.5),
+    0 0 30px rgba(255,107,0,0.12);
+}
+
+.why-card:hover::before {
+  opacity: 1;
+}
+
+/* card centrale leggermente evidenziata */
+.why-card:nth-child(2) {
+  transform: scale(1.06); /* 🔥 leggermente più evidente */
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.14),
+      rgba(255,255,255,0.05)
+    );
+
+  border: 1px solid rgba(255,255,255,0.22);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.65),
+    0 0 30px rgba(255,107,0,0.08); /* glow leggerissimo */
+}
+
+.why-card:nth-child(2)::after {
+  content: "Consigliato";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  background: #ff6b00;
+  color: #fff;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+.why-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.why-card p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.why-cta {
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.why-cta .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: auto;
+  min-width: 260px;   /* 👈 base */
+  max-width: 320px;   /* 👈 evita effetto enorme */
+
+  padding: 0.9rem 1.8rem;
+  font-size: 0.95rem;
+  border-radius: 999px;
+
+  box-shadow:
+    0 10px 30px rgba(255,107,0,0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.25s ease,
+    opacity 0.2s ease;
+}
+
+/* spacing tra i bottoni */
+.why-cta .btn + .btn {
+  margin-top: 20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .why {
+    padding: 70px 0 60px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .why-card:nth-child(2) {
+    transform: none; /* niente focus centrale su mobile */
+  }
+
+  .why h2 {
+    font-size: 1.7rem;
+  }
+
+  .why-intro {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+}

@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/contatti.css";
+---
+
+<BaseLayout title="Contatti - Piace Batterie">
+
+  <section class="contact">
+
+    <div class="container">
+
+      <!-- HEADER -->
+      <div class="contact-header">
+        <h1>Dove siamo</h1>
+        <p>
+          Passa senza appuntamento. In pochi minuti sai esattamente cosa fare.
+        </p>
+      </div>
+<p class="contact-badge">
+  📍 Facile da raggiungere • Parcheggio comodo
+</p>
+      <!-- MAPPA -->
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps?q=Str.+della+Orsina+46+C+Piacenza&output=embed"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- INFO -->
+      <div class="contact-box">
+
+      <h2>Vieni senza appuntamento</h2>
+
+<p class="contact-highlight">
+  In 5 minuti sai esattamente cosa fare. Senza attese.
+</p>
+
+<p>📍 Str. della Orsina, 46 C, Piacenza (PC)</p>
+<p>📞 +39 0523 165 6743</p>
+<p>✉️ info@piacebatterie.it</p>
+
+        <div class="actions">
+       <a href="#" class="btn primary open-cta">
+
+  Richiedi controllo gratuito
+
+</a>
+
+          <a href="tel:+3905231656743" class="btn secondary">
+            Chiama ora
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</BaseLayout>
