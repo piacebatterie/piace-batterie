@@ -1,0 +1,116 @@
+---
+import '../../styles/components/free-check.css';
+---
+
+<div class="cta-popup" id="ctaPopup">
+
+  <div class="cta-popup-box">
+
+    <button class="close">×</button>
+
+    <h2>Controllo gratuito</h2>
+
+    <p>
+      Verifichiamo subito lo stato della tua batteria.
+      Ti richiamiamo in pochi minuti.
+    </p>
+
+    <form id="ctaForm">
+      <input type="text" name="name" placeholder="Nome" required />
+      <input type="tel" name="phone" placeholder="Telefono" required />
+      <input type="text" name="city" placeholder="Città" required />
+
+      <button type="submit">Ti richiamiamo subito</button>
+    </form>
+
+    <!-- messaggio success -->
+    <div class="cta-success" style="display:none;">
+      <h3>✅ Richiesta inviata</h3>
+      <p>Ti richiamiamo a breve.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const buttons = document.querySelectorAll('.open-cta');
+  const popup = document.getElementById('ctaPopup');
+  const form = document.getElementById('ctaForm');
+  const successBox = popup.querySelector('.cta-success');
+  const close = popup.querySelector('.close');
+
+  if (!buttons.length || !popup || !form) return;
+
+  // OPEN
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      popup.classList.add('active');
+      document.body.classList.add('menu-open');
+    });
+  });
+
+  // CLOSE
+  const closePopup = () => {
+    popup.classList.remove('active');
+    document.body.classList.remove('menu-open');
+
+    form.style.display = 'block';
+    successBox.style.display = 'none';
+    form.reset();
+  };
+
+  close.addEventListener('click', closePopup);
+
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) closePopup();
+  });
+
+  // SUBMIT
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    console.log('🚀 SUBMIT PARTITO');
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Invio...';
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch('/api/contact/', {
+        method: 'POST',
+        body: data
+      });
+
+      console.log('📡 FETCH PARTITO');
+
+      if (!res.ok) {
+        throw new Error('Errore server');
+      }
+
+      const result = await res.json();
+
+      if (result.success) {
+        form.style.display = 'none';
+        successBox.style.display = 'block';
+        setTimeout(closePopup, 1800);
+      } else {
+        throw new Error(result.error || 'Errore');
+      }
+
+    } catch (err) {
+      console.error(err);
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Ti richiamiamo subito';
+      alert(err.message || 'Errore di connessione');
+    }
+  });
+
+});
+</script>

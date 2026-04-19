@@ -21,31 +21,31 @@
   content: "";
   position: absolute;
 
-  width: 600px;
-  height: 600px;
+  width: 520px;
+  height: 520px;
 
   top: 0;
   left: 0;
 
   transform:
     translate(var(--lx, 50%), var(--ly, 50%))
-    translate(-50%, -50%);
+    translate(-50%, -50%)
+    translateZ(0);
 
   background: radial-gradient(
     circle,
-    rgba(255,107,0,0.28) 0%,
-    rgba(255,107,0,0.12) 35%,
-    rgba(255,107,0,0.04) 60%,
+    rgba(255,107,0,0.22) 0%,
+    rgba(255,107,0,0.10) 35%,
+    rgba(255,107,0,0.03) 60%,
     transparent 75%
   );
 
-  filter: blur(40px);
-  opacity: 0.4;
+  opacity: 0.45;
 
   pointer-events: none;
   z-index: 0;
 
-  transition: opacity 0.3s ease;
+  will-change: transform;
 }
 
 /* leggero boost quando hover */
@@ -139,18 +139,18 @@
   flex-wrap: wrap;
 }
 
-/* ❌ RIMOSSI override inutili dei bottoni */
-/* ora usa SOLO button.css */
 
 /* =========================
    TRUST
 ========================= */
 
-.cta-trust {
-  margin-top: 26px;
-  font-size: 0.9rem;
-  opacity: 0.7;
+.cta-note {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  opacity: 0.6;
 }
+
+
 
 /* =========================
    MOBILE

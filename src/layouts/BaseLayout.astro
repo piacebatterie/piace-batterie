@@ -4,12 +4,14 @@ import Header from "../components/Header.astro";
 import "../styles/button.css";
 import "../styles/sticky.css";
 import Footer from "../components/Footer.astro";
+import FreeCheck from '../components/cta/FreeCheck.astro';
 ---
 
 <!DOCTYPE html>
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
+   <meta name="format-detection" content="telephone=no, email=no">
 
     <!-- RESPONSIVE -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -58,6 +60,8 @@ import Footer from "../components/Footer.astro";
 
     <main>
       <slot />
+
+        <FreeCheck />
     </main>
 
     <Footer />
@@ -78,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const groups = document.querySelectorAll(".reveal-group");
     const singles = document.querySelectorAll(".reveal:not(.card)");
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
@@ -86,14 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
           const items = entry.target.querySelectorAll(".reveal");
 
           items.forEach((el, index) => {
-            setTimeout(() => el.classList.add("in-view"), index * 180);
+            setTimeout(() => el.classList.add("in-view"), index * 160);
           });
 
         } else {
           entry.target.classList.add("in-view");
         }
 
-        observer.unobserve(entry.target);
+        obs.unobserve(entry.target);
       });
     }, { threshold: 0.65 });
 
@@ -107,30 +111,37 @@ document.addEventListener("DOMContentLoaded", () => {
   ===================================================== */
   const initCard3D = () => {
     document.querySelectorAll(".card").forEach(card => {
+
+      let frame;
+
       card.addEventListener("mousemove", e => {
-        const rect = card.getBoundingClientRect();
+        cancelAnimationFrame(frame);
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        frame = requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
 
-        const midX = rect.width / 2;
-        const midY = rect.height / 2;
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
 
-        const rotateY = ((x - midX) / midX) * 5.5;
-        const rotateX = ((midY - y) / midY) * 5.5;
+          const midX = rect.width / 2;
+          const midY = rect.height / 2;
 
-        card.style.transform = `
-          rotateX(${rotateX}deg)
-          rotateY(${rotateY}deg)
-          scale(1.02)
-        `;
+          const rotateY = ((x - midX) / midX) * 5;
+          const rotateX = ((midY - y) / midY) * 5;
 
-        card.style.setProperty("--x", `${x}px`);
-        card.style.setProperty("--y", `${y}px`);
+          card.style.transform = `
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            scale(1.02)
+          `;
+
+          card.style.setProperty("--x", `${x}px`);
+          card.style.setProperty("--y", `${y}px`);
+        });
       });
 
       card.addEventListener("mouseleave", () => {
-        card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+        card.style.transform = "";
       });
     });
   };
@@ -153,8 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const animate = () => {
-      currentX += (targetX - currentX) * 0.07;
-      currentY += (targetY - currentY) * 0.07;
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
 
       cta.style.setProperty("--lx", `${currentX}px`);
       cta.style.setProperty("--ly", `${currentY}px`);
@@ -173,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".btn").forEach(btn => {
       btn.addEventListener("mousemove", (e) => {
         const rect = btn.getBoundingClientRect();
-
         btn.style.setProperty("--lx", `${e.clientX - rect.left}px`);
         btn.style.setProperty("--ly", `${e.clientY - rect.top}px`);
       });
@@ -182,17 +192,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     SERVICES PARALLAX
+     SERVICES PARALLAX (throttled)
   ===================================================== */
   const initServicesParallax = () => {
     const services = document.querySelector(".services");
     if (!services) return;
 
-    window.addEventListener("scroll", () => {
-      const rect = services.getBoundingClientRect();
-      const offset = Math.max(-200, Math.min(200, rect.top * 0.12));
+    let ticking = false;
 
-      services.style.setProperty("--parallaxY", `${offset}px`);
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const rect = services.getBoundingClientRect();
+          const offset = Math.max(-200, Math.min(200, rect.top * 0.12));
+          services.style.setProperty("--parallaxY", `${offset}px`);
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
   };
 
@@ -211,58 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
         logo.style.transition = "all 0.5s ease";
         logo.style.opacity = "0.5";
         logo.style.transform = "translateY(0)";
-      }, i * 80);
-    });
-  };
-
-
-  /* =====================================================
-     BRANDS PARALLAX
-  ===================================================== */
-  const initBrandsParallax = () => {
-    const brands = document.querySelector(".brands");
-    if (!brands) return;
-
-    let target = 0;
-    let current = 0;
-
-    window.addEventListener("scroll", () => {
-      const rect = brands.getBoundingClientRect();
-      const vh = window.innerHeight;
-
-      const progress = 1 - (rect.top / vh);
-      const clamped = Math.max(0, Math.min(1, progress));
-
-      target = (clamped - 0.4) * 45;
-    });
-
-    const animate = () => {
-      current += (target - current) * 0.08;
-
-      brands.style.setProperty("--parallaxY", `${current}px`);
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-  };
-
-
-  /* =====================================================
-     BRANDS MOUSE
-  ===================================================== */
-  const initBrandsMouse = () => {
-    const brands = document.querySelector(".brands");
-    if (!brands) return;
-
-    brands.addEventListener("mousemove", (e) => {
-      const rect = brands.getBoundingClientRect();
-
-      const mx = (e.clientX - rect.left - rect.width / 2) * 0.02;
-      const my = (e.clientY - rect.top - rect.height / 2) * 0.02;
-
-      brands.style.setProperty("--mx", `${mx}px`);
-      brands.style.setProperty("--my", `${my}px`);
+      }, i * 70);
     });
   };
 
@@ -279,34 +245,72 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", () => {
       const scrollY = window.scrollY;
 
-      // mostra dopo scroll
-      if (scrollY > 300) {
-        cta.classList.add("visible");
-      } else {
-        cta.classList.remove("visible");
-      }
+      cta.classList.toggle("visible", scrollY > 300);
 
-      // nascondi vicino al footer
       if (footer) {
         const rect = footer.getBoundingClientRect();
-
-        if (rect.top < window.innerHeight) {
-          cta.style.opacity = "0";
-        } else {
-          cta.style.opacity = "";
-        }
+        cta.style.opacity = rect.top < window.innerHeight ? "0" : "";
       }
     });
   };
 
-const toggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".nav");
 
-if (toggle && nav) {
-  toggle.addEventListener("click", () => {
-    nav.classList.toggle("active");
-  });
-}
+  /* =====================================================
+     MOBILE MENU SWIPE (clean)
+  ===================================================== */
+  const initMobileMenuSwipe = () => {
+    const nav = document.querySelector(".nav");
+    const overlay = document.querySelector(".menu-overlay");
+    const header = document.querySelector(".header");
+
+    if (!nav || !overlay || !header) return;
+
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+
+    const reset = () => {
+      nav.style.transform = "";
+      nav.style.opacity = "";
+    };
+
+    nav.addEventListener("touchstart", (e) => {
+      startY = e.touches[0].clientY;
+      isDragging = true;
+    });
+
+    nav.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+
+      e.preventDefault();
+
+      currentY = e.touches[0].clientY;
+      const delta = currentY - startY;
+
+      if (delta > 0) {
+        nav.style.transform = `translateY(${delta}px)`;
+        nav.style.opacity = `${1 - delta / 280}`;
+      }
+    }, { passive: false });
+
+    nav.addEventListener("touchend", () => {
+      isDragging = false;
+
+      const delta = currentY - startY;
+
+      if (delta > 120) {
+        nav.classList.remove("active");
+        overlay.classList.remove("active");
+        header.classList.remove("menu-open");
+      }
+
+      reset();
+      startY = currentY = 0;
+    });
+
+    overlay.addEventListener("click", reset);
+  };
+
 
   /* =====================================================
      INIT ALL
@@ -317,10 +321,8 @@ if (toggle && nav) {
   initButtonGlow();
   initServicesParallax();
   initBrands();
-  initBrandsParallax();
-  initBrandsMouse();
   initStickyCTA();
-  initMobileMenu();
+  initMobileMenuSwipe();
 
 });
 </script>

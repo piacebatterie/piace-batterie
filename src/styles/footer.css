@@ -195,3 +195,31 @@
       font-size: 0.75rem;
     }
   }
+
+  .phone {
+    color: rgba(255,255,255,0.75); 
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  
+  .phone:hover {
+    color: #ff6b00;
+  }
+
+  .mail {
+    display: inline-block;
+    margin-top: 4px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  
+  .mail:hover {
+    color: #ff6b00;
+  }
+
+  .footer-note {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-top: 6px;
+  }

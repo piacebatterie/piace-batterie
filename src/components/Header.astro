@@ -4,11 +4,13 @@ import "../styles/header.css";
 
 <header class="header">
   <div class="container header-inner">
-    
+
+    <!-- LOGO -->
     <div class="logo">
       <img src="/logo_piace_batterie.webp" alt="Piace Batterie" />
     </div>
 
+    <!-- NAV -->
     <nav class="nav">
       <a href="#">Home</a>
       <a href="#">Prodotti</a>
@@ -16,22 +18,95 @@ import "../styles/header.css";
       <a href="#">Contatti</a>
     </nav>
 
- <div class="header-cta">
-    <a class="btn primary">Chiama ora</a>
-  </div>
+    <!-- CTA DESKTOP -->
+    <div class="header-cta">
+      <a href="tel:+3905231656743" class="btn primary">Chiama ora</a>
+    </div>
 
-  <div class="menu-toggle">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+    <!-- MENU TOGGLE -->
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
   </div>
 </header>
 
+<!-- 🔥 OVERLAY FUORI (fondamentale) -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+
+<!-- =========================
+     SCRIPT
+========================= -->
 <script is:inline>
-  window.addEventListener("scroll", () => {
-    const header = document.querySelector(".header");
-    header.classList.toggle("scrolled", window.scrollY > 20);
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggle = document.getElementById("menuToggle");
+  const nav = document.querySelector(".nav");
+  const header = document.querySelector(".header");
+  const overlay = document.querySelector(".menu-overlay");
+
+  if (!toggle || !nav || !overlay || !header) return;
+
+  /* =========================
+     SCROLL LOCK (PRO)
+  ========================= */
+
+  let scrollY = 0;
+
+  const lockScroll = () => {
+    scrollY = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+  };
+
+  const unlockScroll = () => {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+
+    window.scrollTo(0, scrollY);
+  };
+
+  /* =========================
+     OPEN / CLOSE MENU
+  ========================= */
+
+ const openMenu = () => {
+  nav.classList.add("active");
+  overlay.classList.add("active");
+  header.classList.add("menu-open");
+
+  document.body.classList.add("menu-open");
+};
+
+const closeMenu = () => {
+  nav.classList.remove("active");
+  overlay.classList.remove("active");
+  header.classList.remove("menu-open");
+
+  document.body.classList.remove("menu-open");
+};
+
+  /* =========================
+     EVENTS
+  ========================= */
+
+  toggle.addEventListener("click", () => {
+    if (nav.classList.contains("active")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
+
+  overlay.addEventListener("click", closeMenu);
+
+});
 </script>
