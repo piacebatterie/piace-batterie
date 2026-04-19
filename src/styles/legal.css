@@ -1,0 +1,74 @@
+/* =========================
+   LEGAL / PRIVACY PAGE
+========================= */
+
+.legal {
+    padding: 120px 0;
+  }
+  
+  /* container più largo */
+  .legal .container {
+    max-width: 900px;
+  }
+  
+  /* titolo principale */
+  .legal h1 {
+    margin-bottom: 12px;
+  }
+  
+  /* intro */
+  .legal p:first-of-type {
+    font-size: 1.05rem;
+    opacity: 0.85;
+    margin-bottom: 25px;
+  }
+  
+  /* sezioni */
+  .legal h2 {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 12px;
+  
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    padding-top: 18px;
+  }
+  
+  /* linea premium */
+  .legal h2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+    width: 40px;
+    height: 2px;
+  
+    background: #ff6b00;
+    opacity: 0.7;
+  }
+  
+  /* testo */
+  .legal p {
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  /* link dentro privacy */
+  .legal a {
+    color: #ff6b00;
+    text-decoration: none;
+  }
+  
+  .legal a:hover {
+    text-decoration: underline;
+  }
+  
+  /* nota finale */
+  .legal-note {
+    margin-top: 40px;
+    font-size: 0.8rem;
+    opacity: 0.5;
+  }

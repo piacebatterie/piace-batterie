@@ -1,0 +1,29 @@
+---
+import "../styles/components/cookie-banner.css";
+---
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>
+    Utilizziamo cookie tecnici per il funzionamento del sito.
+    <a href="/privacy">Scopri di più</a>
+  </p>
+
+  <button class="btn primary" id="acceptCookies">
+    Accetta
+  </button>
+</div>
+
+<script>
+  const banner = document.getElementById("cookieBanner");
+  const btn = document.getElementById("acceptCookies");
+
+  // se già accettato → nascondi
+  if (localStorage.getItem("cookiesAccepted")) {
+    banner.style.display = "none";
+  }
+
+  btn.addEventListener("click", () => {
+    localStorage.setItem("cookiesAccepted", "true");
+    banner.style.display = "none";
+  });
+</script>
