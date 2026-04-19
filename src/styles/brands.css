@@ -121,8 +121,11 @@
 ========================= */
 
 .brands-grid img {
-  height: 40px;
-  width: auto;
+  width: 140px;
+
+  aspect-ratio: 2 / 1;
+
+  object-fit: contain;
 
   flex: 0 0 140px;
 
