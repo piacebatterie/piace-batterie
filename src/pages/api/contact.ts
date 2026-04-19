@@ -29,6 +29,8 @@ export const POST: APIRoute = async ({ request }) => {
       city = params.get('city') || '';
     }
 
+    phone = (phone || '').replace(/[^\d+]/g, '');
+
     await resend.emails.send({
       from: 'Piace Batterie <info@piacebatterie.it>',
       to: ['info@piacebatterie.it'],
@@ -38,9 +40,11 @@ export const POST: APIRoute = async ({ request }) => {
     
         <p><strong>Nome:</strong> ${name}</p>
     
-     <p>
+ <p><strong>Telefono:</strong> ${phone}</p>
+
+<p>
   <a href="tel:${phone.replace(/\s/g, '')}" 
-     style="display:inline-block;padding:10px 16px;background:#ff6a00;color:#fff;text-decoration:none;border-radius:6px;">
+     style="display:inline-block;padding:12px 18px;background:#ff6a00;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold;">
      📞 Chiama ora
   </a>
 </p>

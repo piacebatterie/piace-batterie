@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('ctaForm');
   const successBox = popup.querySelector('.cta-success');
   const close = popup.querySelector('.close');
+  const phoneInput = form.querySelector('input[name="phone"]');
+
+  phoneInput.addEventListener('input', () => {
+  phoneInput.value = phoneInput.value.replace(/[^\d+]/g, '');
+});
 
   if (!buttons.length || !popup || !form) return;
 
@@ -113,4 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+
 </script>
