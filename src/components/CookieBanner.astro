@@ -3,27 +3,53 @@ import "../styles/components/cookie-banner.css";
 ---
 
 <div class="cookie-banner" id="cookieBanner">
-  <p>
-    Utilizziamo cookie tecnici per il funzionamento del sito.
-    <a href="/privacy">Scopri di più</a>
-  </p>
+  <div class="cookie-content">
+    <p>
+      Utilizziamo esclusivamente cookie tecnici necessari al funzionamento del sito.
+      <a href="/privacy">Maggiori informazioni</a>
+    </p>
+  </div>
 
-  <button class="btn primary" id="acceptCookies">
-    Accetta
-  </button>
+  <div class="cookie-actions">
+    <button class="btn ghost" id="rejectCookies">
+      Continua senza accettare
+    </button>
+
+    <button class="btn primary" id="acceptCookies">
+      Ok, ho capito
+    </button>
+  </div>
 </div>
 
 <script>
-  const banner = document.getElementById("cookieBanner");
-  const btn = document.getElementById("acceptCookies");
+  document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("cookieBanner");
+    const acceptBtn = document.getElementById("acceptCookies");
+    const rejectBtn = document.getElementById("rejectCookies");
 
-  // se già accettato → nascondi
-  if (localStorage.getItem("cookiesAccepted")) {
-    banner.style.display = "none";
-  }
+    if (!banner) return;
 
-  btn.addEventListener("click", () => {
-    localStorage.setItem("cookiesAccepted", "true");
-    banner.style.display = "none";
+    const consent = localStorage.getItem("cookieConsent");
+
+    if (consent) {
+      banner.style.display = "none";
+    }
+
+    const closeBanner = () => {
+      banner.classList.add("hide");
+      setTimeout(() => {
+        banner.style.display = "none";
+      }, 300);
+    };
+
+    acceptBtn?.addEventListener("click", () => {
+      localStorage.setItem("cookieConsent", "accepted");
+      closeBanner();
+    });
+
+    rejectBtn?.addEventListener("click", () => {
+      localStorage.setItem("cookieConsent", "rejected");
+      closeBanner();
+    });
   });
 </script>

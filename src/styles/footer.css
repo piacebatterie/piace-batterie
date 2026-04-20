@@ -115,7 +115,7 @@
 
 .contact-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 
   color: rgba(255,255,255,0.75);
@@ -139,9 +139,13 @@
 
   flex-shrink: 0;
   display: block;
+  stroke: rgba(255,255,255,0.6);
 
-  fill: rgba(255,255,255,0.6);
-  transition: fill 0.25s ease;
+  fill: none;
+
+  /* FIX REALI 👇 */
+  overflow: visible;
+  transform: translateY(2px);
 }
 
 .contact-item:hover .icon {
@@ -239,4 +243,38 @@
     margin-top: 50px;
     padding: 20px 0 35px;
   }
+}
+
+/* FIX OVERLAY CLICK BUG */
+
+.brands::before,
+.brands::after,
+.why-card::before {
+  pointer-events: none;
+}
+
+.footer {
+  position: relative;
+  z-index: 5;
+}
+
+.footer-bottom {
+  position: relative;
+  z-index: 10;
+}
+
+.sticky-cta {
+  pointer-events: none;
+}
+
+.sticky-call {
+  pointer-events: auto;
+}
+
+.sticky-cta {
+  z-index: 5;
+}
+
+.footer {
+  z-index: 10;
 }
