@@ -243,12 +243,12 @@
   }
 
   .hero h1 {
-    font-size: 1.9rem;
-    line-height: 1.2;
+    font-size: 2rem;
+    line-height: 1.5;
   }
 
   .hero p {
-    font-size: 0.95rem;
+    font-size: 1,2rem;
     margin: 15px 0 22px;
   }
 

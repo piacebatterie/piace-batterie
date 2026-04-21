@@ -225,6 +225,9 @@
     width: 100%;
   }
 
+  .about-text p {
+    font-size: 18px;
+  }
 
     .about-strip {
       padding: 70px 0;
@@ -248,7 +251,7 @@
   
     .highlight-list {
   
-      font-size: 0.95rem;
+      font-size: 1,2rem;
   
       line-height: 1.7;
   

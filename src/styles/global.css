@@ -11,14 +11,21 @@
 }
 
 body {
+
   margin: 0;
+
   font-family: 'Barlow Condensed', sans-serif;
+
   background: var(--blue-dark);
+
   color: var(--white);
 
-  font-size: 1rem; /* base = 16px */
-  line-height: 1.6;
+  font-size: 1.05rem; /* 🔥 leggermente più grande */
+
+  line-height: 1.65;
+
   letter-spacing: 0.2px;
+
 }
 
 /* =========================
@@ -60,24 +67,32 @@ h3 {
 
 /* TESTO BASE 🔥 */
 p {
+
   margin: 0;
+
   font-weight: 400;
 
-  font-size: clamp(1.05rem, 1.1vw, 1.15rem);
-  /* 👉 cresce leggermente su desktop */
+  font-size: clamp(1.1rem, 1.15vw, 1.2rem); /* 🔥 più presente */
 
-  line-height: 1.75; /* più respiro */
+  line-height: 1.75;
+
   letter-spacing: 0.25px;
 
-  color: rgba(255,255,255,0.88);
+  color: rgba(255,255,255,0.9);
+
 }
 
 @media (max-width: 768px) {
   p {
-    font-size: 1.08rem; /* 👈 questo cambia tutto */
-    line-height: 1.7;
+
+    font-size: 1.12rem; /* 🔥 mobile finalmente leggibile */
+
+    line-height: 1.75;
+
   }
+
 }
+
 
 /* =========================
    UTILITY (opzionale ma utile)
