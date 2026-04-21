@@ -79,87 +79,179 @@
   }
   
   /* box laterale */
-  .highlight-box {
-    position: relative;
-  
-    padding: 32px;
-    border-radius: 20px;
-  
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255,255,255,0.10),
-        rgba(255,255,255,0.03)
-      );
-  
-    border: 1px solid rgba(255,255,255,0.14);
-  
-    backdrop-filter: blur(12px);
-  
-    box-shadow:
-      0 20px 60px rgba(0,0,0,0.4),
-      inset 0 1px 0 rgba(255,255,255,0.1);
-  
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+ /* =========================
+   HIGHLIGHT BOX — CLEAN WOW
+========================= */
+
+.highlight-box {
+  position: relative;
+  overflow: hidden;
+
+  padding: 36px;
+  border-radius: 22px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+
+  backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+
+  transition: all 0.35s ease;
+}
+
+/* =========================
+   LAYER 1 — GLOW BASE
+========================= */
+
+.highlight-box::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+
+  background: radial-gradient(
+    circle,
+    rgba(255,107,0,0.18),
+    transparent 70%
+  );
+
+  opacity: 0.5;
+  filter: blur(50px);
+
+  z-index: 0;
+}
+
+/* =========================
+   LAYER 2 — LOGO
+========================= */
+
+.highlight-bg {
+  position: absolute;
+
+  width: 50%;
+  max-width: none;
+
+  right: -5%;
+  bottom: -5%;
+
+  opacity: 0.12;
+  filter: blur(1px);
+  transform: rotate(-1deg) scale(1.05);
+
+  pointer-events: none;
+  z-index: 1;
+
+  transition: all 0.6s ease;
+}
+
+/* =========================
+   LAYER 3 — GLASS OVERLAY
+========================= */
+
+.highlight-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.06),
+    transparent 40%
+  );
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* =========================
+   LAYER 4 — CONTENT
+========================= */
+
+.highlight-title,
+.highlight-list {
+  position: relative;
+  z-index: 3;
+}
+
+/* titolo */
+.highlight-title {
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+/* lista */
+.highlight-list {
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+/* =========================
+   HOVER EFFECT
+========================= */
+
+.highlight-box:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 35px 100px rgba(0,0,0,0.6),
+    0 0 40px rgba(255,107,0,0.15);
+}
+
+.highlight-box:hover .highlight-bg {
+  transform: rotate(-4deg) scale(1.2);
+  opacity: 0.16;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .about-strip {
+    padding: 70px 0;
   }
 
-  .highlight-box::before {
-    content: "";
-    position: absolute;
-    inset: -40px;
-  
-    background: radial-gradient(
-      circle,
-      rgba(255,107,0,0.15),
-      transparent 70%
-    );
-  
-    opacity: 0.6;
-    filter: blur(40px);
-  
-    z-index: -1;
-  }
-  
-  .highlight-box:hover {
-    transform: translateY(-4px);
-  
-    box-shadow:
-      0 30px 80px rgba(0,0,0,0.5),
-      0 0 40px rgba(255,107,0,0.12);
-  }
-  
-  .about-text::before {
-    content: "";
-    display: block;
-  
-    width: 60px;
-    height: 3px;
-  
-    margin-bottom: 18px;
-  
-    background: linear-gradient(
-      90deg,
-      #ff6b00,
-      transparent
-    );
-  
-    border-radius: 2px;
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: left; /* 👈 non center */
   }
 
-  /* mobile */
-  @media (max-width: 768px) {
-  
+  .about-highlight {
+    width: 100%;
+  }
+
+
     .about-strip {
       padding: 70px 0;
     }
   
     .about-inner {
       grid-template-columns: 1fr;
-      gap: 30px;
-      text-align: center;
+      gap: 40px;
+      text-align: left; /* 👈 non center */
     }
   
-    .highlight-box {
-      font-size: 0.95rem;
+    .about-highlight {
+      width: 100%;
     }
-  }
+  
+    .highlight-title {
+
+      font-size: 1.2rem;
+  
+    }
+  
+    .highlight-list {
+  
+      font-size: 0.95rem;
+  
+      line-height: 1.7;
+  
+    }
+
+}

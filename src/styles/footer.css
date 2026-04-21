@@ -234,6 +234,82 @@
 }
 
 /* =========================
+   SIGNATURE (GCP)
+========================= */
+
+.footer-signature {
+  margin-top: 18px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+
+  font-size: 0.8rem;
+  letter-spacing: 0.8px;
+
+  color: rgba(255,255,255,0.5);
+
+  transition: all 0.3s ease;
+}
+
+/* label */
+.signature-label {
+  opacity: 0.5;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+/* blocco brand */
+.signature-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  transition: all 0.3s ease;
+}
+
+/* logo */
+.signature-brand img {
+  height: 16px;
+  opacity: 0.8;
+  filter: grayscale(1) brightness(1.2);
+  transition: all 0.3s ease;
+}
+
+/* nome */
+.signature-brand span {
+  font-size: 0.75rem;
+  letter-spacing: 0.6px;
+}
+
+/* hover elegante */
+.footer-signature:hover {
+  color: #fff;
+}
+
+.footer-signature:hover .signature-brand {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,107,0,0.3);
+
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.4),
+    0 0 12px rgba(255,107,0,0.15);
+}
+
+.footer-signature:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+/* =========================
    MOBILE
 ========================= */
 

@@ -3,18 +3,22 @@
 ========================= */
 
 .products-hero {
-  padding: 140px 0 80px;
+  padding: 110px 0 40px;
   text-align: center;
   position: relative;
+
+  background: #0B1F3A;
 }
 
-.products-hero::after {
+/* glow leggerissimo (quasi invisibile) */
+.products-hero::before {
   content: "";
   position: absolute;
   inset: 0;
+
   background: radial-gradient(
-    circle at 50% 55%, /* 👈 spostato più in basso */
-    rgba(255,120,0,0.12),
+    500px circle at 50% 10%,
+    rgba(255,120,0,0.05),
     transparent 70%
   );
 
@@ -28,32 +32,33 @@
 }
 
 /* =========================
-   NAV (GLASS PREMIUM++)
+   NAV
 ========================= */
 
 .products-nav {
-  padding: 30px 0;
-  margin-bottom: 60px;
+  padding: 20px 0 60px;
   display: flex;
   justify-content: center;
+
+  background: transparent; /* 👈 elimina linea */
 }
 
 .products-nav .container {
   display: flex;
-  gap: 24px;
+  gap: 22px;
   flex-wrap: wrap;
   justify-content: center;
 
-  padding: 16px 26px;
+  padding: 14px 22px;
   border-radius: 999px;
 
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(10px);
 
   box-shadow:
-    0 20px 60px rgba(0,0,0,0.35),
+    0 10px 40px rgba(0,0,0,0.35),
     inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
@@ -77,22 +82,17 @@
   height: 2px;
 
   background: linear-gradient(90deg, #ff6b00, #ff9a3c);
-  transform: none;
-  transition: all 0.3s ease;
+  transition: width 0.3s ease;
 }
 
-.products-nav a:hover {
+.products-nav a:hover,
+.products-nav a.active {
   color: #fff;
-  text-shadow: 0 0 8px rgba(255,120,0,0.4);
 }
 
 .products-nav a:hover::after,
 .products-nav a.active::after {
   width: 100%;
-}
-
-.products-nav a.active {
-  color: #fff;
 }
 
 /* =========================
@@ -105,15 +105,6 @@
   z-index: 50;
 }
 
-.products-nav.sticky .container {
-  background: rgba(10, 20, 40, 0.2);
-  backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 25px 80px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-}
-
 /* =========================
    SEZIONI
 ========================= */
@@ -121,50 +112,28 @@
 .product-section {
   padding: 100px 0;
   position: relative;
+
+  background: #0F2A4D;
+  overflow: hidden;
 }
 
-/* layer atmosfera */
+/* texture luce stile home */
 .product-section::before {
   content: "";
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(255,120,0,0.08),
-    transparent 60%
-  );
+  background:
+    radial-gradient(600px circle at 20% 30%, rgba(255,120,0,0.06), transparent 70%),
+    radial-gradient(800px circle at 80% 70%, rgba(0,180,255,0.05), transparent 70%);
 
-  opacity: 0;
-  transition: opacity 0.6s ease;
+  opacity: 0.6;
   pointer-events: none;
 }
 
-.product-section:hover::before {
-  opacity: 1;
-}
-
+/* variante */
 .product-section.alt {
-  background: rgba(255,255,255,0.025);
-
-  backdrop-filter: blur(8px);
-
-  border-top: 1px solid rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-
-.product-section.alt::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: radial-gradient(
-    circle at 70% 50%,
-    rgba(255,120,0,0.06),
-    transparent 60%
-  );
-
-  pointer-events: none;
+  background: #112f55;
 }
 
 /* =========================
@@ -181,6 +150,13 @@
 /* =========================
    CONTENUTO
 ========================= */
+.content {
+
+  position: relative;
+
+  z-index: 2;
+
+}
 
 .content h2 {
   margin-bottom: 16px;
@@ -193,104 +169,120 @@
 }
 
 /* =========================
-   HIGHLIGHT (GLASS PRO)
+   HIGHLIGHT
 ========================= */
 
 .highlight {
-  position: relative;
-  overflow: hidden;
-
   margin: 26px 0;
-  padding: 20px 24px;
-  border-radius: 16px;
+  padding: 22px 26px;
+  border-radius: 18px;
 
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(16px);
-
+  background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
 
   box-shadow:
-    0 20px 50px rgba(0,0,0,0.35),
+    0 20px 50px rgba(0,0,0,0.4),
     inset 0 1px 0 rgba(255,255,255,0.08);
 
-  color: rgba(255,255,255,0.85);
-
-  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+/* glow interno elegante */
 .highlight::before {
   content: "";
   position: absolute;
   inset: 0;
 
   background: radial-gradient(
-    circle at 20% 50%,
-    rgba(255,120,0,0.2),
-    transparent 60%
+    300px circle at 0% 50%,
+    rgba(255,120,0,0.15),
+    transparent 70%
   );
 
-  opacity: 0.25;
+  opacity: 0.4;
 }
 
 .highlight:hover {
-  transform: translateY(-4px);
-  border: 1px solid rgba(255,120,0,0.4);
+  transform: translateY(-3px);
 }
 
 /* =========================
-   IMMAGINI (WOW LEVEL)
+   IMMAGINI
 ========================= */
 
 .image {
   position: relative;
 
   opacity: 0;
-  transform: translateY(60px) scale(0.95);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(40px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .image.visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
-/* glow dietro immagine */
+/* glow leggero dietro (no blur esagerato) */
 .image::before {
   content: "";
   position: absolute;
   inset: -20px;
 
   background: radial-gradient(
-    circle at 70% 50%,
-    rgba(255,120,0,0.15),
+    circle at 60% 50%,
+    rgba(255,120,0,0.12),
     transparent 70%
   );
 
-  filter: blur(40px);
-  opacity: 0.4;
+  opacity: 0.6;
   z-index: -1;
+}
+
+/* overlay cinematico sopra */
+.image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+
+  background: linear-gradient(
+    120deg,
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.05) 40%,
+    transparent 70%
+  );
+
+  pointer-events: none;
 }
 
 .image img {
   width: 100%;
   border-radius: 20px;
 
-  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
-  transition: all 0.5s ease;
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.55),
+    0 10px 25px rgba(0,0,0,0.35);
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .image img:hover {
-  transform: scale(1.04);
+  transform: scale(1.025);
+  box-shadow:
+    0 40px 90px rgba(0,0,0,0.7),
+    0 15px 35px rgba(0,0,0,0.4);
 }
 
 /* =========================
-   BOTTONI (UPGRADE)
+   BOTTONI
 ========================= */
 
 .btn.primary {
   box-shadow:
-    0 15px 40px rgba(255,107,0,0.4),
-    0 0 20px rgba(255,107,0,0.2);
+    0 12px 35px rgba(255,107,0,0.4),
+    0 0 15px rgba(255,107,0,0.2);
 }
 
 /* =========================
@@ -299,22 +291,8 @@
 
 .products-final {
   text-align: center;
-  padding: 120px 0 140px;
-  position: relative;
-}
-
-.products-final::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: radial-gradient(
-    circle at center,
-    rgba(255,120,0,0.12),
-    transparent 60%
-  );
-
-  pointer-events: none;
+  padding: 120px 0;
+  background: #0F2A4D;
 }
 
 .products-final p {
@@ -328,8 +306,8 @@
 
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.visible {
@@ -339,7 +317,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 150px;
+  scroll-padding-top: 120px;
 }
 
 /* =========================
@@ -348,37 +326,26 @@ html {
 
 @media (max-width: 768px) {
 
+  .products-hero {
+    padding: 90px 0 30px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
+  .products-nav {
+    padding: 10px 0 40px;
+  }
+
   .products-nav .container {
-    gap: 14px;
-    padding: 12px 16px;
+    gap: 12px;
+    padding: 10px 14px;
   }
 
   .product-section {
     padding: 70px 0;
-  }
-
-  .image::before {
-    display: none;
-  }
-
-
-  .products-hero::after {
-
-    background: radial-gradient(
-
-      400px circle at 50% 70%,
-
-      rgba(255,120,0,0.12),
-
-      transparent 75%
-
-    );
-
   }
 
 }

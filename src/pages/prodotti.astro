@@ -284,7 +284,10 @@ import "../styles/prodotti.css";
 
     });
 
-  }, { threshold: 0.2 });
+  }, { 
+  threshold: 0.08,
+  rootMargin: "0px 0px -80px 0px"
+});
 
   sections.forEach(el => {
 
@@ -310,7 +313,10 @@ import "../styles/prodotti.css";
 
     });
 
-  }, { threshold: 0.2 });
+  }, { 
+  threshold: 0.05,
+  rootMargin: "0px 0px -60px 0px"
+});
 
   images.forEach(img => observerImg.observe(img));
 
