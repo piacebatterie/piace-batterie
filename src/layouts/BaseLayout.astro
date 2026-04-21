@@ -13,32 +13,39 @@ import CookieBanner from "../components/CookieBanner.astro";
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-   <meta name="format-detection" content="telephone=no, email=no">
 
-    <!-- RESPONSIVE -->
+    <!-- MOBILE UX -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, email=no">
 
-    <!-- SEO BASE -->
+    <!-- TITLE -->
     <title>Piace Batterie | Batterie Auto e Industriali a Piacenza</title>
 
-    <meta name="description" content="Vendita e assistenza batterie auto e industriali a Piacenza. Controllo gratuito immediato, senza appuntamento. Intervento rapido e professionale." />
-
-    <meta name="keywords" content="batterie auto Piacenza, batterie industriali, sostituzione batteria, assistenza batterie, controllo batteria gratuito" />
+    <!-- SEO -->
+    <meta name="description" content="Vendita, installazione e assistenza batterie auto e industriali a Piacenza. Controllo gratuito immediato senza appuntamento. Servizio rapido e professionale." />
+    
+    <!-- (facoltativo ma ok) -->
+    <meta name="keywords" content="batterie auto Piacenza, batterie industriali Piacenza, sostituzione batteria, controllo batteria gratuito, installazione batterie" />
 
     <meta name="author" content="Piace Batterie" />
+    <meta name="robots" content="index, follow" />
 
-    <!-- OPEN GRAPH (SOCIAL) -->
-    <meta property="og:title" content="Piace Batterie | Batterie Auto a Piacenza" />
-    <meta property="og:description" content="Controllo batteria gratuito immediato. Nessuna attesa, nessun appuntamento. Servizio rapido e professionale a Piacenza." />
+    <!-- CANONICAL -->
+    <link rel="canonical" href="https://piacebatterie.it/" />
+
+    <!-- OPEN GRAPH (SOCIAL / WHATSAPP) -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.piacebatterie.it/" />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:title" content="Piace Batterie | Batterie Auto e Industriali a Piacenza" />
+    <meta property="og:description" content="Controllo batteria gratuito in 5 minuti. Vendita, assistenza e installazione senza appuntamento a Piacenza." />
+    <meta property="og:url" content="https://piacebatterie.it/" />
+    <meta property="og:image" content="https://piacebatterie.it/images/og-image.jpg" />
+    <meta property="og:locale" content="it_IT" />
 
     <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Piace Batterie" />
     <meta name="twitter:description" content="Controllo batteria gratuito immediato a Piacenza." />
-    <meta name="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:image" content="https://piacebatterie.it/images/og-image.jpg" />
 
     <!-- FAVICON -->
     <link rel="icon" href="/favicon.ico" />
@@ -50,11 +57,37 @@ import CookieBanner from "../components/CookieBanner.astro";
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- THEME COLOR (mobile browser) -->
+    <!-- THEME COLOR -->
     <meta name="theme-color" content="#020814" />
 
-    <!-- CANONICAL -->
-    <link rel="canonical" href="https://www.piacebatterie.it/" />
+    <!-- GEO SEO (locale 🔥) -->
+    <meta name="geo.region" content="IT-PC" />
+    <meta name="geo.placename" content="Piacenza" />
+    <meta name="geo.position" content="45.0522;9.6930" />
+    <meta name="ICBM" content="45.0522, 9.6930" />
+
+    <!-- BUSINESS STRUCTURED DATA (SUPER BOOST SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoRepair",
+      "name": "Piace Batterie",
+      "image": "https://piacebatterie.it/images/og-image.jpg",
+      "url": "https://piacebatterie.it",
+      "telephone": "+3905231656743",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Strada dell'Orsina 46/C",
+        "addressLocality": "Piacenza",
+        "postalCode": "29122",
+        "addressCountry": "IT"
+      },
+      "openingHours": "Mo-Fr 08:30-18:30 Sa 08:30-12:30",
+      "areaServed": "Piacenza",
+      "priceRange": "€€"
+    }
+    </script>
+
   </head>
 
   <body>
@@ -62,18 +95,22 @@ import CookieBanner from "../components/CookieBanner.astro";
 
     <main>
       <slot />
-<LocationModal />
-        <FreeCheck />
-        <CookieBanner />
+      <LocationModal />
+      <FreeCheck />
+      <CookieBanner />
     </main>
 
     <Footer />
 
+    <!-- CTA MOBILE -->
     <div class="sticky-cta">
-  <a href="tel:+3905231656743" class="sticky-call">
-    📞 Chiama ora
-  </a>
-</div>
+      <a href="tel:+3905231656743" class="sticky-call">
+        📞 Chiama ora
+      </a>
+    </div>
+
+  </body>
+</html>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -328,6 +365,19 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenuSwipe();
 
 });
+
+const blocks = document.querySelectorAll('.service-block');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.2 });
+
+blocks.forEach(el => observer.observe(el));
+
 </script>
   </body>
 </html>
