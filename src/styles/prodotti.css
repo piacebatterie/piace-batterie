@@ -12,11 +12,10 @@
   content: "";
   position: absolute;
   inset: 0;
-
   background: radial-gradient(
-    circle at 50% 20%,
+    circle at 50% 55%, /* 👈 spostato più in basso */
     rgba(255,120,0,0.12),
-    transparent 60%
+    transparent 70%
   );
 
   pointer-events: none;
@@ -107,7 +106,7 @@
 }
 
 .products-nav.sticky .container {
-  background: rgba(10,20,40,0.7);
+  background: rgba(10, 20, 40, 0.2);
   backdrop-filter: blur(18px);
 
   box-shadow:
@@ -365,6 +364,21 @@ html {
 
   .image::before {
     display: none;
+  }
+
+
+  .products-hero::after {
+
+    background: radial-gradient(
+
+      400px circle at 50% 70%,
+
+      rgba(255,120,0,0.12),
+
+      transparent 75%
+
+    );
+
   }
 
 }

@@ -284,12 +284,6 @@
    RESPONSIVE
 ========================= */
 
-@media (max-width: 1200px) {
-  .why-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media (max-width: 768px) {
 
   .why {
@@ -301,6 +295,13 @@
     gap: 18px;
   }
 
+  /* 🔥 RESET GRID COMPLETO */
+  .why-card {
+    grid-column: auto !important;
+    width: 100%;
+  }
+
+  /* header */
   .why h2 {
     font-size: 1.7rem;
   }
@@ -309,4 +310,17 @@
     font-size: 0.95rem;
     padding: 0 10px;
   }
+
+  /* icona più compatta */
+  .why-icon {
+    width: 52px;
+    height: 52px;
+    top: -18px;
+  }
+
+  .why-icon img {
+    width: 24px;
+    height: 24px;
+  }
+
 }
