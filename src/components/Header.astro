@@ -4,37 +4,52 @@ import "../styles/header.css";
 
 <header class="header">
   <div class="container header-inner">
+<!-- LOGO -->
+<div class="logo">
+  <a href="/" aria-label="Homepage Piace Batterie">
+    <img 
+      src="/logo_piace_batterie.webp" 
+      alt="Piace Batterie - Batterie auto e industriali a Piacenza"
+      width="160"
+      height="40"
+      loading="eager"
+      decoding="async"
+    />
+  </a>
+</div>
 
-    <!-- LOGO -->
-    <div class="logo">
-      <a href="/"><img src="/logo_piace_batterie.webp" alt="Piace Batterie" />
-      </a>
-    </div>
+<!-- NAV -->
+<nav class="nav" aria-label="Navigazione principale">
+  <a href="/">Home</a>
+  <a href="/prodotti">Prodotti</a>
+  <a href="/servizi">Servizi</a>
+  <a href="/contatti">Contatti</a>
+</nav>
 
-    <!-- NAV -->
-    <nav class="nav">
-      <a href="/">Home</a>
-      <a href="/prodotti">Prodotti</a>
-     <a href="/servizi">Servizi</a>
-    <a href="/contatti">Contatti</a>
-    </nav>
+<!-- CTA DESKTOP -->
+<div class="header-cta">
+  <a href="tel:+3905231656743" class="btn primary">
+    Chiama ora
+  </a>
+</div>
 
-    <!-- CTA DESKTOP -->
-    <div class="header-cta">
-      <a href="tel:+3905231656743" class="btn primary">Chiama ora</a>
-    </div>
-
-    <!-- MENU TOGGLE -->
-    <div class="menu-toggle" id="menuToggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+<!-- MENU TOGGLE -->
+<button 
+  class="menu-toggle" 
+  id="menuToggle"
+  aria-label="Apri menu"
+  aria-expanded="false"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 
   </div>
 </header>
 
-<!-- 🔥 OVERLAY FUORI (fondamentale) -->
+<!-- OVERLAY -->
+
 <div class="menu-overlay" id="menuOverlay"></div>
 
 
@@ -51,60 +66,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!toggle || !nav || !overlay || !header) return;
 
-  /* =========================
-     SCROLL LOCK (PRO)
-  ========================= */
+  const openMenu = () => {
+    nav.classList.add("active");
+    overlay.classList.add("active");
+    header.classList.add("menu-open");
+    document.body.classList.add("menu-open");
 
-  let scrollY = 0;
-
-  const lockScroll = () => {
-    scrollY = window.scrollY;
-
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = "0";
-    document.body.style.right = "0";
+    toggle.setAttribute("aria-expanded", "true");
   };
 
-  const unlockScroll = () => {
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.left = "";
-    document.body.style.right = "";
+  const closeMenu = () => {
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+    header.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
 
-    window.scrollTo(0, scrollY);
+    toggle.setAttribute("aria-expanded", "false");
   };
-
-  /* =========================
-     OPEN / CLOSE MENU
-  ========================= */
-
- const openMenu = () => {
-  nav.classList.add("active");
-  overlay.classList.add("active");
-  header.classList.add("menu-open");
-
-  document.body.classList.add("menu-open");
-};
-
-const closeMenu = () => {
-  nav.classList.remove("active");
-  overlay.classList.remove("active");
-  header.classList.remove("menu-open");
-
-  document.body.classList.remove("menu-open");
-};
-
-  /* =========================
-     EVENTS
-  ========================= */
 
   toggle.addEventListener("click", () => {
-    if (nav.classList.contains("active")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    nav.classList.contains("active") ? closeMenu() : openMenu();
   });
 
   overlay.addEventListener("click", closeMenu);

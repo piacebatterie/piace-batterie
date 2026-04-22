@@ -3,70 +3,116 @@ import "../styles/hero.css";
 ---
 
 <section class="hero">
+  <!-- BACKGROUND -->
 
-  <div class="hero-bg">
-    <img src="/batteria2.webp" alt="Installazione batteria veicolo" class="active"/>
-    <img src="/batteria.webp" alt="Batteria auto professionale" />
-    <img src="/batteria3.webp" alt="Test batteria veicolo" />
-    <img src="/carrello.webp" alt="Carrello elevatore industriale con batteria" />
+<div class="hero-bg">
+
+
+<!-- 🔥 HERO PRINCIPALE (LCP) -->
+<img 
+  src="/batteria2.webp" 
+  alt="Installazione batteria auto a Piacenza"
+  class="active"
+  fetchpriority="high"
+  loading="eager"
+  decoding="async"
+  width="1600"
+  height="900"
+/>
+
+<!-- 🔽 ALTRE IMMAGINI (lazy) -->
+<img 
+  src="/batteria.webp" 
+  alt="Batterie auto professionali Piacenza"
+  loading="lazy"
+  decoding="async"
+  width="1600"
+  height="900"
+/>
+
+<img 
+  src="/batteria3.webp" 
+  alt="Test batteria veicolo diagnostica"
+  loading="lazy"
+  decoding="async"
+  width="1600"
+  height="900"
+/>
+
+<img 
+  src="/carrello.webp" 
+  alt="Batterie industriali per muletti e carrelli elevatori"
+  loading="lazy"
+  decoding="async"
+  width="1600"
+  height="900"
+/>
+
   </div>
+
+    <!-- CONTENUTO -->
+
 
   <div class="container hero-inner">
 
-    <div class="hero-text">
+  <div class="hero-text">
 
-      <!-- micro trust -->
-      <div class="hero-badge">
-        ⚡ Intervento rapido a Piacenza
-      </div>
+  <!-- trust -->
+  <div class="hero-badge">
+    ⚡ Intervento rapido a Piacenza
+  </div>
 
-      <!-- headline -->
-      <h1>
-        L’energia che Piace.
-      </h1>
+  <!-- headline -->
+  <h1>
+    L’energia che Piace.
+  </h1>
 
-      <!-- subheadline -->
-      <p class="hero-main">
-        Batterie auto e industriali a Piacenza.
-        Arrivi, controlliamo subito e ti diciamo cosa fare. Senza perdite di tempo.
-      </p>
+  <!-- SEO text -->
+  <p class="hero-main">
+    Batterie auto, moto e industriali a Piacenza: test gratuito, installazione immediata e assistenza professionale.
+  </p>
 
-      <!-- beneficio -->
-      <p class="hero-sub">
-        Controllo gratuito in 5 minuti, senza appuntamento.
-      </p>
+  <!-- valore -->
+  <p class="hero-sub">
+    Tecnologie premium, tecnici certificati e diagnosi in 5 minuti.
+  </p>
 
-      <!-- punchline -->
-      <p class="hero-punch">
-        Entri, testiamo, risolviamo. Subito.
-      </p>
+  <!-- punch -->
+  <p class="hero-punch">
+    Entra quando vuoi. Riparti subito.
+  </p>
 
-      <!-- CTA -->
-      <div class="hero-buttons">
+  <!-- CTA -->
+  <div class="hero-buttons">
 
-<a href="/contatti" class="btn primary">
-Vieni per il controllo gratuito
-</a>
+    <a href="/contatti" class="btn primary">
+      Controllo gratuito in 5 minuti
+    </a>
 
-        <a href="tel:+3905231656743" class="btn secondary">
-          📞 Chiama ora 0523 165 6743
-        </a>
+    <a href="tel:+3905231656743" class="btn secondary">
+      📞 Chiama ora 0523 165 6743
+    </a>
 
-      </div>
+  </div>
 
-      <!-- trust -->
-      <div class="hero-trust">
-        ✔ Nessuna attesa • ✔ Test in 5 minuti • ✔ Montaggio immediato
-      </div>
-
-    </div>
+  <!-- trust -->
+<div class="hero-trust">
+  <span>✔ Nessuna attesa</span>
+  <span>✔ Test in 5 minuti</span>
+  <span>✔ Montaggio immediato</span>
+</div>
 
   </div>
 
 </section>
 
+<!-- 🔥 SLIDER (SOLO DESKTOP) -->
+
 <script is:inline>
   window.addEventListener('DOMContentLoaded', () => {
+
+    if (window.innerWidth <= 768) return;
+
     const images = document.querySelectorAll('.hero-bg img');
     let index = 0;
 
@@ -75,16 +121,13 @@ Vieni per il controllo gratuito
       index = (index + 1) % images.length;
       images[index].classList.add('active');
     }, 4000);
+
   });
 </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const hero = document.querySelector(".hero");
-    if (!hero) return;
+<!-- 🔥 HERO READY (NO DELAY) -->
 
-    setTimeout(() => {
-      hero.classList.add("in-view");
-    }, 100);
-  });
+
+<script is:inline>
+  document.querySelector(".hero")?.classList.add("in-view");
 </script>

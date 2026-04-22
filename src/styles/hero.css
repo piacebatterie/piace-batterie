@@ -223,9 +223,10 @@
 
   .hero {
     min-height: auto; /* ❌ niente 100vh */
+    max-height: 720px;
     margin-top: 0;    /* ❌ niente overlap mobile */
 
-    padding: 95px 20px 55px;
+    padding: 75px 20px 55px;
 
     display: flex;
     align-items: center;
@@ -244,17 +245,17 @@
 
   .hero h1 {
     font-size: 2rem;
-    line-height: 1.5;
+    line-height: 1.25;
   }
 
   .hero p {
-    font-size: 1,2rem;
-    margin: 15px 0 22px;
+    font-size: 1.2rem;
+    margin: 12px 0 16px;
   }
 
   .hero-buttons {
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
   .hero-buttons .btn {
@@ -281,5 +282,22 @@
 
       );
 
+      
+
+  }
+
+  .hero-trust {
+    display: flex;
+    flex-direction: column; /* 🔥 stack verticale */
+    gap: 6px;
+
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .hero-trust span {
+
+    display: block;
+    opacity: 0.9;
   }
 }
