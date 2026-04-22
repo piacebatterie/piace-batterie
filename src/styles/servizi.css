@@ -211,13 +211,13 @@
   }
 
   .services-header {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
 
   .service-block {
     grid-template-columns: 1fr;
     gap: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
   }
 
   .service-block.reverse {
@@ -239,5 +239,35 @@
 
   .service-image img {
     border-radius: 16px;
+  }
+
+  .product-section .grid {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+  /* 🔥 FORZA ORDINE SEMPRE */
+
+  .product-section .image {
+
+    order: 1;
+
+  }
+
+  .product-section .content {
+
+    order: 2;
+
+  }
+
+  .product-section.alt .image,
+
+  .product-section.alt .content {
+
+    order: unset;
+
   }
 }
