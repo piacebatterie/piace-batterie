@@ -147,4 +147,11 @@ img {
   display: block;
 }
 
+html {
+
+  overflow-y: scroll;
+
+  scrollbar-gutter: stable;
+
+}
 
