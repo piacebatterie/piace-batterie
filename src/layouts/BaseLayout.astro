@@ -385,11 +385,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+/* =====================================================
+   SERVICE BLOCK REVEAL (FIX)
+===================================================== */
+const initServiceBlocks = () => {
+
+  const blocks = document.querySelectorAll('.service-block');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  blocks.forEach(el => observer.observe(el));
+};
+
 
   /* =====================================================
      INIT ALL
   ===================================================== */
   initReveal();
+  initServiceBlocks();
   initCard3D();
   initCtaGlow();
   initButtonGlow();
