@@ -5,51 +5,41 @@ import "../styles/components/cookie-banner.css";
 <div class="cookie-banner" id="cookieBanner">
   <div class="cookie-content">
     <p>
-      Utilizziamo esclusivamente cookie tecnici necessari al funzionamento del sito.
-      <a href="/privacy">Maggiori informazioni</a>
+      Questo sito utilizza esclusivamente cookie tecnici necessari al suo funzionamento.
+      <a href="/privacy">Scopri di più</a>
     </p>
   </div>
 
   <div class="cookie-actions">
-    <button class="btn ghost" id="rejectCookies">
-      Continua senza accettare
-    </button>
-
-    <button class="btn primary" id="acceptCookies">
-      Ok, ho capito
+    <button class="btn primary" id="closeCookies">
+      Ho capito
     </button>
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const banner = document.getElementById("cookieBanner");
-    const acceptBtn = document.getElementById("acceptCookies");
-    const rejectBtn = document.getElementById("rejectCookies");
+<script is:inline>
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (!banner) return;
+  const banner = document.getElementById("cookieBanner");
+  const closeBtn = document.getElementById("closeCookies");
 
-    const consent = localStorage.getItem("cookieConsent");
+  if (!banner) return;
 
-    if (consent) {
+  const seen = localStorage.getItem("cookieSeen");
+
+  if (seen) {
+    banner.style.display = "none";
+  }
+
+  closeBtn?.addEventListener("click", () => {
+    localStorage.setItem("cookieSeen", "true");
+
+    banner.classList.add("hide");
+
+    setTimeout(() => {
       banner.style.display = "none";
-    }
-
-    const closeBanner = () => {
-      banner.classList.add("hide");
-      setTimeout(() => {
-        banner.style.display = "none";
-      }, 300);
-    };
-
-    acceptBtn?.addEventListener("click", () => {
-      localStorage.setItem("cookieConsent", "accepted");
-      closeBanner();
-    });
-
-    rejectBtn?.addEventListener("click", () => {
-      localStorage.setItem("cookieConsent", "rejected");
-      closeBanner();
-    });
+    }, 300);
   });
+
+});
 </script>
