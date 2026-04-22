@@ -59,15 +59,11 @@
 
 /* variante alternata */
 .service-block.reverse {
-  grid-template-columns: 1fr 1fr;
-}
-
-.service-block.reverse .service-image {
-  order: 2;
+  direction: rtl;
 }
 
 .service-block.reverse .service-content {
-  order: 1;
+  direction: ltr;
 }
 
 /* =========================
