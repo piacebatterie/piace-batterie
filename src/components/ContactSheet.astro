@@ -1,0 +1,44 @@
+---
+import "../styles/contact-sheet.css";
+---
+
+<div class="contact-sheet" id="contactSheet">
+  <div class="sheet-content">
+
+    <h3>Contattaci subito</h3>
+
+    <a href="tel:+3905231656743" class="sheet-btn call">
+      📞 Chiama ora
+    </a>
+
+    <a 
+      href="https://wa.me/393514767721" 
+      class="sheet-btn whatsapp" 
+      target="_blank"
+    >
+      💬 WhatsApp
+    </a>
+
+  </div>
+</div>
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const sheet = document.getElementById("contactSheet");
+
+  document.querySelectorAll(".open-contact").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      sheet.classList.add("active");
+    });
+  });
+
+  sheet.addEventListener("click", (e) => {
+    if (e.target === sheet) {
+      sheet.classList.remove("active");
+    }
+  });
+
+});
+</script>

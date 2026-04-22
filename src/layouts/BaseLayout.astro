@@ -7,6 +7,8 @@ import Footer from "../components/Footer.astro";
 import FreeCheck from '../components/cta/FreeCheck.astro';
 import LocationModal from "../components/LocationModal.astro";
 import CookieBanner from "../components/CookieBanner.astro";
+import ContactSheet from "../components/ContactSheet.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 ---
 
 <!DOCTYPE html>
@@ -98,15 +100,18 @@ import CookieBanner from "../components/CookieBanner.astro";
       <LocationModal />
       <FreeCheck />
       <CookieBanner />
+          <ContactSheet />
+
+<WhatsAppFloat />
     </main>
 
     <Footer />
 
     <!-- CTA MOBILE -->
     <div class="sticky-cta">
-      <a href="tel:+3905231656743" class="sticky-call">
-        📞 Chiama ora
-      </a>
+      <a href="tel:+3905231656743" class="sticky-call contact-trigger">
+  Contattaci ora
+</a>
     </div>
 
   </body>
@@ -232,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     SERVICES PARALLAX (throttled)
+     SERVICES PARALLAX
   ===================================================== */
   const initServicesParallax = () => {
     const services = document.querySelector(".services");
@@ -296,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     MOBILE MENU SWIPE (clean)
+     MOBILE MENU SWIPE
   ===================================================== */
   const initMobileMenuSwipe = () => {
     const nav = document.querySelector(".nav");
@@ -353,6 +358,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
+     CONTACT SHEET (MOBILE)
+  ===================================================== */
+  const initContactSheetTrigger = () => {
+
+    const sheet = document.getElementById("contactSheet");
+    if (!sheet) return;
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    document.querySelectorAll(".contact-trigger").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+
+        if (isMobile) {
+          e.preventDefault();
+          sheet.classList.add("active");
+        }
+
+      });
+    });
+
+    sheet.addEventListener("click", (e) => {
+      if (e.target === sheet) {
+        sheet.classList.remove("active");
+      }
+    });
+  };
+
+
+  /* =====================================================
      INIT ALL
   ===================================================== */
   initReveal();
@@ -363,21 +397,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initBrands();
   initStickyCTA();
   initMobileMenuSwipe();
+  initContactSheetTrigger();
 
 });
-
-const blocks = document.querySelectorAll('.service-block');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.2 });
-
-blocks.forEach(el => observer.observe(el));
-
 </script>
   </body>
 </html>

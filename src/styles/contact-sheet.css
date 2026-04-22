@@ -1,0 +1,72 @@
+/* =========================
+   CONTACT SHEET (MOBILE)
+========================= */
+
+.contact-sheet {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+  
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  
+    z-index: 9999;
+  }
+  
+  .contact-sheet.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .sheet-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  
+    background: #0f2a4d;
+    padding: 26px;
+    border-radius: 22px 22px 0 0;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .contact-sheet.active .sheet-content {
+    transform: translateY(0);
+  }
+  
+  .sheet-content h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .sheet-btn {
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .sheet-btn.call {
+    background: #ff6b00;
+    color: white;
+  }
+  
+  .sheet-btn.whatsapp {
+    background: #25D366;
+    color: white;
+  }
+  
+  /* 🔥 SOLO MOBILE */
+  @media (min-width: 769px) {
+    .contact-sheet {
+      display: none;
+    }
+  }
