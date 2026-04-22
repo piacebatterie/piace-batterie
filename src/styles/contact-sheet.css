@@ -3,70 +3,195 @@
 ========================= */
 
 .contact-sheet {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-  
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  
-    z-index: 9999;
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.35s ease;
+
+  z-index: 9999;
+}
+
+.contact-sheet.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =========================
+   SHEET CONTENT
+========================= */
+
+.sheet-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 28px 20px 32px;
+
+  border-radius: 26px 26px 0 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  /* 🔥 GLASS BLU */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 50, 90, 0.40),
+      rgba(11,31,58,0.75)
+    );
+
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 -20px 60px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+
+  /* 🔥 ANIMAZIONE BASE */
+  transform: translateY(60px);
+  opacity: 0;
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.contact-sheet.active .sheet-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* =========================
+   HANDLE (iOS style)
+========================= */
+
+.sheet-content::before {
+  content: "";
+  width: 60px;
+  height: 4px;
+
+  margin: 0 auto 16px;
+
+  border-radius: 999px;
+  background: rgba(255,255,255,0.25);
+}
+
+/* =========================
+   EXTRA GLOW
+========================= */
+
+.sheet-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+
+  pointer-events: none;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.sheet-content h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+/* =========================
+   BUTTONS (ANIMATI)
+========================= */
+
+.sheet-btn {
+  width: 100%;
+
+  padding: 16px;
+  border-radius: 999px;
+
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  /* 🔥 STATO INIZIALE */
+  opacity: 0;
+  transform: translateY(10px);
+
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease,
+    box-shadow 0.25s ease;
+}
+
+/* stato attivo */
+.contact-sheet.active .sheet-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* delay elegante */
+.contact-sheet.active .sheet-btn:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+.contact-sheet.active .sheet-btn:nth-child(3) {
+  transition-delay: 0.16s;
+}
+
+/* =========================
+   CALL BUTTON
+========================= */
+
+.sheet-btn.call {
+  background: linear-gradient(135deg, #ff6b00, #ff8c1a);
+  color: white;
+
+  box-shadow:
+    0 10px 30px rgba(255,107,0,0.35),
+    0 0 20px rgba(255,107,0,0.25);
+}
+
+/* =========================
+   WHATSAPP BUTTON
+========================= */
+
+.sheet-btn.whatsapp {
+  background: linear-gradient(135deg, #25D366, #2ECC71);
+  color: white;
+
+  box-shadow:
+    0 10px 30px rgba(37,211,102,0.35),
+    0 0 20px rgba(37,211,102,0.25);
+}
+
+/* =========================
+   DESKTOP OFF
+========================= */
+
+@media (min-width: 769px) {
+  .contact-sheet {
+    display: none;
   }
-  
-  .contact-sheet.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  .sheet-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  
-    background: #0f2a4d;
-    padding: 26px;
-    border-radius: 22px 22px 0 0;
-  
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-  }
-  
-  .contact-sheet.active .sheet-content {
-    transform: translateY(0);
-  }
-  
-  .sheet-content h3 {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .sheet-btn {
-    padding: 14px;
-    border-radius: 12px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  .sheet-btn.call {
-    background: #ff6b00;
-    color: white;
-  }
-  
-  .sheet-btn.whatsapp {
-    background: #25D366;
-    color: white;
-  }
-  
-  /* 🔥 SOLO MOBILE */
-  @media (min-width: 769px) {
-    .contact-sheet {
-      display: none;
-    }
-  }
+}
