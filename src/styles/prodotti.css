@@ -208,6 +208,202 @@
 }
 
 /* =========================
+   PRODUCT BRAND CARD
+========================= */
+
+.product-brand-card {
+  position: relative;
+  overflow: hidden;
+
+  margin: 28px 0 0;
+  padding: 26px;
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.055),
+      rgba(255,255,255,0.035)
+    ),
+    rgba(255,255,255,0.035);
+
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow:
+    0 22px 60px rgba(0,0,0,0.42),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.product-brand-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      360px circle at 15% 15%,
+      rgba(255,107,0,0.16),
+      transparent 65%
+    ),
+    radial-gradient(
+      420px circle at 90% 80%,
+      rgba(0,180,255,0.08),
+      transparent 70%
+    );
+
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.product-brand-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   BRAND HEADER
+========================= */
+
+.brand-card-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+
+  margin-bottom: 18px;
+}
+
+.brand-logo {
+  width: auto;
+  height: 30px;
+
+  padding: 5px 8px;
+  border-radius: 6px;
+
+  background: rgba(255,255,255,0.92);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.25);
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+
+  color: var(--orange);
+
+  text-shadow: 0 0 16px rgba(255,107,0,0.22);
+}
+
+/* =========================
+   BRAND TEXT
+========================= */
+
+.brand-card-copy {
+  margin-bottom: 20px;
+
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.88);
+  opacity: 1;
+}
+
+.brand-card-copy strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* =========================
+   BRAND FEATURES
+========================= */
+
+.brand-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 0 22px;
+
+  margin: 20px 0 26px;
+}
+
+.brand-features div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-features strong {
+  font-size: 0.98rem;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.brand-features span {
+  font-size: 0.78rem;
+  line-height: 1.25;
+  color: rgba(255,255,255,0.48);
+}
+
+/* quarto elemento largo */
+.brand-features div:nth-child(4) {
+  grid-column: span 2;
+}
+
+.brand-card-cta {
+  width: fit-content;
+  margin-top: 2px;
+}
+
+.brand-product {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: center;
+
+  margin: 18px 0 22px;
+  padding: 14px;
+
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.brand-product img {
+  width: 120px;
+  height: 82px;
+  object-fit: contain;
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.92);
+  padding: 8px;
+}
+
+.brand-product strong {
+  display: block;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.brand-product span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255,255,255,0.58);
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+/* =========================
    IMMAGINI
 ========================= */
 
@@ -425,5 +621,15 @@ html {
   .products-final p {
     font-size: 1rem;
   }
+
+  .brand-product {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-product img {
+    width: 100%;
+    height: 120px;
+  }
+
 
 }
