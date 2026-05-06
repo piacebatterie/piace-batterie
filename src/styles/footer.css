@@ -1,10 +1,13 @@
 /* =========================
-   FOOTER — PREMIUM CLEAN
+   FOOTER — FINAL CLEAN
 ========================= */
 
 .footer {
   position: relative;
+  z-index: 10;
+
   padding-top: 120px;
+
   overflow: hidden;
 
   background:
@@ -12,8 +15,8 @@
     linear-gradient(to bottom, rgba(5,15,35,0.85), rgba(2,8,20,1));
 
   border-top: 1px solid rgba(255,255,255,0.05);
-  z-index: 10;
 }
+
 
 /* =========================
    AMBIENT GLOW
@@ -23,18 +26,21 @@
   position: absolute;
   top: -180px;
   left: 50%;
-  transform: translateX(-50%);
+  z-index: 0;
 
   width: 700px;
   height: 700px;
 
   background: radial-gradient(circle, rgba(255,120,0,0.18), transparent 70%);
+
   opacity: 0.2;
   filter: blur(100px);
 
   pointer-events: none;
-  z-index: 0;
+
+  transform: translateX(-50%);
 }
+
 
 /* =========================
    INNER LAYOUT
@@ -48,36 +54,42 @@
   gap: 90px;
 }
 
+
 /* =========================
    CTA AREA
 ========================= */
 
 .footer-cta {
-  text-align: center;
   max-width: 680px;
   margin: 0 auto;
+
+  text-align: center;
 }
 
 .footer-badge {
-  font-size: 0.75rem;
-  opacity: 0.55;
   margin-bottom: 14px;
+
+  font-size: 0.75rem;
+  line-height: 1;
   letter-spacing: 1px;
   text-transform: uppercase;
+
+  opacity: 0.55;
 }
 
 .footer-cta h3 {
-  font-size: 2.1rem;
   margin-bottom: 12px;
+
+  font-size: 2.1rem;
+  line-height: 1.15;
   letter-spacing: -0.5px;
 }
 
 .footer-cta p {
-  opacity: 0.7;
-  margin-bottom: 28px;
   max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 28px;
+
+  opacity: 0.7;
 }
 
 .footer-actions {
@@ -86,6 +98,7 @@
   gap: 16px;
 }
 
+
 /* =========================
    INFO GRID
 ========================= */
@@ -93,11 +106,11 @@
 .footer-info {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: start;
   gap: 50px;
 
   max-width: 900px;
   margin: 0 auto;
-  align-items: start;
 }
 
 .footer-info > div {
@@ -106,283 +119,48 @@
   gap: 10px;
 }
 
+
 /* =========================
-   TITOLI COLONNE
+   COLUMN TITLES
 ========================= */
 
 .footer-info h4 {
-  font-size: 0.75rem;
   margin-bottom: 6px;
 
-  opacity: 0.5;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  line-height: 1;
   letter-spacing: 1.2px;
+  text-transform: uppercase;
+
+  opacity: 0.5;
 }
 
+
 /* =========================
-   TESTI BASE (UNIFORMATI)
+   TEXT / LINKS
 ========================= */
 
 .footer-info p,
 .footer-info a {
   color: rgba(255,255,255,0.7);
+
   font-size: 0.95rem;
+  line-height: 1.45;
 }
-
-/* =========================
-   CONTACT ITEMS
-========================= */
-
-.contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-
-  text-decoration: none;
-  line-height: 1.4;
-
-  transition: color 0.25s ease;
-}
-
-.contact-item:hover {
-  color: #ff6b00;
-}
-
-/* =========================
-   ICONS
-========================= */
-
-.icon {
-  width: 18px;
-  height: 18px;
-
-  flex-shrink: 0;
-  display: block;
-
-  stroke: rgba(255,255,255,0.6);
-  fill: none;
-  stroke-width: 1.8;
-
-  overflow: visible;
-  transform: translateY(2px);
-}
-
-.contact-item:hover .icon {
-  stroke: #ff6b00;
-}
-
-/* =========================
-   LINK GENERICI (FIX BOTTONI)
-========================= */
-
-/* solo link NON bottoni */
-.footer a:not(.btn):hover {
-  color: #ff6b00;
-}
-
-/* =========================
-   FIX BOTTONI
-========================= */
-
-.footer .btn {
-  color: #fff;
-}
-
-.footer .btn:hover {
-  color: #fff;
-}
-
-/* ghost */
-.footer .btn.ghost {
-  border: 1px solid rgba(255,255,255,0.18);
-  backdrop-filter: blur(6px);
-}
-
-/* =========================
-   ORARI (FIX COERENZA)
-========================= */
-
-.footer-open {
-  color: rgba(255,255,255,0.85);
-  font-weight: 500;
-}
-
-/* =========================
-   BOTTOM BAR
-========================= */
-
-.footer-bottom {
-  margin-top: 90px;
-  padding: 30px 0 40px;
-
-  text-align: center;
-  font-size: 0.75rem;
-  opacity: 0.5;
-
-  border-top: 1px solid rgba(255,255,255,0.06);
-  position: relative;
-  z-index: 10;
-}
-
-.footer-bottom a {
-  color: rgba(255,255,255,0.5);
-  text-decoration: underline;
-}
-
-.footer-bottom a:hover {
-  color: #fff;
-}
-
-/* =========================
-   SIGNATURE (GCP)
-========================= */
-
-.footer-signature {
-  margin-top: 18px;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  text-decoration: none;
-
-  font-size: 0.8rem;
-  letter-spacing: 0.8px;
-
-  color: rgba(255,255,255,0.5);
-
-  transition: all 0.3s ease;
-}
-
-/* label */
-.signature-label {
-  opacity: 0.5;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-}
-
-/* blocco brand */
-.signature-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  padding: 6px 10px;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-
-  transition: all 0.3s ease;
-}
-
-/* logo */
-.signature-brand img {
-  height: 16px;
-  opacity: 0.8;
-  filter: grayscale(1) brightness(1.2);
-  transition: all 0.3s ease;
-}
-
-/* nome */
-.signature-brand span {
-  font-size: 0.75rem;
-  letter-spacing: 0.6px;
-}
-
-/* hover elegante */
-.footer-signature:hover {
-  color: #fff;
-}
-
-.footer-signature:hover .signature-brand {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,107,0,0.3);
-
-  box-shadow:
-    0 6px 20px rgba(0,0,0,0.4),
-    0 0 12px rgba(255,107,0,0.15);
-}
-
-.footer-signature:hover img {
-  filter: none;
-  opacity: 1;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-  .footer {
-    padding-top: 80px;
-  }
-
-  .footer-inner {
-    gap: 50px;
-  }
-
-  .footer-cta h3 {
-    font-size: 1.6rem;
-  }
-
-  .footer-cta p {
-    margin-bottom: 20px;
-  }
-
-  .footer-actions {
-    gap: 10px;
-  }
-
-  .footer-info {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .footer-bottom {
-    margin-top: 50px;
-    padding: 20px 0 35px;
-  }
-}
-
-/* =========================
-   FIX CLICK OVERLAY
-========================= */
-
-.brands::before,
-.brands::after,
-.why-card::before {
-  pointer-events: none;
-}
-
-.sticky-cta {
-  pointer-events: none;
-  z-index: 5;
-}
-
-.sticky-call {
-  pointer-events: auto;
-}
-
-/* =========================
-   FOOTER LINKS
-========================= */
 
 .footer-info a {
   position: relative;
 
-  text-decoration: none;
-
   display: inline-flex;
   width: fit-content;
 
+  text-decoration: none;
+
   transition:
-    color 0.25s ease,
-    transform 0.25s ease;
+    color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
-/* underline solo sui link testuali, non sui contatti con icona */
 .footer-info a:not(.contact-item)::after {
   content: "";
   position: absolute;
@@ -397,18 +175,313 @@
   transform: scaleX(0);
   transform-origin: left;
 
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-base);
 }
 
-.footer-info a:hover {
-  color: #fff !important;
-  transform: translateX(3px);
+@media (hover: hover) and (pointer: fine) {
+
+  .footer-info a:hover {
+    color: #fff;
+    transform: translateX(3px);
+  }
+
+  .footer-info a:not(.contact-item):hover::after {
+    transform: scaleX(1);
+  }
+
 }
 
-.footer-info a:not(.contact-item):hover::after {
-  transform: scaleX(1);
+
+/* =========================
+   CONTACT ITEMS
+========================= */
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  line-height: 1.4;
+}
+
+.icon {
+  display: block;
+  flex-shrink: 0;
+
+  width: 18px;
+  height: 18px;
+
+  stroke: rgba(255,255,255,0.6);
+  stroke-width: 1.8;
+  fill: none;
+
+  overflow: visible;
+
+  transform: translateY(2px);
+
+  transition: stroke var(--transition-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .contact-item:hover .icon {
+    stroke: var(--orange);
+  }
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.footer .btn {
+  color: #fff;
+}
+
+.footer .btn:hover {
+  color: #fff;
+}
+
+.footer .btn.ghost {
+  border: 1px solid rgba(255,255,255,0.18);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+
+/* =========================
+   HOURS
+========================= */
+
+.footer-open {
+  color: rgba(255,255,255,0.85);
+
+  font-weight: 500;
 }
 
 .footer-hours-title {
   margin-top: 22px;
+}
+
+
+/* =========================
+   BOTTOM BAR
+========================= */
+
+.footer-bottom {
+  position: relative;
+  z-index: 10;
+
+  margin-top: 90px;
+  padding: 30px 24px 40px;
+
+  text-align: center;
+  font-size: 0.75rem;
+
+  border-top: 1px solid rgba(255,255,255,0.06);
+
+  opacity: 0.5;
+}
+
+.footer-bottom a {
+  color: rgba(255,255,255,0.5);
+
+  text-decoration: underline;
+
+  transition: color var(--transition-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .footer-bottom a:hover {
+    color: #fff;
+  }
+
+}
+
+
+/* =========================
+   SIGNATURE
+========================= */
+
+.footer-signature {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 18px;
+
+  color: rgba(255,255,255,0.5);
+
+  font-size: 0.8rem;
+  letter-spacing: 0.8px;
+  text-decoration: none;
+
+  transition: color var(--transition-base);
+}
+
+.signature-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+
+  opacity: 0.5;
+}
+
+.signature-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  transition:
+    background var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.signature-brand img {
+  display: block;
+
+  width: auto;
+  max-width: 82px;
+  height: 16px;
+
+  object-fit: contain;
+
+  opacity: 0.8;
+  filter: grayscale(1) brightness(1.2);
+
+  transition:
+    opacity var(--transition-base),
+    filter var(--transition-base);
+}
+
+.signature-brand span {
+  font-size: 0.75rem;
+  letter-spacing: 0.6px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .footer-signature:hover {
+    color: #fff;
+  }
+
+  .footer-signature:hover .signature-brand {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,107,0,0.3);
+
+    box-shadow:
+      0 6px 20px rgba(0,0,0,0.4),
+      0 0 12px rgba(255,107,0,0.15);
+  }
+
+  .footer-signature:hover img {
+    filter: none;
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .footer {
+    padding-top: 80px;
+  }
+
+  .footer-glow {
+    width: 420px;
+    height: 420px;
+
+    opacity: 0.18;
+  }
+
+  .footer-inner {
+    gap: 50px;
+  }
+
+  .footer-cta h3 {
+    font-size: 1.6rem;
+  }
+
+  .footer-cta p {
+    margin-bottom: 20px;
+
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .footer-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-actions .btn {
+    width: 100%;
+  }
+
+  .footer-info {
+    grid-template-columns: 1fr;
+    gap: 30px;
+
+    max-width: 520px;
+  }
+
+  .footer-info p,
+  .footer-info a {
+    font-size: 1rem;
+  }
+
+  .footer-bottom {
+    margin-top: 50px;
+    padding: 22px 24px 90px;
+
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .footer-signature {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+
+  .footer {
+    padding-top: 68px;
+  }
+
+  .footer-cta h3 {
+    font-size: 1.45rem;
+  }
+
+  .signature-brand {
+    padding: 6px 10px;
+  }
+
+  .signature-brand img {
+    max-width: 76px;
+  }
+
 }

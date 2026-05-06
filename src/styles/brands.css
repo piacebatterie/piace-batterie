@@ -1,5 +1,5 @@
 /* =========================
-   BRANDS — LIQUID GLASS PRO
+   BRANDS — FINAL CLEAN
 ========================= */
 
 .brands {
@@ -10,14 +10,15 @@
   margin-bottom: 40px;
 
   padding: 110px 0 130px;
-  border-radius: 32px;
+  border-radius: var(--radius-xl);
+
   overflow: hidden;
 
   background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.08);
+
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-
-  border: 1px solid rgba(255,255,255,0.08);
 
   box-shadow:
     0 25px 70px rgba(0,0,0,0.45),
@@ -37,6 +38,7 @@
   z-index: 1;
 
   border-radius: inherit;
+
   pointer-events: none;
 
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.03'/></svg>");
@@ -53,14 +55,14 @@
 .brands::before {
   content: "";
   position: absolute;
-
   top: -40%;
   left: -20%;
+
+  z-index: 2;
 
   width: 140%;
   height: 180%;
 
-  z-index: 2;
   pointer-events: none;
 
   background: radial-gradient(
@@ -90,6 +92,7 @@
   z-index: 3;
 
   border-radius: inherit;
+
   pointer-events: none;
 
   background: linear-gradient(
@@ -123,6 +126,7 @@
   text-align: center;
 
   font-size: 0.95rem;
+  line-height: 1;
   letter-spacing: 1.6px;
   text-transform: uppercase;
 
@@ -133,25 +137,23 @@
   max-width: 760px;
   margin: -42px auto 14px;
 
+  color: #fff;
   text-align: center;
 
   font-size: clamp(1.8rem, 3vw, 2.45rem);
   line-height: 1.15;
   letter-spacing: -0.3px;
-
-  color: #fff;
 }
 
 .brands-intro {
   max-width: 680px;
   margin: 0 auto 46px;
 
+  color: rgba(255,255,255,0.72);
   text-align: center;
 
   font-size: 1.05rem;
   line-height: 1.65;
-
-  color: rgba(255,255,255,0.72);
 }
 
 
@@ -163,6 +165,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+
   gap: 50px;
 
   padding: 20px 0;
@@ -174,28 +178,31 @@
 ========================= */
 
 .brands-grid img {
-  width: 140px;
-  height: auto;
-  aspect-ratio: 2 / 1;
-
   flex: 0 0 140px;
+
+  width: 140px;
+  height: 70px;
 
   object-fit: contain;
 
-  opacity: 0.7;
+  opacity: 0.72;
   filter: grayscale(100%) brightness(1.5);
 
   transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.3s ease,
-    filter 0.3s ease;
+    transform 0.35s var(--ease-premium),
+    opacity var(--transition-fast),
+    filter var(--transition-fast);
 }
 
-.brands-grid img:hover {
-  transform: translateY(-4px) scale(1.08);
+@media (hover: hover) and (pointer: fine) {
 
-  opacity: 1;
-  filter: drop-shadow(0 8px 20px rgba(255,255,255,0.15));
+  .brands-grid img:hover {
+    transform: translateY(-4px) scale(1.08);
+
+    opacity: 1;
+    filter: drop-shadow(0 8px 20px rgba(255,255,255,0.15));
+  }
+
 }
 
 
@@ -210,7 +217,14 @@
     margin-bottom: 30px;
 
     padding: 70px 0 60px;
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
+
+    transform: none;
+  }
+
+  .brands::before {
+    transform: none;
+    opacity: 0.28;
   }
 
   .brands-label {
@@ -237,21 +251,40 @@
   }
 
   .brands-grid {
-    gap: 25px;
+    gap: 22px 24px;
     padding: 14px 0;
   }
 
   .brands-grid img {
-    flex: 0 0 30%;
+    flex: 0 0 calc(33.333% - 18px);
 
-    width: 30%;
-    height: 40px;
+    width: calc(33.333% - 18px);
+    height: 42px;
 
-    opacity: 0.78;
+    opacity: 0.8;
   }
 
-  .brands-grid img:hover {
-    transform: none;
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+
+  .brands {
+    padding: 62px 0 54px;
+  }
+
+  .brands-grid {
+    gap: 20px;
+  }
+
+  .brands-grid img {
+    flex-basis: calc(50% - 14px);
+    width: calc(50% - 14px);
+    height: 40px;
   }
 
 }

@@ -1,40 +1,64 @@
 /* =========================
-   WHATSAPP FLOAT (DESKTOP)
+   WHATSAPP FLOAT — FINAL CLEAN
 ========================= */
 
 .whatsapp-float {
-    position: fixed;
-    bottom: 22px;
-    right: 22px;
-  
-    width: 58px;
-    height: 58px;
-  
-    background: #25D366;
-    border-radius: 50%;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    font-size: 26px;
-  
-    box-shadow:
-      0 10px 30px rgba(37,211,102,0.4),
-      0 0 15px rgba(37,211,102,0.3);
-  
-    z-index: 9999;
-  
-    transition: transform 0.2s ease;
-  }
-  
+  position: fixed;
+  right: 22px;
+  bottom: calc(22px + env(safe-area-inset-bottom));
+
+  z-index: 2600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  text-decoration: none;
+
+  background: var(--whatsapp);
+
+  box-shadow:
+    0 10px 30px rgba(37,211,102,0.4),
+    0 0 15px rgba(37,211,102,0.3);
+
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
   .whatsapp-float:hover {
     transform: scale(1.08);
+
+    box-shadow:
+      0 14px 36px rgba(37,211,102,0.48),
+      0 0 20px rgba(37,211,102,0.35);
   }
-  
-  /* 🔥 NASCONDI SU MOBILE */
-  @media (max-width: 768px) {
-    .whatsapp-float {
-      display: none;
-    }
+
+}
+
+.whatsapp-float:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .whatsapp-float {
+    display: none;
   }
+
+}

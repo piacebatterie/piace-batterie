@@ -1,126 +1,187 @@
 ---
-import '../../styles/components/free-check.css';
+import "../../styles/components/free-check.css";
 ---
 
-<div class="cta-popup" id="ctaPopup">
-
+<div
+  class="cta-popup"
+  id="ctaPopup"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="ctaPopupTitle"
+  aria-hidden="true"
+>
   <div class="cta-popup-box">
 
-    <button class="close">×</button>
+    <button
+      class="close cta-popup-close"
+      type="button"
+      aria-label="Chiudi popup"
+    >
+      ×
+    </button>
 
-    <h2>Controllo gratuito</h2>
+    <div class="cta-form-content">
+      <h2 id="ctaPopupTitle">Controllo gratuito</h2>
 
-   <p>
+      <p>
+        Passa direttamente in sede oppure lasciaci il numero.
+        Ti richiamiamo entro pochi minuti.
+      </p>
 
-Passa direttamente in sede oppure lasciaci il numero.
+      <form id="ctaForm" novalidate>
+        <input
+          type="text"
+          name="name"
+          placeholder="Nome"
+          autocomplete="name"
+          required
+        />
 
-Ti richiamiamo entro pochi minuti.
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Telefono"
+          autocomplete="tel"
+          inputmode="tel"
+          required
+        />
 
-</p>
+        <input
+          type="text"
+          name="city"
+          placeholder="Città"
+          autocomplete="address-level2"
+          required
+        />
 
-    <form id="ctaForm">
-      <input type="text" name="name" placeholder="Nome" required />
-      <input type="tel" name="phone" placeholder="Telefono" required />
-      <input type="text" name="city" placeholder="Città" required />
+        <button type="submit">
+          Ti richiamiamo subito
+        </button>
+      </form>
+    </div>
 
-      <button type="submit">Ti richiamiamo subito</button>
-    </form>
-
-    <!-- messaggio success -->
-    <div class="cta-success" style="display:none;">
+    <div class="cta-success" hidden>
       <h3>✅ Richiesta inviata</h3>
       <p>Ti richiamiamo a breve.</p>
     </div>
 
   </div>
-
 </div>
 
 <script is:inline>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".open-cta");
+  const popup = document.getElementById("ctaPopup");
 
-  const buttons = document.querySelectorAll('.open-cta');
-  const popup = document.getElementById('ctaPopup');
-  const form = document.getElementById('ctaForm');
-  const successBox = popup.querySelector('.cta-success');
-  const close = popup.querySelector('.close');
-  const phoneInput = form.querySelector('input[name="phone"]');
+  if (!buttons.length || !popup) return;
 
-  phoneInput.addEventListener('input', () => {
-  phoneInput.value = phoneInput.value.replace(/[^\d+]/g, '');
-});
+  const form = popup.querySelector("#ctaForm");
+  const formContent = popup.querySelector(".cta-form-content");
+  const successBox = popup.querySelector(".cta-success");
+  const closeButton = popup.querySelector(".cta-popup-close");
+  const phoneInput = popup.querySelector('input[name="phone"]');
 
-  if (!buttons.length || !popup || !form) return;
+  if (!form || !formContent || !successBox || !closeButton || !phoneInput) return;
 
-  // OPEN
-  buttons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      popup.classList.add('active');
-      document.body.classList.add('menu-open');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  const resetPopup = () => {
+    form.reset();
+    formContent.hidden = false;
+    successBox.hidden = true;
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Ti richiamiamo subito";
+    }
+  };
+
+  const openPopup = () => {
+    resetPopup();
+
+    popup.classList.add("active");
+    popup.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    setTimeout(() => {
+      const firstInput = form.querySelector("input");
+      firstInput?.focus();
+    }, 120);
+  };
+
+  const closePopup = () => {
+    popup.classList.remove("active");
+    popup.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+
+    setTimeout(resetPopup, 250);
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openPopup();
     });
   });
 
-  // CLOSE
-  const closePopup = () => {
-    popup.classList.remove('active');
-    document.body.classList.remove('menu-open');
+  closeButton.addEventListener("click", closePopup);
 
-    form.style.display = 'block';
-    successBox.style.display = 'none';
-    form.reset();
-  };
-
-  close.addEventListener('click', closePopup);
-
-  popup.addEventListener('click', (e) => {
-    if (e.target === popup) closePopup();
+  popup.addEventListener("click", (event) => {
+    if (event.target === popup) {
+      closePopup();
+    }
   });
 
-  // SUBMIT
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && popup.classList.contains("active")) {
+      closePopup();
+    }
+  });
 
-    console.log('🚀 SUBMIT PARTITO');
+  phoneInput.addEventListener("input", () => {
+    phoneInput.value = phoneInput.value.replace(/[^\d+]/g, "");
+  });
 
-    const submitBtn = form.querySelector('button[type="submit"]');
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-    submitBtn.disabled = true;
-    submitBtn.innerText = 'Invio...';
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (!submitButton) return;
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Invio...";
 
     const data = new FormData(form);
 
     try {
-      const res = await fetch('/api/contact/', {
-        method: 'POST',
-        body: data
+      const response = await fetch("/api/contact/", {
+        method: "POST",
+        body: data,
       });
 
-      console.log('📡 FETCH PARTITO');
+      const result = await response.json().catch(() => null);
 
-      if (!res.ok) {
-        throw new Error('Errore server');
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.error || "Errore server");
       }
 
-      const result = await res.json();
+      formContent.hidden = true;
+      successBox.hidden = false;
 
-      if (result.success) {
-        form.style.display = 'none';
-        successBox.style.display = 'block';
-        setTimeout(closePopup, 1800);
-      } else {
-        throw new Error(result.error || 'Errore');
-      }
+      setTimeout(closePopup, 1800);
 
-    } catch (err) {
-      console.error(err);
-      submitBtn.disabled = false;
-      submitBtn.innerText = 'Ti richiamiamo subito';
-      alert(err.message || 'Errore di connessione');
+    } catch (error) {
+      console.error(error);
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Ti richiamiamo subito";
+
+      alert("Non siamo riusciti a inviare la richiesta. Puoi chiamarci direttamente al numero 0523 165 6743.");
     }
   });
-
 });
-
-
 </script>

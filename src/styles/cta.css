@@ -1,36 +1,38 @@
 /* =========================
-   CTA — CLEAN PREMIUM
+   CTA — FINAL CLEAN
 ========================= */
 
 .cta {
   position: relative;
-  padding: 140px 0;
-  text-align: center;
-  overflow: hidden;
-
-  background: linear-gradient(180deg, #0F2A4D 0%, #0B1F3A 100%);
 
   margin-top: -80px;
+  padding: 140px 0;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,120,0,0.08), transparent 55%),
+    linear-gradient(180deg, var(--blue-deep) 0%, var(--blue-dark) 100%);
 }
 
+
 /* =========================
-   GLOW PRINCIPALE (FOLLOW)
+   FOLLOW GLOW
 ========================= */
 
 .cta::after {
   content: "";
   position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 
   width: 520px;
   height: 520px;
 
-  top: 0;
-  left: 0;
-
-  transform:
-    translate(var(--lx, 50%), var(--ly, 50%))
-    translate(-50%, -50%)
-    translateZ(0);
+  pointer-events: none;
 
   background: radial-gradient(
     circle,
@@ -42,27 +44,35 @@
 
   opacity: 0.45;
 
-  pointer-events: none;
-  z-index: 0;
+  transform:
+    translate(var(--lx, 50%), var(--ly, 50%))
+    translate(-50%, -50%)
+    translateZ(0);
 
   will-change: transform;
+
+  transition: opacity var(--transition-base);
 }
 
-/* leggero boost quando hover */
-.cta:hover::after {
-  opacity: 0.85;
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover::after {
+    opacity: 0.85;
+  }
 }
+
 
 /* =========================
-   CONTENUTO
+   CONTENT
 ========================= */
 
 .cta-inner {
   position: relative;
   z-index: 2;
+
   max-width: 720px;
   margin: 0 auto;
 }
+
 
 /* =========================
    BADGE
@@ -70,27 +80,36 @@
 
 .cta-badge {
   position: relative;
-  overflow: hidden;
 
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   margin-bottom: 18px;
+  padding: 7px 14px;
 
-  padding: 6px 14px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 
+  color: rgba(255,255,255,0.88);
   font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
 
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.12);
 
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  overflow: hidden;
 }
 
-/* glow badge (usa lo stesso sistema globale) */
 .cta-badge::after {
   content: "";
   position: absolute;
   inset: 0;
+
+  pointer-events: none;
 
   background: radial-gradient(
     140px circle at var(--lx, 50%) var(--ly, 50%),
@@ -99,21 +118,27 @@
   );
 
   opacity: 0;
-  transition: opacity 0.2s ease;
+
+  transition: opacity var(--transition-fast);
 }
 
-.cta:hover .cta-badge::after {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover .cta-badge::after {
+    opacity: 1;
+  }
 }
+
 
 /* =========================
    TYPOGRAPHY
 ========================= */
 
 .cta h2 {
+  margin-bottom: 22px;
+
   font-size: clamp(36px, 4vw, 48px);
   line-height: 1.1;
-  margin-bottom: 22px;
+  letter-spacing: -0.5px;
 }
 
 .cta h2 span {
@@ -122,34 +147,40 @@
 }
 
 .cta p {
+  max-width: 640px;
+  margin: 0 auto 40px;
+
   font-size: 1.1rem;
   line-height: 1.7;
-  margin-bottom: 40px;
+
   opacity: 0.85;
 }
 
+
 /* =========================
-   ACTIONS (NO DUPLICATI!)
+   ACTIONS
 ========================= */
 
 .cta-actions {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 18px;
-  flex-wrap: wrap;
 }
 
 
 /* =========================
-   TRUST
+   NOTE
 ========================= */
 
 .cta-note {
-  margin-top: 12px;
+  margin-top: 14px;
+
   font-size: 1rem;
+  line-height: 1.4;
+
   opacity: 0.6;
 }
-
 
 
 /* =========================
@@ -157,26 +188,74 @@
 ========================= */
 
 @media (max-width: 768px) {
+
   .cta {
-    padding: 100px 0;
+    margin-top: -30px;
+    padding: 66px 0 62px;
+  }
+
+  .cta::after {
+    width: 360px;
+    height: 360px;
+
+    opacity: 0.35;
+
+    transform:
+      translate(50%, 20%)
+      translate(-50%, -50%);
+  }
+
+  .cta-badge {
+    margin-bottom: 14px;
+
+    font-size: 0.82rem;
   }
 
   .cta h2 {
-    font-size: 30px;
+    margin-bottom: 18px;
+
+    font-size: 2rem;
+    line-height: 1.15;
   }
 
   .cta p {
-    font-size: 18px;
+    margin-bottom: 28px;
+
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
   .cta-actions {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .cta .btn {
     width: 100%;
-    max-width: 280px;
-    font-size: 18px;
   }
+
+  .cta-note {
+    margin-top: 12px;
+
+    font-size: 0.95rem;
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+
+  .cta {
+    padding: 58px 0 56px;
+  }
+
+  .cta h2 {
+    font-size: 1.8rem;
+  }
+
 }

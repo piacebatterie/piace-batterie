@@ -4,29 +4,41 @@
 
 .btn {
   position: relative;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 
-  font-weight: 600;
-  line-height: 1;
-  text-decoration: none;
-
-  border-radius: 999px;
+  padding: 0.9rem 1.8rem;
+  border-radius: var(--radius-pill);
 
   font-size: 1rem;
-  padding: 0.9rem 1.8rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  color: #fff;
 
   overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
 
   transition:
-    transform 0.2s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease,
-    border 0.25s ease,
-    color 0.25s ease;
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
 
   will-change: transform;
+}
+
+.btn * {
+  position: relative;
+  z-index: 2;
 }
 
 
@@ -60,78 +72,92 @@
 
 
 /* =========================
-   INTERACTIVE LIGHT (GLOBAL)
+   INTERACTIVE LIGHT
 ========================= */
 
 .btn::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 1;
+
   border-radius: inherit;
 
   background: radial-gradient(
     120px circle at var(--lx, 50%) var(--ly, 50%),
-    rgba(255,255,255,0.35),
-    rgba(255,255,255,0.15) 30%,
+    rgba(255,255,255,0.34),
+    rgba(255,255,255,0.14) 30%,
     rgba(255,255,255,0.05) 55%,
-    transparent 70%
+    transparent 72%
   );
 
   opacity: 0;
-  transition: opacity 0.25s ease;
-
   pointer-events: none;
+
+  transition: opacity var(--transition-fast);
 }
 
-.btn:hover::after {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover::after {
+    opacity: 1;
+  }
 }
 
 
 /* =========================
-   PRIMARY — SOLID GLOW
+   PRIMARY — ORANGE GLOW
 ========================= */
 
 .btn.primary {
-  background: linear-gradient(135deg, #ff6b00, #ff8c1a);
+  background: linear-gradient(
+    135deg,
+    var(--orange),
+    var(--orange-light)
+  );
+
   color: #fff;
+
+  border: 1px solid rgba(255,255,255,0.10);
 
   box-shadow:
     0 10px 25px rgba(255,107,0,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.2);
+    inset 0 1px 0 rgba(255,255,255,0.22);
 }
 
-/* highlight statico */
 .btn.primary::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
+
   border-radius: inherit;
 
   background: radial-gradient(
     circle at 30% 20%,
-    rgba(255,255,255,0.25),
-    transparent 60%
+    rgba(255,255,255,0.26),
+    transparent 62%
   );
 
   opacity: 0;
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+
+  transition: opacity var(--transition-base);
 }
 
-/* hover */
-.btn.primary:hover {
-  transform: translateY(-2px) scale(1.02);
+@media (hover: hover) and (pointer: fine) {
+  .btn.primary:hover {
+    transform: translateY(-2px) scale(1.02);
 
-  box-shadow:
-    0 18px 40px rgba(255,107,0,0.4),
-    inset 0 1px 0 rgba(255,255,255,0.25);
+    box-shadow:
+      0 18px 40px rgba(255,107,0,0.40),
+      inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+
+  .btn.primary:hover::before {
+    opacity: 1;
+  }
 }
 
-.btn.primary:hover::before {
-  opacity: 1;
-}
-
-/* active */
 .btn.primary:active {
   transform: scale(0.97);
 }
@@ -142,45 +168,88 @@
 ========================= */
 
 .btn.secondary {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.055);
   color: #fff;
 
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.22);
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
-.btn.secondary:hover {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.5);
+@media (hover: hover) and (pointer: fine) {
+  .btn.secondary:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.45);
 
-  transform: translateY(-1px);
+    transform: translateY(-1px);
+  }
+}
+
+.btn.secondary:active {
+  transform: scale(0.98);
 }
 
 
 /* =========================
-   GHOST — MINIMAL
+   GHOST — MINIMAL GLASS
 ========================= */
 
 .btn.ghost {
-  background: transparent;
-  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.025);
+  color: rgba(255,255,255,0.74);
+
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
-.btn.ghost:hover {
-  color: #fff;
+@media (hover: hover) and (pointer: fine) {
+  .btn.ghost:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.22);
+  }
 }
 
 
 /* =========================
-   FOCUS (ACCESSIBILITY)
+   STATES / ACCESSIBILITY
 ========================= */
 
 .btn:focus-visible {
   outline: none;
 
   box-shadow:
-    0 0 0 2px rgba(255,255,255,0.2),
-    0 0 0 6px rgba(255,107,0,0.4);
+    0 0 0 2px rgba(255,255,255,0.22),
+    0 0 0 6px rgba(255,107,0,0.42);
+}
+
+.btn[aria-disabled="true"],
+.btn.disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .btn {
+    min-height: 48px;
+    padding: 0.95rem 1.35rem;
+
+    font-size: 1rem;
+    white-space: normal;
+  }
+
+  .btn.lg {
+    padding: 1rem 1.45rem;
+    font-size: 1rem;
+  }
+
 }

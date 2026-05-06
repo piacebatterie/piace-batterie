@@ -1,60 +1,72 @@
 /* =========================
-   WHY — FINAL PRO CLEAN
+   WHY — FINAL CLEAN SAFE
 ========================= */
 
 .why {
   position: relative;
-  padding: 110px 0 90px;
+
+  padding: 150px 0 90px;
+  scroll-margin-top: var(--header-height);
+
   text-align: center;
 
   background:
     radial-gradient(circle at 50% 20%, rgba(255,255,255,0.04), transparent 60%),
-    linear-gradient(180deg, #0B1F3A 0%, #0F2A4D 100%);
+    linear-gradient(180deg, var(--blue-dark) 0%, var(--blue-deep) 100%);
 }
+
 
 /* =========================
    HEADER
 ========================= */
 
 .why h2 {
+  margin-bottom: 14px;
+
   font-size: clamp(34px, 4vw, 46px);
   line-height: 1.2;
-  margin-bottom: 14px;
   letter-spacing: -0.5px;
 }
 
 .why h2 span {
   display: block;
+
   margin-top: 6px;
-  color: #ff6b00;
+
+  color: var(--orange);
 }
 
 .why-intro {
   max-width: 620px;
-  margin: 0 auto 55px;
+  margin: 0 auto 46px;
+
   font-size: 1.05rem;
   line-height: 1.7;
+
   opacity: 0.8;
 }
 
+
 /* =========================
-   GRID
+   GRID DESKTOP
 ========================= */
 
 .why-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 24px;
+
   margin-bottom: 55px;
 }
 
-/* layout */
+/* prime tre card */
 .why-card:nth-child(1),
 .why-card:nth-child(2),
 .why-card:nth-child(3) {
   grid-column: span 2;
 }
 
+/* ultime due centrate */
 .why-card:nth-child(4) {
   grid-column: 2 / span 2;
 }
@@ -63,41 +75,49 @@
   grid-column: 4 / span 2;
 }
 
+
 /* =========================
-   CARD
+   CARD DESKTOP
 ========================= */
 
 .why-card {
   position: relative;
-  display: block;
 
-  padding: 50px 22px 26px; /* 👈 spazio per icona sopra */
-  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 205px;
+  padding: 30px 28px 28px;
+  border-radius: var(--radius-md);
+
+  color: inherit;
+  text-decoration: none;
 
   background: rgba(255,255,255,0.035);
   border: 1px solid rgba(255,255,255,0.08);
 
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-  text-decoration: none;
-  color: inherit;
-
-  overflow: hidden;
+  overflow: visible;
 
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border 0.25s ease,
-    background 0.25s ease;
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
 }
 
-/* glow mouse */
 .why-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
   z-index: 0;
+
+  border-radius: inherit;
+
   background: radial-gradient(
     350px circle at var(--x, 50%) var(--y, 50%),
     rgba(255,107,0,0.15),
@@ -105,88 +125,92 @@
   );
 
   opacity: 0;
-  transition: opacity 0.25s ease;
+  pointer-events: none;
+
+  transition: opacity var(--transition-fast);
 }
 
-.why-card:hover::before {
-  opacity: 1;
+.why-card > * {
+  position: relative;
+  z-index: 1;
 }
 
-/* hover */
-.why-card:hover {
-  transform: translateY(-6px);
+@media (hover: hover) and (pointer: fine) {
 
-  border-color: rgba(255,107,0,0.25);
+  .why-card:hover {
+    transform: translateY(-6px);
 
-  background: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,107,0,0.25);
 
-  box-shadow:
-    0 18px 50px rgba(0,0,0,0.45),
-    0 0 20px rgba(255,107,0,0.08);
+    box-shadow:
+      0 18px 50px rgba(0,0,0,0.45),
+      0 0 20px rgba(255,107,0,0.08);
+  }
+
+  .why-card:hover::before {
+    opacity: 1;
+  }
+
 }
+
 
 /* =========================
-   ICONA FLOATING
+   ICON DESKTOP
 ========================= */
 
 .why-icon {
-  position: absolute;
-  top: -26px; /* 👈 un filo più fuori */
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 60px;
-  height: 60px;
-
-  border-radius: 16px;
-
-  background: rgba(20,30,50,0.95);
-  border: 1px solid rgba(255,255,255,0.15);
+  position: relative;
+  top: auto;
+  left: auto;
+  z-index: 3;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  z-index: 3; /* 👈 sopra TUTTO */
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 24px;
+
+  border-radius: 18px;
+
+  background: rgba(20,30,50,0.95);
+  border: 1px solid rgba(255,255,255,0.15);
 
   box-shadow:
-    0 20px 40px rgba(0,0,0,0.7),
-    0 0 20px rgba(255,107,0,0.15);
+    0 22px 48px rgba(0,0,0,0.58),
+    0 0 24px rgba(255,107,0,0.12);
 
   overflow: hidden;
+
+  transform: none;
+
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
-.why-card * {
-
-  position: relative;
-
-  z-index: 1;
-
-}
-
-/* glow dietro icona */
 .why-icon::before {
   content: "";
   position: absolute;
   inset: 0;
 
   background: radial-gradient(
-
     circle,
-
     rgba(255,107,0,0.35),
-
     rgba(255,107,0,0.12) 40%,
-
     transparent 70%
-
   );
 
   opacity: 0;
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+
+  transition: opacity var(--transition-base);
 }
 
-/* ✨ SHINE SOLO ANDATA */
 .why-icon::after {
   content: "";
   position: absolute;
@@ -203,73 +227,94 @@
   pointer-events: none;
 }
 
-/* animazione */
-.why-card:hover .why-icon::after {
-  animation: shineOnce 0.6s ease forwards;
+.why-icon img {
+  position: relative;
+  z-index: 1;
+
+  width: 26px;
+  height: 26px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+
+  transition: transform var(--transition-base);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .why-card:hover .why-icon {
+    transform: translateY(-4px);
+
+    border-color: rgba(255,107,0,0.5);
+
+    box-shadow:
+      0 18px 40px rgba(0,0,0,0.7),
+      0 0 20px rgba(255,107,0,0.25);
+  }
+
+  .why-card:hover .why-icon::before {
+    opacity: 1;
+  }
+
+  .why-card:hover .why-icon::after {
+    animation: shineOnce 0.6s ease forwards;
+  }
+
+  .why-card:hover .why-icon img {
+    transform: scale(1.08);
+  }
+
 }
 
 @keyframes shineOnce {
   from {
     transform: translateX(-120%);
   }
+
   to {
     transform: translateX(120%);
   }
 }
 
-/* hover icona */
-.why-card:hover .why-icon {
-  transform: translateX(-50%) translateY(-4px);
 
-  border-color: rgba(255,107,0,0.5);
+/* =========================
+   DIVIDER
+========================= */
 
-  box-shadow:
-    0 18px 40px rgba(0,0,0,0.7),
-    0 0 20px rgba(255,107,0,0.25);
+.why-divider {
+  display: none;
 }
 
-.why-card:hover .why-icon::before {
-  opacity: 1;
-}
-
-/* immagine */
-.why-icon img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
-  transition: all 0.3s ease;
-}
-
-.why-card:hover .why-icon img {
-  transform: scale(1.08);
-}
 
 /* =========================
    TEXT
 ========================= */
 
 .why-card p {
+  max-width: 360px;
 
-  font-size: 1rem; 
+  margin: 0 auto;
 
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
 
+  text-align: center;
   opacity: 0.85;
-
 }
+
 
 /* =========================
    CTA
 ========================= */
 
 .why-cta {
-  margin-top: 35px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
+
+  margin-top: 35px;
 }
 
 .why-cta .btn {
@@ -277,113 +322,153 @@
   max-width: 320px;
 
   padding: 0.9rem 1.8rem;
+
   font-size: 0.95rem;
-  border-radius: 999px;
 }
 
+
 /* =========================
-   RESPONSIVE
+   MOBILE
 ========================= */
 
 @media (max-width: 768px) {
 
+  .why {
+    padding: 62px 0 58px;
+    scroll-margin-top: var(--header-mobile-height);
+  }
+
+  .why h2 {
+    font-size: 2rem;
+    line-height: 1.15;
+  }
+
+  .why-intro {
+    margin-bottom: 34px;
+
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
   .why-grid {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+
+    margin-bottom: 34px;
   }
 
-  .why-card {
-    display: flex;
+  .why-card,
+  .why-card:nth-child(1),
+  .why-card:nth-child(2),
+  .why-card:nth-child(3),
+  .why-card:nth-child(4),
+  .why-card:nth-child(5) {
+    display: grid;
+    grid-template-columns: 58px 1px 1fr;
     align-items: center;
     gap: 16px;
 
-    padding: 26px 20px;
+    grid-column: auto;
+
+    min-height: auto;
+    padding: 22px 18px;
+
+    overflow: hidden;
+  }
+
+  .why-card::before {
+    display: none;
   }
 
   .why-icon {
     position: relative;
-    transform: none;
     top: auto;
     left: auto;
 
-    width: 64px;
-    height: 64px;
+    width: 58px;
+    height: 58px;
 
-    flex-shrink: 0;
+    transform: none;
+    flex: none;
+  }
+
+  .why-icon::before,
+  .why-icon::after {
+    display: none;
+  }
+
+  .why-icon img {
+    width: 28px;
+    height: 28px;
   }
 
   .why-divider {
-    display: block; /* 🔥 SOLO MOBILE */
+    display: block;
+
     width: 1px;
-    height: 52px;
-    background: rgba(255,255,255,0.2);
-    flex-shrink: 0;
+    height: 46px;
+
+    background: rgba(255,255,255,0.18);
   }
 
   .why-card p {
-    flex: 1;
-
-    font-size: 1.1rem;
-    line-height: 1.7;
-
-    text-align: left;
     margin: 0;
+
+    font-size: 1rem;
+    line-height: 1.55;
+    text-align: left;
+
+    opacity: 0.85;
   }
 
-  .why-card:hover {
-
-    transform: none;
-
-    box-shadow:
-
-      0 20px 60px rgba(0,0,0,0.5),
-
-      inset 0 1px 0 rgba(255,255,255,0.06);
-
+  .why-cta {
+    margin-top: 28px;
   }
 
-  .why-card:hover::before {
-
-    opacity: 0;
-
-  }
-
-  .why-card:hover .why-icon {
-
-    transform: none !important;
-
-    box-shadow:
-
-      0 20px 40px rgba(0,0,0,0.7),
-
-      0 0 20px rgba(255,107,0,0.15);
-
-  }
-
-  .why-card:hover .why-icon::before {
-
-    opacity: 0;
-
-  }
-
-  .why-card:hover .why-icon::after {
-
-    animation: none;
-
-  }
-
-  .why-card:hover .why-icon img {
-
-    transform: none;
-
-  }
-
-  .why-card {
-
-    min-height: 170px; /* 👈 regola questo valore */
-  
+  .why-cta .btn {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
   }
 
 }
 
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+
+  .why-card,
+  .why-card:nth-child(1),
+  .why-card:nth-child(2),
+  .why-card:nth-child(3),
+  .why-card:nth-child(4),
+  .why-card:nth-child(5) {
+    grid-template-columns: 52px 1px 1fr;
+    gap: 13px;
+
+    padding: 20px 16px;
+  }
+
+  .why-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .why-icon img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .why-divider {
+    height: 42px;
+  }
+
+  .why-card p {
+    font-size: 0.96rem;
+  }
+
+}

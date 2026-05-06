@@ -1,12 +1,13 @@
 /* =========================
-   COOKIE BANNER
+   COOKIE BANNER — FINAL CLEAN
 ========================= */
 
 .cookie-banner {
   position: fixed;
-  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  bottom: calc(20px + env(safe-area-inset-bottom));
+
+  z-index: 9999;
 
   display: flex;
   align-items: center;
@@ -17,51 +18,63 @@
   max-width: 720px;
 
   padding: 16px 20px;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
 
-  background: rgba(10, 25, 50, 0.85);
+  background: rgba(10,25,50,0.88);
+  border: 1px solid rgba(255,255,255,0.08);
+
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255,255,255,0.08);
 
   box-shadow:
     0 20px 50px rgba(0,0,0,0.45),
     inset 0 1px 0 rgba(255,255,255,0.08);
 
-  z-index: 9999;
+  transform: translateX(-50%);
 
   transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
+    opacity var(--transition-base),
+    transform var(--transition-base);
+
+  will-change: opacity, transform;
 }
 
 /* stato nascosto */
 .cookie-banner.hide {
   opacity: 0;
-  transform: translateX(-50%) translateY(20px);
   pointer-events: none;
+
+  transform: translateX(-50%) translateY(20px);
 }
+
 
 /* =========================
    CONTENT
 ========================= */
 
 .cookie-content p {
+  max-width: 420px;
+
   font-size: 0.9rem;
   line-height: 1.5;
+
   opacity: 0.85;
-  max-width: 420px;
 }
 
 .cookie-content a {
-  color: #ff6b00;
-  text-decoration: none;
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.cookie-content a:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+
+  .cookie-content a:hover {
+    color: #fff;
+  }
+
 }
+
 
 /* =========================
    ACTIONS
@@ -74,19 +87,27 @@
 
 .cookie-actions .btn {
   padding: 0.5rem 1rem;
+
   font-size: 0.85rem;
   white-space: nowrap;
 }
 
-/* ghost più elegante */
 .cookie-actions .btn.ghost {
-  border: 1px solid rgba(255,255,255,0.2);
   background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
 }
+
+
+/* =========================
+   FORM CONSENT
+========================= */
 
 .form-consent {
   margin-top: 16px;
+
   font-size: 0.85rem;
+  line-height: 1.45;
+
   opacity: 0.8;
 }
 
@@ -94,22 +115,32 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
+
   cursor: pointer;
 }
 
 .form-consent input {
+  flex-shrink: 0;
+
   margin-top: 3px;
-  accent-color: #ff6b00; /* 🔥 coerente col brand */
+
+  accent-color: var(--orange);
 }
 
 .form-consent a {
-  color: #ff6b00;
-  text-decoration: none;
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.form-consent a:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+
+  .form-consent a:hover {
+    color: #fff;
+  }
+
 }
+
 
 /* =========================
    MOBILE
@@ -118,24 +149,28 @@
 @media (max-width: 768px) {
 
   .cookie-banner {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+
     flex-direction: column;
     align-items: stretch;
-    text-align: center;
-
     gap: 16px;
+
+    width: calc(100% - 28px);
+    max-width: none;
+
     padding: 18px 16px;
 
-    bottom: 16px;
+    text-align: center;
   }
 
   .cookie-content p {
     max-width: none;
+
     font-size: 0.9rem;
     line-height: 1.5;
   }
 
   .cookie-actions {
-    display: flex;
     flex-direction: column;
     gap: 10px;
   }
@@ -143,6 +178,24 @@
   .cookie-actions .btn {
     width: 100%;
     padding: 0.7rem 1rem;
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+
+  .cookie-banner {
+    width: calc(100% - 22px);
+    padding: 16px 14px;
+  }
+
+  .cookie-content p {
+    font-size: 0.86rem;
   }
 
 }

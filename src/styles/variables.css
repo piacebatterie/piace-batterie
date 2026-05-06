@@ -1,10 +1,76 @@
 :root {
-    --blue-dark: #0B1F3A;
-    --blue: #0056A0;
-    --orange: #FF6B00;
-    --green: #4CAF50;
-    --white: #ffffff;
-  
-    --radius: 12px;
-    --container: 1200px;
-  }
+  /* =========================
+     COLORS
+  ========================= */
+
+  --blue-dark: #0B1F3A;
+  --blue-deep: #0F2A4D;
+  --blue-soft: #112F55;
+  --blue: #0056A0;
+
+  --orange: #FF6B00;
+  --orange-light: #FF8C1A;
+  --orange-soft: rgba(255,107,0,0.14);
+
+  --green: #4CAF50;
+  --whatsapp: #25D366;
+
+  --white: #FFFFFF;
+  --black: #000000;
+
+  /* =========================
+     TEXT
+  ========================= */
+
+  --text-main: rgba(255,255,255,0.9);
+  --text-soft: rgba(255,255,255,0.72);
+  --text-muted: rgba(255,255,255,0.55);
+
+  /* =========================
+     SURFACES
+  ========================= */
+
+  --glass-light: rgba(255,255,255,0.06);
+  --glass-soft: rgba(255,255,255,0.04);
+  --border-light: rgba(255,255,255,0.10);
+  --border-soft: rgba(255,255,255,0.06);
+
+  /* =========================
+     SHADOWS / GLOW
+  ========================= */
+
+  --shadow-soft: 0 18px 50px rgba(0,0,0,0.35);
+  --shadow-strong: 0 28px 80px rgba(0,0,0,0.55);
+
+  --glow-orange: 0 0 28px rgba(255,107,0,0.22);
+  --glow-orange-strong: 0 0 38px rgba(255,107,0,0.35);
+
+  /* =========================
+     RADIUS
+  ========================= */
+
+  --radius-sm: 10px;
+  --radius: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  /* =========================
+     LAYOUT
+  ========================= */
+
+  --container: 1200px;
+  --header-height: 82px;
+  --header-mobile-height: 86px;
+
+  /* =========================
+     TRANSITIONS
+  ========================= */
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --transition-fast: 0.25s ease;
+  --transition-base: 0.35s ease;
+}

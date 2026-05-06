@@ -1,77 +1,50 @@
-import type { APIRoute } from "astro";
-import { Resend } from "resend";
+import { Resend } from 'resend';
 
-export const prerender = false;
-
-const escapeHtml = (value: string) => {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+const prerender = false;
+const escapeHtml = (value) => {
+  return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
 };
-
-const cleanText = (value: FormDataEntryValue | string | null) => {
+const cleanText = (value) => {
   return String(value || "").trim().slice(0, 120);
 };
-
-const cleanPhone = (value: string) => {
+const cleanPhone = (value) => {
   return value.replace(/[^\d+]/g, "").slice(0, 20);
 };
-
-export const POST: APIRoute = async ({ request }) => {
+const POST = async ({ request }) => {
   try {
-    const apiKey = import.meta.env.RESEND_API_KEY;
-
-    if (!apiKey) {
-      console.error("RESEND_API_KEY mancante");
-      return new Response(
-        JSON.stringify({ success: false, error: "missing_api_key" }),
-        { status: 500 }
-      );
-    }
-
+    const apiKey = "re_8JvHNXKt_CEwUtAnu4c9AgXXui7En6ZkE";
+    if (!apiKey) ;
     const resend = new Resend(apiKey);
-
     let name = "";
     let phone = "";
     let city = "";
-
     const contentType = request.headers.get("content-type") || "";
-
     if (contentType.includes("multipart/form-data")) {
       const formData = await request.formData();
-
       name = cleanText(formData.get("name"));
       phone = cleanPhone(cleanText(formData.get("phone")));
       city = cleanText(formData.get("city"));
     } else {
       const body = await request.text();
       const params = new URLSearchParams(body);
-
       name = cleanText(params.get("name"));
       phone = cleanPhone(cleanText(params.get("phone")));
       city = cleanText(params.get("city"));
     }
-
     if (!name || !phone) {
       return new Response(
         JSON.stringify({
           success: false,
-          error: "missing_required_fields",
+          error: "missing_required_fields"
         }),
         { status: 400 }
       );
     }
-
     const safeName = escapeHtml(name);
     const safePhone = escapeHtml(phone);
     const safeCity = escapeHtml(city || "Non indicata");
-
     const telHref = phone.replace(/[^\d+]/g, "");
     const subjectCity = city ? ` – ${city}` : "";
-
     await resend.emails.send({
       from: "Piace Batterie <info@piacebatterie.it>",
       to: ["info@piacebatterie.it"],
@@ -99,29 +72,37 @@ export const POST: APIRoute = async ({ request }) => {
             Richiesta ricevuta dal modulo contatti di piacebatterie.it.
           </p>
         </div>
-      `,
+      `
     });
-
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     });
   } catch (err) {
     console.error("RESEND ERROR:", err);
-
     return new Response(
       JSON.stringify({
         success: false,
-        error: "send_failed",
+        error: "send_failed"
       }),
       {
         status: 500,
         headers: {
-          "Content-Type": "application/json",
-        },
+          "Content-Type": "application/json"
+        }
       }
     );
   }
 };
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  POST,
+  prerender
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

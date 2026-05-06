@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local / private files
+.DS_Store
+*.zip
+.env
+.env.*
+*.pem
+*.key
+*.pub
