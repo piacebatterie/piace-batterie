@@ -329,7 +329,7 @@
 .brand-features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px 0 22px;
+  gap: 18px 22px;
 
   margin: 20px 0 26px;
 }
@@ -497,23 +497,29 @@
 }
 
 /* =========================
-   ANIMAZIONI
+   ANIMAZIONI — PRODUCTS SAFE
 ========================= */
 
-.reveal {
+.product-section.reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: none !important;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.reveal.visible {
+.product-section.reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  filter: none !important;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 120px;
+/* sicurezza: nessun blur sulle sezioni prodotti */
+.product-section,
+.product-section * {
+  filter: none;
 }
 
 /* =========================
@@ -631,5 +637,22 @@ html {
     height: 120px;
   }
 
+  .product-section.reveal {
+    opacity: 1;
+    transform: none;
+    filter: none !important;
+  }
+
+  .product-section.reveal.visible {
+    opacity: 1;
+    transform: none;
+    filter: none !important;
+  }
+
+  .image {
+    opacity: 1;
+    transform: none;
+    filter: none !important;
+  }
 
 }
