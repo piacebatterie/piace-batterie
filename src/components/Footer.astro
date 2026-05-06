@@ -2,29 +2,33 @@
 import "../styles/footer.css";
 ---
 
-<footer class="footer">
+<footer class="footer" aria-labelledby="footer-title">
 
-  <div class="footer-glow"></div>
+  <div class="footer-glow" aria-hidden="true"></div>
 
   <div class="container footer-inner">
 
     <!-- CTA -->
     <div class="footer-cta">
-      <p class="footer-badge">⚡ Intervento rapido a Piacenza</p>
+      <p class="footer-badge">⚡ Centro batterie a Piacenza</p>
 
-      <h3>Hai un problema alla batteria?</h3>
+      <h3 id="footer-title">Hai un problema alla batteria?</h3>
 
       <p>
-        Passa senza appuntamento oppure chiamaci ora. <br />
-        In pochi minuti sai esattamente cosa fare.
+        Passa da Piace Batterie senza appuntamento oppure chiamaci ora:
+        in pochi minuti verifichiamo lo stato della batteria e ti indichiamo la soluzione giusta.
       </p>
 
       <div class="footer-actions">
         <a href="#" class="btn primary open-cta">
-          Controllo gratuito
+          Controllo gratuito in 5 minuti
         </a>
 
-        <a href="tel:+3905231656743" class="btn ghost">
+        <a 
+          href="tel:+3905231656743" 
+          class="btn ghost"
+          aria-label="Chiama Piace Batterie al numero 0523 165 6743"
+        >
           📞 0523 165 6743
         </a>
       </div>
@@ -33,56 +37,62 @@ import "../styles/footer.css";
     <!-- INFO -->
     <div class="footer-info">
 
-     <div>
-  <h4>Contatti</h4>
-
-  <a href="/contatti" class="contact-item">
-    <svg viewBox="0 0 24 24" class="icon">
-  <path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"
-        fill="none" stroke="currentColor" stroke-width="1.6"/>
-  <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-</svg>
-    Str. della Orsina, 46 C, Piacenza (PC)
-  </a>
-
-  <a href="tel:+3905231656743" class="contact-item">
-   <svg viewBox="0 0 24 24" class="icon">
-  <path d="M6 2h4l2 5-2 2a16 16 0 0 0 5 5l2-2 5 2v4c0 1-1 2-2 2A19 19 0 0 1 4 4c0-1 1-2 2-2z"
-        fill="none" stroke="currentColor" stroke-width="1.6"/>
-</svg>
-    +39 0523 165 6743
-  </a>
-
-  <a href="mailto:info@piacebatterie.it" class="contact-item">
-<svg viewBox="0 0 24 24" class="icon">
-  <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.6"/>
-  <path d="M4 6l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6"/>
-</svg>
-    info@piacebatterie.it
-  </a>
-
-</div>
-
       <div>
-        <h4>Servizi</h4>
-<a href="/prodotti#automotive">Batterie auto</a>
+        <h4>Piace Batterie</h4>
 
-<a href="/prodotti#heavyduty">Heavy Duty & Agricoltura</a>
+        <a href="/contatti" class="contact-item">
+          <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+            <path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"
+              fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
 
-<a href="/prodotti#industria">Batterie industriali</a>
+          Strada dell'Orsina 46/C, 29122 Piacenza (PC)
+        </a>
 
-<a href="/servizi#diagnostica">Diagnostica gratuita</a>
+        <a href="tel:+3905231656743" class="contact-item">
+          <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+            <path d="M6 2h4l2 5-2 2a16 16 0 0 0 5 5l2-2 5 2v4c0 1-1 2-2 2A19 19 0 0 1 4 4c0-1 1-2 2-2z"
+              fill="none" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
 
-<a href="/servizi#montaggio">Montaggio immediato</a>
+          +39 0523 165 6743
+        </a>
+
+        <a href="mailto:info@piacebatterie.it" class="contact-item">
+          <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+            <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M4 6l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+
+          info@piacebatterie.it
+        </a>
       </div>
 
       <div>
-        <h4>Orari</h4>
+        <h4>Prodotti</h4>
+
+        <a href="/prodotti#automotive">Batterie auto e moto</a>
+        <a href="/prodotti#heavyduty">Batterie per camion, trattori e mezzi agricoli</a>
+        <a href="/prodotti#industria">Batterie industriali per muletti e logistica</a>
+        <a href="/prodotti#tempolibero">Batterie per camper, nautica e golf car</a>
+        <a href="/prodotti#solare">Batterie al litio e accumulo solare</a>
+      </div>
+
+      <div>
+        <h4>Servizi</h4>
+
+        <a href="/servizi">Test batteria gratuito</a>
+        <a href="/servizi">Installazione batteria immediata</a>
+        <a href="/servizi">Intervento diretto in azienda</a>
+        <a href="/servizi">Smaltimento batterie esauste</a>
+
+        <h4 class="footer-hours-title">Orari</h4>
         <p>Lun–Ven: 8:00 – 18:00</p>
         <p>Sab: 8:00 – 12:00</p>
 
         <p class="footer-open">
-          ✔ Senza appuntamento
+          ✔ Accesso senza appuntamento
         </p>
       </div>
 
@@ -91,29 +101,37 @@ import "../styles/footer.css";
   </div>
 
   <!-- BOTTOM -->
-<div class="footer-bottom">
+  <div class="footer-bottom">
 
-  <p class="footer-legal">
-    © 2026 ITABATTERIE S.R.L. — Str. della Orsina, 46 C, Piacenza (PC) |
-    P.IVA 01924870338 |
-    <a href="/privacy">Privacy</a> | <a href="/cookie-policy">Cookie Policy</a>
-  </p>
+    <p class="footer-legal">
+      © 2026 ITABATTERIE S.R.L. — Strada dell'Orsina 46/C, 29122 Piacenza (PC) |
+      P.IVA 01924870338 |
+      <a href="/privacy">Privacy Policy</a> |
+      <a href="/cookie-policy">Cookie Policy</a>
+    </p>
 
-  <a 
-  href="https://gcpstudio.it/home" 
-  target="_blank" 
-  rel="noopener noreferrer"
-  class="footer-signature"
->
-  <span class="signature-label">Realizzato da</span>
+    <a 
+      href="https://gcpstudio.it/home" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="footer-signature"
+      aria-label="Sito realizzato da GCP Studio"
+    >
+      <span class="signature-label">Realizzato da</span>
 
-  <span class="signature-brand">
-    <img src="/images/LOGOGCP.webp" alt="GCP Studio">
-    <span>GCP Studio</span>
-  </span>
+      <span class="signature-brand">
+        <img 
+          src="/images/LOGOGCP.webp" 
+          alt="GCP Studio"
+          loading="lazy"
+          decoding="async"
+          width="120"
+          height="40"
+        />
+        <span>GCP Studio</span>
+      </span>
+    </a>
 
-</a>
-
-</div>
+  </div>
 
 </footer>

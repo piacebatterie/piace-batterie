@@ -3,172 +3,231 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/servizi.css";
 ---
 
-<BaseLayout title="Servizi - Piace Batterie">
+<BaseLayout
+  title="Servizi Batterie a Piacenza | Test, Installazione e Smaltimento"
+  description="Piace Batterie offre servizi professionali a Piacenza: test batteria gratuito in 5 minuti, installazione immediata, interventi su muletti e mezzi industriali, smaltimento batterie esauste."
+  canonical="https://piacebatterie.it/servizi"
+>
 
-<section class="services-page">
+<section class="services-page" aria-labelledby="services-page-title">
 
   <div class="container">
 
-   <!-- HEADER -->
-<div class="services-header">
-  <h1>I nostri servizi</h1>
-  <p>
-    Dalla diagnosi alla sostituzione: soluzioni rapide, professionali e senza perdite di tempo.
-  </p>
-</div>
+    <!-- HEADER -->
+    <div class="services-header">
+      <h1 id="services-page-title">
+        Servizi batterie a Piacenza
+      </h1>
 
-<!-- SERVIZIO 1 — DIAGNOSTICA (ENTRY POINT) -->
-<div class="service-block">
-
-  <div class="service-image">
-    <img 
-      src="/images/DIAGNOSTICA.webp"
-      alt="Test batteria auto professionale con diagnostica elettronica"
-      loading="eager"
-      decoding="async"
-    />
-  </div>
-
-  <div class="service-content">
-    <h2>Diagnostica Predittiva: Check Batteria in 5 Minuti</h2>
-
-    <p>
-      Affidarsi alla fortuna non è una strategia. Con il nostro test computerizzato analizziamo lo stato reale della tua batteria in pochi minuti.
-    </p>
-
-    <p>
-      Se è ancora buona, te lo diciamo. Se va sostituita, hai subito la soluzione pronta.
-    </p>
-
-    <div class="quote-box">
-      “La batteria non muore mai nel momento giusto.
-      Cinque minuti oggi. La serenità per i prossimi anni.”
+      <p>
+        Diagnosi, installazione, assistenza e smaltimento: soluzioni rapide e professionali
+        per auto, moto, furgoni, muletti, mezzi industriali e veicoli da lavoro.
+      </p>
     </div>
 
-    <div class="service-cta">
-      <a href="#" class="btn primary open-cta">
-        Controllo gratuito in 5 minuti
-      </a>
+    <!-- SERVIZIO 1 — DIAGNOSTICA -->
+    <section id="diagnostica" class="service-block" aria-labelledby="diagnostica-title">
 
-      <a href="tel:+3905231656743" class="btn secondary">
-        Chiama ora
-      </a>
-    </div>
+      <div class="service-image">
+        <img 
+          src="/images/DIAGNOSTICA.webp"
+          alt="Test batteria gratuito a Piacenza con diagnostica professionale"
+          loading="eager"
+          decoding="async"
+          width="900"
+          height="650"
+        />
+      </div>
 
-  </div>
+      <div class="service-content">
+        <h2 id="diagnostica-title">
+          Test batteria gratuito in 5 minuti
+        </h2>
 
-</div>
+        <p>
+          Affidarsi alla fortuna non è una strategia. Con il nostro controllo computerizzato
+          analizziamo lo stato reale della batteria, la capacità di avviamento e il corretto
+          funzionamento dell’impianto di ricarica.
+        </p>
 
-<!-- SERVIZIO 2 — INSTALLAZIONE -->
-<div class="service-block reverse">
+        <p>
+          Se la batteria è ancora efficiente, te lo diciamo con trasparenza.
+          Se invece va sostituita, individuiamo subito il modello corretto per il tuo veicolo.
+        </p>
 
-  <div class="service-image">
-    <img 
-      src="/images/INSTALL.webp"
-      alt="Installazione batteria auto a Piacenza in officina"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
+        <p>
+          Il servizio è pensato per auto, moto, furgoni, veicoli commerciali e mezzi da lavoro.
+        </p>
 
-  <div class="service-content">
-    <h2>Servizio Pit-Stop: Installazione Immediata in Sede</h2>
+        <div class="quote-box">
+          “La batteria non muore mai nel momento giusto.
+          Cinque minuti oggi. La serenità per i prossimi anni.”
+        </div>
 
-    <p>
-      Hai acquistato la tua nuova batteria — o stai per farlo — ma non vuoi sporcarti le mani o rischiare di danneggiare l’elettronica del veicolo?
-    </p>
+        <div class="service-cta">
+          <a href="#" class="btn primary open-cta">
+            Fai il controllo gratuito
+          </a>
 
-    <p>
-      I nostri tecnici effettuano il montaggio direttamente nella nostra sede, in tempo reale, con la massima cura per l’elettronica di bordo.
-    </p>
+          <a 
+            href="tel:+3905231656743" 
+            class="btn secondary"
+            aria-label="Chiama Piace Batterie per il test batteria gratuito"
+          >
+            Chiama ora
+          </a>
+        </div>
 
-    <p>
-      Arrivi, testiamo, installiamo. Senza attese.
-    </p>
+      </div>
 
-    <p class="service-list">
-      Auto • Moto • Furgoni • Veicoli commerciali • Lavasciuga • Attrezzature industriali
-    </p>
+    </section>
 
-  </div>
+    <!-- SERVIZIO 2 — INSTALLAZIONE -->
+    <section id="montaggio" class="service-block reverse" aria-labelledby="montaggio-title">
 
-</div>
+      <div class="service-image">
+        <img 
+          src="/images/INSTALL.webp"
+          alt="Installazione batteria auto a Piacenza in sede"
+          loading="lazy"
+          decoding="async"
+          width="900"
+          height="650"
+        />
+      </div>
 
-<!-- SERVIZIO 3 — MOBILE (WOW / DIFFERENZIANTE) -->
-<div class="service-block">
+      <div class="service-content">
+        <h2 id="montaggio-title">
+          Installazione batteria immediata in sede
+        </h2>
 
-  <div class="service-image">
-    <img 
-      src="/images/carrello2.webp"
-      alt="Intervento su muletto e mezzi industriali direttamente in azienda"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
+        <p>
+          Hai acquistato una nuova batteria — o devi sostituirla subito — ma non vuoi rischiare
+          errori, perdite di memoria o problemi all’elettronica del veicolo?
+        </p>
 
-  <div class="service-content">
-    <h2>Servizio Mobile: Intervento Diretto in Azienda</h2>
+        <p>
+          I nostri tecnici effettuano il montaggio direttamente nella nostra sede di Piacenza,
+          con attenzione alla centralina, ai sistemi Start&Stop e ai dispositivi elettronici
+          di bordo.
+        </p>
 
-    <p>
-      La tua batteria industriale ha ceduto nel mezzo del turno? Non perdere tempo prezioso — siamo noi a venire da te.
-    </p>
+        <p>
+          Arrivi, testiamo, installiamo. Senza attese inutili e senza appuntamento.
+        </p>
 
-    <p>
-      Il nostro team raggiunge direttamente la tua sede per sostituire batterie su muletti, transpallet elettrici e mezzi da lavoro, riducendo al minimo i tempi di fermo.
-    </p>
+        <p class="service-list">
+          Auto • Moto • Furgoni • Veicoli commerciali • Lavasciuga • Attrezzature industriali
+        </p>
 
-    <p>
-      Interveniamo dove serve, quando serve. Rapidi, attrezzati, professionali.
-    </p>
+        <div class="service-cta">
+          <a href="/contatti" class="btn primary">
+            Vieni in sede
+          </a>
+        </div>
 
-    <p class="service-list">
-      Muletti • Transpallet elettrici • Carrelli elevatori • Macchine per pulizia industriale • Piattaforme semoventi • Mezzi da magazzino
-    </p>
+      </div>
 
-    <div class="service-cta">
-      <a href="tel:+3905231656743" class="btn primary">
-        Intervento rapido in azienda
-      </a>
-    </div>
+    </section>
 
-  </div>
+    <!-- SERVIZIO 3 — MOBILE / AZIENDA -->
+    <section id="intervento-azienda" class="service-block" aria-labelledby="intervento-azienda-title">
 
-</div>
+      <div class="service-image">
+        <img 
+          src="/images/carrello2.webp"
+          alt="Intervento su batterie per muletti e mezzi industriali direttamente in azienda"
+          loading="lazy"
+          decoding="async"
+          width="900"
+          height="650"
+        />
+      </div>
 
-<!-- SERVIZIO 4 — SMALTIMENTO -->
-<div class="service-block reverse">
+      <div class="service-content">
+        <h2 id="intervento-azienda-title">
+          Intervento diretto in azienda per muletti e mezzi industriali
+        </h2>
 
-  <div class="service-image">
-    <img 
-      src="/images/smaltimento.webp"
-      alt="Smaltimento batterie esauste certificato Piacenza"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
+        <p>
+          La batteria industriale ha ceduto nel mezzo del turno? Ogni ora di fermo può rallentare
+          magazzino, produzione, consegne e operatività interna.
+        </p>
 
-  <div class="service-content">
-    <h2>Programma Eco-Cycle: Smaltimento Certificato Gratuito</h2>
+        <p>
+          Il nostro team raggiunge direttamente la tua sede per sostituire batterie su muletti,
+          transpallet elettrici, carrelli elevatori e mezzi da lavoro, riducendo al minimo
+          i tempi di fermo.
+        </p>
 
-    <p>
-      Le batterie esauste sono rifiuti speciali, ma anche risorse preziose. Noi le recuperiamo e le reinseriamo nel ciclo produttivo.
-    </p>
+        <p>
+          Interveniamo dove serve, quando serve. Rapidi, attrezzati, professionali.
+        </p>
 
-    <p>
-      Porta da noi tutte le batterie che vuoi smaltire: le ritiriamo gratuitamente e le gestiamo nel pieno rispetto delle normative ambientali.
-    </p>
+        <p class="service-list">
+          Muletti • Transpallet elettrici • Carrelli elevatori • Macchine per pulizia industriale • Piattaforme semoventi • Mezzi da magazzino
+        </p>
 
-    <p>
-      Tu non spendi nulla. Noi ci occupiamo di tutto.
-    </p>
+        <div class="service-cta">
+          <a 
+            href="tel:+3905231656743" 
+            class="btn primary"
+            aria-label="Chiama Piace Batterie per intervento rapido in azienda"
+          >
+            Richiedi intervento rapido
+          </a>
+        </div>
 
-    <p class="service-list">
-      Batterie auto/moto • Industriali • Trazione • LiFePO4 • Accumulatori solari
-    </p>
+      </div>
 
-  </div>
+    </section>
 
-</div>
+    <!-- SERVIZIO 4 — SMALTIMENTO -->
+    <section id="smaltimento" class="service-block reverse" aria-labelledby="smaltimento-title">
+
+      <div class="service-image">
+        <img 
+          src="/images/smaltimento.webp"
+          alt="Smaltimento batterie esauste a Piacenza"
+          loading="lazy"
+          decoding="async"
+          width="900"
+          height="650"
+        />
+      </div>
+
+      <div class="service-content">
+        <h2 id="smaltimento-title">
+          Smaltimento batterie esauste
+        </h2>
+
+        <p>
+          Le batterie esauste sono rifiuti speciali e devono essere gestite correttamente.
+          Allo stesso tempo, contengono materiali recuperabili che possono rientrare nel ciclo produttivo.
+        </p>
+
+        <p>
+          Da Piace Batterie puoi portare le batterie usate da smaltire: ci occupiamo noi della gestione
+          nel rispetto delle normative ambientali e delle procedure corrette.
+        </p>
+
+        <p>
+          Tu non perdi tempo e non rischi errori. Noi pensiamo al recupero e allo smaltimento.
+        </p>
+
+        <p class="service-list">
+          Batterie auto e moto • Batterie industriali • Batterie trazione • LiFePO4 • Accumulatori solari
+        </p>
+
+        <div class="service-cta">
+          <a href="/contatti" class="btn primary">
+            Chiedi informazioni
+          </a>
+        </div>
+
+      </div>
+
+    </section>
 
   </div>
 

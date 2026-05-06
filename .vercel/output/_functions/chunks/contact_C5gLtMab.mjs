@@ -1,0 +1,60 @@
+import { Resend } from 'resend';
+
+const prerender = false;
+const POST = async ({ request }) => {
+  const resend = new Resend("re_8JvHNXKt_CEwUtAnu4c9AgXXui7En6ZkE");
+  let name = "";
+  let phone = "";
+  let city = "";
+  try {
+    const contentType = request.headers.get("content-type") || "";
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await request.formData();
+      name = formData.get("name");
+      phone = formData.get("phone");
+      city = formData.get("city");
+    } else {
+      const body = await request.text();
+      const params = new URLSearchParams(body);
+      name = params.get("name") || "";
+      phone = params.get("phone") || "";
+      city = params.get("city") || "";
+    }
+    phone = (phone || "").replace(/[^\d+]/g, "");
+    await resend.emails.send({
+      from: "Piace Batterie <info@piacebatterie.it>",
+      to: ["info@piacebatterie.it"],
+      subject: `Nuovo controllo batteria – ${city}`,
+      html: `
+        <h2>🔋 Nuovo contatto</h2>
+    
+        <p><strong>Nome:</strong> ${name}</p>
+    
+ <p><strong>Telefono:</strong> ${phone}</p>
+
+<p>
+  <a href="tel:${phone.replace(/\s/g, "")}" 
+     style="display:inline-block;padding:12px 18px;background:#ff6a00;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold;">
+     📞 Chiama ora
+  </a>
+</p>
+    
+        <p><strong>Città:</strong> ${city}</p>
+      `
+    });
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (err) {
+    console.error("🔥 RESEND ERROR:", err);
+    return new Response(JSON.stringify({ success: false }), { status: 500 });
+  }
+};
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  POST,
+  prerender
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

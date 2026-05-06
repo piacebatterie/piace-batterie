@@ -2,131 +2,119 @@
 import "../styles/hero.css";
 ---
 
-<section class="hero">
+<section class="hero" aria-label="Piace Batterie - centro batterie a Piacenza">
+
   <!-- BACKGROUND -->
+  <div class="hero-bg" aria-hidden="true">
 
-<div class="hero-bg">
+    <!-- HERO PRINCIPALE / LCP -->
+    <img 
+      src="/batteria2.webp" 
+      alt="Installazione batteria auto a Piacenza"
+      class="active"
+      fetchpriority="high"
+      loading="eager"
+      decoding="async"
+      width="1600"
+      height="900"
+    />
 
+    <!-- ALTRE IMMAGINI SLIDER DESKTOP -->
+    <img 
+      src="/batteria.webp" 
+      alt="Batterie auto professionali disponibili a Piacenza"
+      loading="lazy"
+      decoding="async"
+      width="1600"
+      height="900"
+    />
 
-<!-- 🔥 HERO PRINCIPALE (LCP) -->
-<img 
-  src="/batteria2.webp" 
-  alt="Installazione batteria auto a Piacenza"
-  class="active"
-  fetchpriority="high"
-  loading="eager"
-  decoding="async"
-  width="1600"
-  height="900"
-/>
+    <img 
+      src="/batteria3.webp" 
+      alt="Test batteria auto con diagnostica professionale"
+      loading="lazy"
+      decoding="async"
+      width="1600"
+      height="900"
+    />
 
-<!-- 🔽 ALTRE IMMAGINI (lazy) -->
-<img 
-  src="/batteria.webp" 
-  alt="Batterie auto professionali Piacenza"
-  loading="lazy"
-  decoding="async"
-  width="1600"
-  height="900"
-/>
-
-<img 
-  src="/batteria3.webp" 
-  alt="Test batteria veicolo diagnostica"
-  loading="lazy"
-  decoding="async"
-  width="1600"
-  height="900"
-/>
-
-<img 
-  src="/carrello.webp" 
-  alt="Batterie industriali per muletti e carrelli elevatori"
-  loading="lazy"
-  decoding="async"
-  width="1600"
-  height="900"
-/>
+    <img 
+      src="/carrello.webp" 
+      alt="Batterie industriali per muletti e carrelli elevatori"
+      loading="lazy"
+      decoding="async"
+      width="1600"
+      height="900"
+    />
 
   </div>
 
-    <!-- CONTENUTO -->
-
-
+  <!-- CONTENUTO -->
   <div class="container hero-inner">
 
-  <div class="hero-text">
+    <div class="hero-text">
 
-  <!-- trust -->
-  <div class="hero-badge">
-    ⚡ Intervento rapido a Piacenza
-  </div>
+      <div class="hero-badge">
+        ⚡ Centro batterie a Piacenza
+      </div>
 
-  <!-- headline -->
-  <h1>
-    L’energia che Piace.
-  </h1>
+      <h1>
+        Batterie auto, moto e industriali a Piacenza.
+        <span>L’energia che Piace.</span>
+      </h1>
 
-  <!-- SEO text -->
-  <p class="hero-main">
-    Batterie auto, moto e industriali a Piacenza: test gratuito, installazione immediata e assistenza professionale.
-  </p>
+      <p class="hero-main">
+        Test batteria gratuito in 5 minuti, vendita, installazione immediata e assistenza professionale per auto, furgoni, moto, muletti e mezzi da lavoro.
+      </p>
 
-  <!-- valore -->
-  <p class="hero-sub">
-    Tecnologie premium, tecnici certificati e diagnosi in 5 minuti.
-  </p>
+      <p class="hero-sub">
+        Tecnologie premium, tecnici specializzati e soluzioni pronte per privati, aziende, flotte e veicoli industriali.
+      </p>
 
-  <!-- punch -->
-  <p class="hero-punch">
-    Entra quando vuoi. Riparti subito.
-  </p>
+      <p class="hero-punch">
+        Entra quando vuoi. Controlliamo la batteria. Riparti subito.
+      </p>
 
-  <!-- CTA -->
-  <div class="hero-buttons">
+      <div class="hero-buttons">
 
-    <a href="/contatti" class="btn primary">
-      Controllo gratuito in 5 minuti
-    </a>
+        <a href="/contatti" class="btn primary">
+          Controllo gratuito in 5 minuti
+        </a>
 
-    <a href="tel:+3905231656743" class="btn secondary">
-      📞 Chiama ora 0523 165 6743
-    </a>
+        <a href="tel:+3905231656743" class="btn secondary" aria-label="Chiama Piace Batterie al numero 0523 165 6743">
+          📞 Chiama ora 0523 165 6743
+        </a>
 
-  </div>
+      </div>
 
-  <!-- trust -->
-<div class="hero-trust">
-  <span>✔ Nessuna attesa</span>
-  <span>✔ Test in 5 minuti</span>
-  <span>✔ Montaggio immediato</span>
-</div>
+      <div class="hero-trust" aria-label="Vantaggi principali">
+        <span>✔ Nessuna attesa</span>
+        <span>✔ Test in 5 minuti</span>
+        <span>✔ Montaggio immediato</span>
+      </div>
+
+    </div>
 
   </div>
 
 </section>
 
-<!-- 🔥 SLIDER (SOLO DESKTOP) -->
-
 <script is:inline>
-  window.addEventListener('DOMContentLoaded', () => {
-
+  window.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth <= 768) return;
 
-    const images = document.querySelectorAll('.hero-bg img');
+    const images = document.querySelectorAll(".hero-bg img");
+    if (!images.length) return;
+
     let index = 0;
 
     setInterval(() => {
-      images[index].classList.remove('active');
+      images[index].classList.remove("active");
       index = (index + 1) % images.length;
-      images[index].classList.add('active');
+      images[index].classList.add("active");
     }, 4000);
-
   });
 </script>
-
-<!-- 🔥 HERO READY (NO DELAY) -->
-
 
 <script is:inline>
   document.querySelector(".hero")?.classList.add("in-view");

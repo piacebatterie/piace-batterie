@@ -3,27 +3,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/contatti.css";
 ---
 
-<BaseLayout title="Contatti - Piace Batterie">
+<BaseLayout
+  title="Contatti Piace Batterie | Batterie Auto e Industriali a Piacenza"
+  description="Contatta Piace Batterie a Piacenza: siamo in Strada dell'Orsina 46/C. Test batteria gratuito in 5 minuti, installazione immediata e assistenza per auto, moto, furgoni e mezzi industriali."
+  canonical="https://piacebatterie.it/contatti"
+>
 
-  <section class="contact">
+  <section class="contact" aria-labelledby="contact-title">
 
     <div class="container">
 
       <!-- HEADER -->
       <div class="contact-header">
-        <h1>Dove siamo</h1>
+        <h1 id="contact-title">
+          Contatti Piace Batterie a Piacenza
+        </h1>
+
         <p>
-          Passa senza appuntamento. In pochi minuti sai esattamente cosa fare.
+          Passa senza appuntamento per un controllo gratuito della batteria.
+          In pochi minuti verifichiamo lo stato del tuo veicolo e ti diciamo esattamente cosa fare.
         </p>
       </div>
-<p class="contact-badge">
-  📍 Facile da raggiungere • Parcheggio comodo
-</p>
+
+      <p class="contact-badge">
+        📍 Strada dell'Orsina 46/C • Parcheggio comodo • Test in 5 minuti
+      </p>
+
       <!-- MAPPA -->
       <div class="map">
         <iframe
           src="https://www.google.com/maps?q=Str.+della+Orsina+46+C+Piacenza&output=embed"
+          title="Mappa Piace Batterie - Strada dell'Orsina 46/C, Piacenza"
           loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen>
         </iframe>
       </div>
@@ -31,24 +43,55 @@ import "../styles/contatti.css";
       <!-- INFO -->
       <div class="contact-box">
 
-      <h2>Vieni senza appuntamento</h2>
+        <h2>
+          Vieni in sede per test, vendita e installazione batterie
+        </h2>
 
-<p class="contact-highlight">
-  In 5 minuti sai esattamente cosa fare. Senza attese.
-</p>
+        <p class="contact-highlight">
+          Controllo batteria gratuito in 5 minuti. Nessun appuntamento necessario.
+        </p>
 
-<p>📍 Str. della Orsina, 46 C, Piacenza (PC)</p>
-<p>📞 +39 0523 165 6743</p>
-<p>✉️ info@piacebatterie.it</p>
+        <p>
+          Da Piace Batterie trovi assistenza per batterie auto, moto, furgoni,
+          veicoli commerciali, muletti e mezzi industriali.
+        </p>
+
+        <address>
+          <p>
+            📍 <strong>Piace Batterie</strong><br />
+            Strada dell'Orsina 46/C<br />
+            29122 Piacenza (PC)
+          </p>
+
+          <p>
+            📞 <a href="tel:+3905231656743">+39 0523 165 6743</a>
+          </p>
+
+          <p>
+            ✉️ <a href="mailto:info@piacebatterie.it">info@piacebatterie.it</a>
+          </p>
+
+          <p>
+            💬 <a 
+              href="https://wa.me/393514767721?text=Salve,%20vorrei%20informazioni%20sulle%20batterie"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Scrivici su WhatsApp
+            </a>
+          </p>
+        </address>
 
         <div class="actions">
-       <a href="#" class="btn primary open-cta">
+          <a href="#" class="btn primary open-cta">
+            Richiedi controllo gratuito
+          </a>
 
-  Richiedi controllo gratuito
-
-</a>
-
-          <a href="tel:+3905231656743" class="btn secondary">
+          <a 
+            href="tel:+3905231656743" 
+            class="btn secondary"
+            aria-label="Chiama Piace Batterie al numero 0523 165 6743"
+          >
             Chiama ora
           </a>
         </div>

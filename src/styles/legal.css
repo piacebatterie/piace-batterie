@@ -1,74 +1,120 @@
 /* =========================
-   LEGAL / PRIVACY PAGE
+   LEGAL / PRIVACY / COOKIE PAGE
 ========================= */
 
 .legal {
-    padding: 120px 0;
+  padding: 120px 0;
+}
+
+/* container più leggibile */
+.legal .container {
+  max-width: 900px;
+}
+
+/* titolo principale */
+.legal h1 {
+  margin-bottom: 12px;
+}
+
+/* intro */
+.legal p:first-of-type {
+  font-size: 1.05rem;
+  opacity: 0.85;
+  margin-bottom: 25px;
+}
+
+/* sezioni */
+.legal h2 {
+  position: relative;
+
+  margin-top: 40px;
+  margin-bottom: 12px;
+  padding-top: 18px;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* linea premium */
+.legal h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 40px;
+  height: 2px;
+
+  background: var(--orange);
+  opacity: 0.7;
+}
+
+/* testo */
+.legal p {
+  margin-bottom: 10px;
+
+  line-height: 1.65;
+  opacity: 0.8;
+}
+
+/* liste GDPR / cookie */
+.legal ul {
+  margin: 14px 0 24px;
+  padding-left: 22px;
+}
+
+.legal li {
+  margin-bottom: 8px;
+
+  color: rgba(255,255,255,0.82);
+  line-height: 1.65;
+}
+
+/* link */
+.legal a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  transition: color 0.25s ease;
+}
+
+.legal a:hover {
+  color: #fff;
+}
+
+/* nota finale */
+.legal-note {
+  margin-top: 40px;
+
+  font-size: 0.85rem;
+  opacity: 0.55;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .legal {
+    padding: 80px 0;
   }
-  
-  /* container più largo */
-  .legal .container {
-    max-width: 900px;
-  }
-  
-  /* titolo principale */
+
   .legal h1 {
-    margin-bottom: 12px;
+    font-size: 2rem;
   }
-  
-  /* intro */
-  .legal p:first-of-type {
-    font-size: 1.05rem;
-    opacity: 0.85;
-    margin-bottom: 25px;
-  }
-  
-  /* sezioni */
+
   .legal h2 {
-    position: relative;
-    margin-top: 40px;
-    margin-bottom: 12px;
-  
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #fff;
-    padding-top: 18px;
+    margin-top: 34px;
+    font-size: 1.2rem;
   }
-  
-  /* linea premium */
-  .legal h2::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-  
-    width: 40px;
-    height: 2px;
-  
-    background: #ff6b00;
-    opacity: 0.7;
+
+  .legal p,
+  .legal li {
+    font-size: 1rem;
+    line-height: 1.65;
   }
-  
-  /* testo */
-  .legal p {
-    opacity: 0.8;
-    line-height: 1.6;
-    margin-bottom: 10px;
-  }
-  
-  /* link dentro privacy */
-  .legal a {
-    color: #ff6b00;
-    text-decoration: none;
-  }
-  
-  .legal a:hover {
-    text-decoration: underline;
-  }
-  
-  /* nota finale */
-  .legal-note {
-    margin-top: 40px;
-    font-size: 0.8rem;
-    opacity: 0.5;
-  }
+
+}

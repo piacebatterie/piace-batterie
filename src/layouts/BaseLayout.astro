@@ -4,11 +4,30 @@ import Header from "../components/Header.astro";
 import "../styles/button.css";
 import "../styles/sticky.css";
 import Footer from "../components/Footer.astro";
-import FreeCheck from '../components/cta/FreeCheck.astro';
+import FreeCheck from "../components/cta/FreeCheck.astro";
 import LocationModal from "../components/LocationModal.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 import ContactSheet from "../components/ContactSheet.astro";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+
+const {
+  title = "Piace Batterie | Batterie Auto, Moto e Industriali a Piacenza",
+  description = "Piace Batterie offre vendita, installazione e assistenza per batterie auto, moto e industriali a Piacenza. Test batteria gratuito in 5 minuti, montaggio immediato e consulenza professionale.",
+  canonical = "https://piacebatterie.it/",
+  ogImage = "https://piacebatterie.it/images/og-image.jpg",
+} = Astro.props;
+
+const siteUrl = "https://piacebatterie.it";
+const businessName = "Piace Batterie";
+const phone = "+3905231656743";
+const email = "info@piacebatterie.it";
+const address = {
+  street: "Strada dell'Orsina 46/C",
+  city: "Piacenza",
+  province: "PC",
+  postalCode: "29122",
+  country: "IT",
+};
 ---
 
 <!DOCTYPE html>
@@ -18,77 +37,195 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 
     <!-- MOBILE UX -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="format-detection" content="telephone=no, email=no" />
 
-    <!-- TITLE -->
-    <title>Piace Batterie | Batterie Auto e Industriali a Piacenza</title>
-
-    <!-- SEO -->
-    <meta name="description" content="Vendita, installazione e assistenza batterie auto e industriali a Piacenza. Controllo gratuito immediato senza appuntamento. Servizio rapido e professionale." />
-    
-    <!-- (facoltativo ma ok) -->
-    <meta name="keywords" content="batterie auto Piacenza, batterie industriali Piacenza, sostituzione batteria, controllo batteria gratuito, installazione batterie" />
-
+    <!-- PRIMARY SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Piace Batterie" />
-    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#020814" />
 
     <!-- CANONICAL -->
-    <link rel="canonical" href="https://piacebatterie.it/" />
-
-    <!-- OPEN GRAPH (SOCIAL / WHATSAPP) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Piace Batterie | Batterie Auto e Industriali a Piacenza" />
-    <meta property="og:description" content="Controllo batteria gratuito in 5 minuti. Vendita, assistenza e installazione senza appuntamento a Piacenza." />
-    <meta property="og:url" content="https://piacebatterie.it/" />
-    <meta property="og:image" content="https://piacebatterie.it/images/og-image.jpg" />
-    <meta property="og:locale" content="it_IT" />
-
-    <!-- TWITTER -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Piace Batterie" />
-    <meta name="twitter:description" content="Controllo batteria gratuito immediato a Piacenza." />
-    <meta name="twitter:image" content="https://piacebatterie.it/images/og-image.jpg" />
+    <link rel="canonical" href={canonical} />
 
     <!-- FAVICON -->
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- PERFORMANCE -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Piace Batterie" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Piace Batterie - Batterie auto, moto e industriali a Piacenza" />
+    <meta property="og:locale" content="it_IT" />
 
-    <!-- FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- TWITTER / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
-    <!-- THEME COLOR -->
-    <meta name="theme-color" content="#020814" />
-
-    <!-- GEO SEO (locale 🔥) -->
+    <!-- LOCAL SEO -->
     <meta name="geo.region" content="IT-PC" />
     <meta name="geo.placename" content="Piacenza" />
     <meta name="geo.position" content="45.0522;9.6930" />
     <meta name="ICBM" content="45.0522, 9.6930" />
 
-    <!-- BUSINESS STRUCTURED DATA (SUPER BOOST SEO) -->
-    <script type="application/ld+json">
-    {
+    <!-- PERFORMANCE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- STRUCTURED DATA: LOCAL BUSINESS -->
+    <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "AutoRepair",
-      "name": "Piace Batterie",
-      "image": "https://piacebatterie.it/images/og-image.jpg",
-      "url": "https://piacebatterie.it",
-      "telephone": "+3905231656743",
+      "@id": `${siteUrl}/#localbusiness`,
+      "name": businessName,
+      "alternateName": "Piace Batterie Piacenza",
+      "description": "Vendita, installazione e assistenza per batterie auto, moto, veicoli industriali, muletti, mezzi agricoli, nautica, tempo libero e sistemi di accumulo a Piacenza.",
+      "url": siteUrl,
+      "image": ogImage,
+      "logo": `${siteUrl}/images/logo.png`,
+      "telephone": phone,
+      "email": email,
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Strada dell'Orsina 46/C",
-        "addressLocality": "Piacenza",
-        "postalCode": "29122",
-        "addressCountry": "IT"
+        "streetAddress": address.street,
+        "addressLocality": address.city,
+        "addressRegion": address.province,
+        "postalCode": address.postalCode,
+        "addressCountry": address.country
       },
-      "openingHours": "Mo-Fr 08:30-18:30 Sa 08:30-12:30",
-      "areaServed": "Piacenza",
-      "priceRange": "€€"
-    }
-    </script>
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.0522,
+        "longitude": 9.6930
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:30",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:30",
+          "closes": "12:30"
+        }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Piacenza"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Provincia di Piacenza"
+        }
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Test batteria gratuito in 5 minuti"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Installazione batterie auto, moto e veicoli industriali"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Assistenza batterie per muletti, mezzi agricoli e logistica"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Smaltimento batterie esauste"
+          }
+        }
+      ],
+      "sameAs": []
+    })}></script>
+
+    <!-- STRUCTURED DATA: WEBSITE -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "name": businessName,
+      "url": siteUrl,
+      "publisher": {
+        "@id": `${siteUrl}/#localbusiness`
+      },
+      "inLanguage": "it-IT"
+    })}></script>
+
+    <!-- STRUCTURED DATA: NAVIGATION / IMPORTANT PAGES -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Sezioni principali Piace Batterie",
+      "itemListElement": [
+        {
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "name": "Prodotti",
+          "url": `${siteUrl}/prodotti`
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "name": "Servizi",
+          "url": `${siteUrl}/servizi`
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "Contatti",
+          "url": `${siteUrl}/contatti`
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "name": "Privacy Policy",
+          "url": `${siteUrl}/privacy`
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 5,
+          "name": "Cookie Policy",
+          "url": `${siteUrl}/cookie-policy`
+        }
+      ]
+    })}></script>
 
   </head>
 
@@ -97,12 +234,12 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 
     <main>
       <slot />
+
       <LocationModal />
       <FreeCheck />
       <CookieBanner />
-          <ContactSheet />
-
-<WhatsAppFloat />
+      <ContactSheet />
+      <WhatsAppFloat />
     </main>
 
     <Footer />
@@ -110,315 +247,334 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
     <!-- CTA MOBILE -->
     <div class="sticky-cta">
       <a href="tel:+3905231656743" class="sticky-call contact-trigger">
-  Contattaci ora
-</a>
+        Contattaci ora
+      </a>
     </div>
 
-  </body>
-</html>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+        /* =====================================================
+           REVEAL ON SCROLL
+        ===================================================== */
+        const initReveal = () => {
+          const groups = document.querySelectorAll(".reveal-group");
+          const singles = document.querySelectorAll(".reveal:not(.card)");
 
-  /* =====================================================
-     REVEAL ON SCROLL
-  ===================================================== */
-  const initReveal = () => {
-    const groups = document.querySelectorAll(".reveal-group");
-    const singles = document.querySelectorAll(".reveal:not(.card)");
+          if (!groups.length && !singles.length) return;
 
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
+          const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
 
-        if (entry.target.classList.contains("reveal-group")) {
-          const items = entry.target.querySelectorAll(".reveal");
+              if (entry.target.classList.contains("reveal-group")) {
+                const items = entry.target.querySelectorAll(".reveal");
 
-          items.forEach((el, index) => {
-            setTimeout(() => el.classList.add("in-view"), index * 160);
+                items.forEach((el, index) => {
+                  setTimeout(() => el.classList.add("in-view"), index * 160);
+                });
+
+              } else {
+                entry.target.classList.add("in-view");
+              }
+
+              obs.unobserve(entry.target);
+            });
+          }, { threshold: 0.35 });
+
+          groups.forEach(el => observer.observe(el));
+          singles.forEach(el => observer.observe(el));
+        };
+
+
+        /* =====================================================
+           SERVICE BLOCK REVEAL
+        ===================================================== */
+        const initServiceBlocks = () => {
+          const blocks = document.querySelectorAll(".service-block");
+
+          if (!blocks.length) return;
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          }, { threshold: 0.15 });
+
+          blocks.forEach(el => observer.observe(el));
+        };
+
+
+        /* =====================================================
+           CARD 3D — DESKTOP ONLY
+        ===================================================== */
+        const initCard3D = () => {
+          const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+          if (!canHover) return;
+
+          document.querySelectorAll(".card").forEach(card => {
+            let frame;
+
+            card.addEventListener("mousemove", e => {
+              cancelAnimationFrame(frame);
+
+              frame = requestAnimationFrame(() => {
+                const rect = card.getBoundingClientRect();
+
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const midX = rect.width / 2;
+                const midY = rect.height / 2;
+
+                const rotateY = ((x - midX) / midX) * 5;
+                const rotateX = ((midY - y) / midY) * 5;
+
+                card.style.transform = `
+                  rotateX(${rotateX}deg)
+                  rotateY(${rotateY}deg)
+                  scale(1.02)
+                `;
+
+                card.style.setProperty("--x", `${x}px`);
+                card.style.setProperty("--y", `${y}px`);
+              });
+            });
+
+            card.addEventListener("mouseleave", () => {
+              card.style.transform = "";
+            });
+          });
+        };
+
+
+        /* =====================================================
+           CTA GLOW — DESKTOP ONLY
+        ===================================================== */
+        const initCtaGlow = () => {
+          const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+          if (!canHover) return;
+
+          const cta = document.querySelector(".cta");
+          if (!cta) return;
+
+          let targetX = 0;
+          let targetY = 0;
+          let currentX = 0;
+          let currentY = 0;
+
+          cta.addEventListener("mousemove", (e) => {
+            const rect = cta.getBoundingClientRect();
+            targetX = e.clientX - rect.left;
+            targetY = e.clientY - rect.top;
           });
 
-        } else {
-          entry.target.classList.add("in-view");
-        }
+          const animate = () => {
+            currentX += (targetX - currentX) * 0.08;
+            currentY += (targetY - currentY) * 0.08;
 
-        obs.unobserve(entry.target);
-      });
-    }, { threshold: 0.65 });
+            cta.style.setProperty("--lx", `${currentX}px`);
+            cta.style.setProperty("--ly", `${currentY}px`);
 
-    groups.forEach(el => observer.observe(el));
-    singles.forEach(el => observer.observe(el));
-  };
+            requestAnimationFrame(animate);
+          };
 
-
-  /* =====================================================
-     CARD 3D
-  ===================================================== */
-  const initCard3D = () => {
-    document.querySelectorAll(".card").forEach(card => {
-
-      let frame;
-
-      card.addEventListener("mousemove", e => {
-        cancelAnimationFrame(frame);
-
-        frame = requestAnimationFrame(() => {
-          const rect = card.getBoundingClientRect();
-
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          const midX = rect.width / 2;
-          const midY = rect.height / 2;
-
-          const rotateY = ((x - midX) / midX) * 5;
-          const rotateX = ((midY - y) / midY) * 5;
-
-          card.style.transform = `
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            scale(1.02)
-          `;
-
-          card.style.setProperty("--x", `${x}px`);
-          card.style.setProperty("--y", `${y}px`);
-        });
-      });
-
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
-      });
-    });
-  };
+          animate();
+        };
 
 
-  /* =====================================================
-     CTA GLOW
-  ===================================================== */
-  const initCtaGlow = () => {
-    const cta = document.querySelector(".cta");
-    if (!cta) return;
+        /* =====================================================
+           BUTTON GLOW — DESKTOP ONLY
+        ===================================================== */
+        const initButtonGlow = () => {
+          const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+          if (!canHover) return;
 
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
+          document.querySelectorAll(".btn").forEach(btn => {
+            btn.addEventListener("mousemove", (e) => {
+              const rect = btn.getBoundingClientRect();
 
-    cta.addEventListener("mousemove", (e) => {
-      const rect = cta.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
-    });
-
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-
-      cta.style.setProperty("--lx", `${currentX}px`);
-      cta.style.setProperty("--ly", `${currentY}px`);
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-  };
+              btn.style.setProperty("--lx", `${e.clientX - rect.left}px`);
+              btn.style.setProperty("--ly", `${e.clientY - rect.top}px`);
+            });
+          });
+        };
 
 
-  /* =====================================================
-     BUTTON GLOW
-  ===================================================== */
-  const initButtonGlow = () => {
-    document.querySelectorAll(".btn").forEach(btn => {
-      btn.addEventListener("mousemove", (e) => {
-        const rect = btn.getBoundingClientRect();
-        btn.style.setProperty("--lx", `${e.clientX - rect.left}px`);
-        btn.style.setProperty("--ly", `${e.clientY - rect.top}px`);
-      });
-    });
-  };
+        /* =====================================================
+           SERVICES PARALLAX
+        ===================================================== */
+        const initServicesParallax = () => {
+          const services = document.querySelector(".services");
+          if (!services) return;
+
+          let ticking = false;
+
+          window.addEventListener("scroll", () => {
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                const rect = services.getBoundingClientRect();
+                const offset = Math.max(-200, Math.min(200, rect.top * 0.12));
+
+                services.style.setProperty("--parallaxY", `${offset}px`);
+                ticking = false;
+              });
+
+              ticking = true;
+            }
+          }, { passive: true });
+        };
 
 
-  /* =====================================================
-     SERVICES PARALLAX
-  ===================================================== */
-  const initServicesParallax = () => {
-    const services = document.querySelector(".services");
-    if (!services) return;
+        /* =====================================================
+           BRANDS ANIMATION
+        ===================================================== */
+        const initBrands = () => {
+          const logos = document.querySelectorAll(".brands-grid img");
+          if (!logos.length) return;
 
-    let ticking = false;
+          logos.forEach((logo, i) => {
+            logo.style.opacity = "0";
+            logo.style.transform = "translateY(20px)";
 
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const rect = services.getBoundingClientRect();
-          const offset = Math.max(-200, Math.min(200, rect.top * 0.12));
-          services.style.setProperty("--parallaxY", `${offset}px`);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-  };
+            setTimeout(() => {
+              logo.style.transition = "all 0.5s ease";
+              logo.style.opacity = "0.5";
+              logo.style.transform = "translateY(0)";
+            }, i * 70);
+          });
+        };
 
 
-  /* =====================================================
-     BRANDS ANIMATION
-  ===================================================== */
-  const initBrands = () => {
-    const logos = document.querySelectorAll(".brands-grid img");
+        /* =====================================================
+           STICKY CTA
+        ===================================================== */
+        const initStickyCTA = () => {
+          const cta = document.querySelector(".sticky-cta");
+          const footer = document.querySelector("footer");
 
-    logos.forEach((logo, i) => {
-      logo.style.opacity = "0";
-      logo.style.transform = "translateY(20px)";
+          if (!cta) return;
 
-      setTimeout(() => {
-        logo.style.transition = "all 0.5s ease";
-        logo.style.opacity = "0.5";
-        logo.style.transform = "translateY(0)";
-      }, i * 70);
-    });
-  };
+          window.addEventListener("scroll", () => {
+            const scrollY = window.scrollY;
 
+            cta.classList.toggle("visible", scrollY > 300);
 
-  /* =====================================================
-     STICKY CTA
-  ===================================================== */
-  const initStickyCTA = () => {
-    const cta = document.querySelector(".sticky-cta");
-    const footer = document.querySelector("footer");
-
-    if (!cta) return;
-
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY;
-
-      cta.classList.toggle("visible", scrollY > 300);
-
-      if (footer) {
-        const rect = footer.getBoundingClientRect();
-        cta.style.opacity = rect.top < window.innerHeight ? "0" : "";
-      }
-    });
-  };
+            if (footer) {
+              const rect = footer.getBoundingClientRect();
+              cta.style.opacity = rect.top < window.innerHeight ? "0" : "";
+            }
+          }, { passive: true });
+        };
 
 
-  /* =====================================================
-     MOBILE MENU SWIPE
-  ===================================================== */
-  const initMobileMenuSwipe = () => {
-    const nav = document.querySelector(".nav");
-    const overlay = document.querySelector(".menu-overlay");
-    const header = document.querySelector(".header");
+        /* =====================================================
+           MOBILE MENU SWIPE
+        ===================================================== */
+        const initMobileMenuSwipe = () => {
+          const nav = document.querySelector(".nav");
+          const overlay = document.querySelector(".menu-overlay");
+          const header = document.querySelector(".header");
 
-    if (!nav || !overlay || !header) return;
+          if (!nav || !overlay || !header) return;
 
-    let startY = 0;
-    let currentY = 0;
-    let isDragging = false;
+          let startY = 0;
+          let currentY = 0;
+          let isDragging = false;
 
-    const reset = () => {
-      nav.style.transform = "";
-      nav.style.opacity = "";
-    };
+          const reset = () => {
+            nav.style.transform = "";
+            nav.style.opacity = "";
+          };
 
-    nav.addEventListener("touchstart", (e) => {
-      startY = e.touches[0].clientY;
-      isDragging = true;
-    });
+          nav.addEventListener("touchstart", (e) => {
+            startY = e.touches[0].clientY;
+            isDragging = true;
+          });
 
-    nav.addEventListener("touchmove", (e) => {
-      if (!isDragging) return;
+          nav.addEventListener("touchmove", (e) => {
+            if (!isDragging) return;
 
-      e.preventDefault();
+            e.preventDefault();
 
-      currentY = e.touches[0].clientY;
-      const delta = currentY - startY;
+            currentY = e.touches[0].clientY;
+            const delta = currentY - startY;
 
-      if (delta > 0) {
-        nav.style.transform = `translateY(${delta}px)`;
-        nav.style.opacity = `${1 - delta / 280}`;
-      }
-    }, { passive: false });
+            if (delta > 0) {
+              nav.style.transform = `translateY(${delta}px)`;
+              nav.style.opacity = `${1 - delta / 280}`;
+            }
+          }, { passive: false });
 
-    nav.addEventListener("touchend", () => {
-      isDragging = false;
+          nav.addEventListener("touchend", () => {
+            isDragging = false;
 
-      const delta = currentY - startY;
+            const delta = currentY - startY;
 
-      if (delta > 120) {
-        nav.classList.remove("active");
-        overlay.classList.remove("active");
-        header.classList.remove("menu-open");
-      }
+            if (delta > 120) {
+              nav.classList.remove("active");
+              overlay.classList.remove("active");
+              header.classList.remove("menu-open");
+            }
 
-      reset();
-      startY = currentY = 0;
-    });
+            reset();
+            startY = 0;
+            currentY = 0;
+          });
 
-    overlay.addEventListener("click", reset);
-  };
+          overlay.addEventListener("click", reset);
+        };
 
 
-  /* =====================================================
-     CONTACT SHEET (MOBILE)
-  ===================================================== */
-  const initContactSheetTrigger = () => {
+        /* =====================================================
+           CONTACT SHEET MOBILE
+        ===================================================== */
+        const initContactSheetTrigger = () => {
+          const sheet = document.getElementById("contactSheet");
+          if (!sheet) return;
 
-    const sheet = document.getElementById("contactSheet");
-    if (!sheet) return;
+          const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+          document.querySelectorAll(".contact-trigger").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+              if (!isMobile) return;
 
-    document.querySelectorAll(".contact-trigger").forEach(btn => {
-      btn.addEventListener("click", (e) => {
+              e.preventDefault();
+              sheet.classList.add("active");
+            });
+          });
 
-        if (isMobile) {
-          e.preventDefault();
-          sheet.classList.add("active");
-        }
+          sheet.addEventListener("click", (e) => {
+            if (e.target === sheet) {
+              sheet.classList.remove("active");
+            }
+          });
+
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+              sheet.classList.remove("active");
+            }
+          });
+        };
+
+
+        /* =====================================================
+           INIT ALL
+        ===================================================== */
+        initReveal();
+        initServiceBlocks();
+        initCard3D();
+        initCtaGlow();
+        initButtonGlow();
+        initServicesParallax();
+        initBrands();
+        initStickyCTA();
+        initMobileMenuSwipe();
+        initContactSheetTrigger();
 
       });
-    });
-
-    sheet.addEventListener("click", (e) => {
-      if (e.target === sheet) {
-        sheet.classList.remove("active");
-      }
-    });
-  };
-
-/* =====================================================
-   SERVICE BLOCK REVEAL (FIX)
-===================================================== */
-const initServiceBlocks = () => {
-
-  const blocks = document.querySelectorAll('.service-block');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15 });
-
-  blocks.forEach(el => observer.observe(el));
-};
-
-
-  /* =====================================================
-     INIT ALL
-  ===================================================== */
-  initReveal();
-  initServiceBlocks();
-  initCard3D();
-  initCtaGlow();
-  initButtonGlow();
-  initServicesParallax();
-  initBrands();
-  initStickyCTA();
-  initMobileMenuSwipe();
-  initContactSheetTrigger();
-
-});
-</script>
+    </script>
   </body>
 </html>
