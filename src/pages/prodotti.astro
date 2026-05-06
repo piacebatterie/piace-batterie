@@ -20,7 +20,7 @@ import "../styles/prodotti.css";
   </section>
 
   <!-- NAV CATEGORIE -->
-  <section class="products-nav">
+  <nav class="products-nav" aria-label="Categorie prodotti">
     <div class="container">
 
       <a href="#automotive">Auto & Moto</a>
@@ -30,7 +30,7 @@ import "../styles/prodotti.css";
       <a href="#solare">Litio & Solare</a>
 
     </div>
-  </section>
+ </nav>
 
   <!-- AUTOMOTIVE -->
   <section id="automotive" class="product-section">
@@ -385,84 +385,106 @@ import "../styles/prodotti.css";
 
   images.forEach(img => observerImg.observe(img));
 
-  // NAV ATTIVO
+  // NAV PRODOTTI: scroll con offset corretto + active state
 
-  const navLinks = document.querySelectorAll('.products-nav a');
+const nav = document.querySelector('.products-nav');
+const navLinks = document.querySelectorAll('.products-nav a');
+const sectionsList = document.querySelectorAll('.product-section');
 
-  const observerNav = new IntersectionObserver((entries) => {
+const getProductsOffset = () => {
+  const header = document.querySelector('.header');
+  const headerHeight = header ? header.offsetHeight : 0;
+  const navHeight = nav ? nav.offsetHeight : 0;
 
-    entries.forEach(entry => {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-      if (entry.isIntersecting) {
+  return isMobile
+    ? headerHeight + navHeight + 10
+    : headerHeight + navHeight + 18;
+};
 
-        const id = entry.target.getAttribute('id');
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
 
-        navLinks.forEach(link => {
+    const target = document.querySelector(href);
+    if (!target) return;
 
-          link.classList.remove('active');
+    e.preventDefault();
 
-          if (link.getAttribute('href') === `#${id}`) {
+    navLinks.forEach(item => item.classList.remove('active'));
+    link.classList.add('active');
+    link.blur();
 
-            link.classList.add('active');
+    const top = target.getBoundingClientRect().top + window.scrollY - getProductsOffset();
 
-          }
-
-        });
-
-      }
-
+    window.scrollTo({
+      top,
+      behavior: 'smooth'
     });
+  });
+});
 
-  }, { threshold: 0.4 });
+// Active link durante lo scroll
+const updateActiveProductLink = () => {
+  const offset = getProductsOffset() + 40;
 
-  sections.forEach(section => observerNav.observe(section));
+  let currentId = '';
 
-  // NAV STICKY
+  sectionsList.forEach(section => {
+    const top = section.getBoundingClientRect().top;
 
-  const nav = document.querySelector('.products-nav');
-
-  window.addEventListener('scroll', () => {
-
-    if (window.scrollY > 120) {
-
-      nav.classList.add('sticky');
-
-    } else {
-
-      nav.classList.remove('sticky');
-
+    if (top <= offset) {
+      currentId = section.getAttribute('id');
     }
-
   });
 
-  // BOTTONI MAGNETICI
+  if (!currentId) return;
 
+  navLinks.forEach(link => {
+    link.classList.toggle(
+      'active',
+      link.getAttribute('href') === `#${currentId}`
+    );
+  });
+};
+
+window.addEventListener('scroll', () => {
+  if (nav) {
+    nav.classList.toggle('sticky', window.scrollY > 120);
+  }
+
+  updateActiveProductLink();
+}, { passive: true });
+
+window.addEventListener('resize', updateActiveProductLink);
+updateActiveProductLink();
+
+  // BOTTONI MAGNETICI — SOLO DESKTOP
+
+const canUseMagneticButtons = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+if (canUseMagneticButtons) {
   const buttons = document.querySelectorAll('.btn');
 
   buttons.forEach(btn => {
-
     btn.addEventListener('mousemove', (e) => {
-
       const rect = btn.getBoundingClientRect();
 
       const x = e.clientX - rect.left;
-
       const y = e.clientY - rect.top;
 
       const moveX = (x - rect.width / 2) * 0.15;
-
       const moveY = (y - rect.height / 2) * 0.2;
 
       btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
-
     });
 
     btn.addEventListener('mouseleave', () => {
-
       btn.style.transform = 'translate(0,0)';
-
     });
-
   });
+}
 
 </script>
