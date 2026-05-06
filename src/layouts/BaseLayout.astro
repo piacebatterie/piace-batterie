@@ -1,8 +1,9 @@
 ---
 import "../styles/global.css";
-import Header from "../components/Header.astro";
 import "../styles/button.css";
 import "../styles/sticky.css";
+
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FreeCheck from "../components/cta/FreeCheck.astro";
 import LocationModal from "../components/LocationModal.astro";
@@ -11,8 +12,8 @@ import ContactSheet from "../components/ContactSheet.astro";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 
 const {
-  title = "Piace Batterie | Batterie Auto, Moto e Industriali a Piacenza",
-  description = "Piace Batterie offre vendita, installazione e assistenza per batterie auto, moto e industriali a Piacenza. Test batteria gratuito in 5 minuti, montaggio immediato e consulenza professionale.",
+  title = "Batterie Auto, Moto e Industriali a Piacenza | Piace Batterie",
+  description = "Piace Batterie è il centro specializzato a Piacenza per batterie auto, moto, furgoni, camion, muletti e mezzi industriali. Test batteria gratuito in 5 minuti, vendita e installazione immediata.",
   canonical = "https://piacebatterie.it/",
   ogImage = "https://piacebatterie.it/images/og-image.jpg",
 } = Astro.props;
@@ -21,6 +22,7 @@ const siteUrl = "https://piacebatterie.it";
 const businessName = "Piace Batterie";
 const phone = "+3905231656743";
 const email = "info@piacebatterie.it";
+
 const address = {
   street: "Strada dell'Orsina 46/C",
   city: "Piacenza",
@@ -43,7 +45,7 @@ const address = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="author" content="Piace Batterie" />
+    <meta name="author" content={businessName} />
     <meta name="theme-color" content="#020814" />
 
     <!-- CANONICAL -->
@@ -51,16 +53,20 @@ const address = {
 
     <!-- FAVICON -->
     <link rel="icon" href="/favicon.ico" />
+    <!-- Se non hai ancora questo file, crealo oppure commenta la riga sotto -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Piace Batterie" />
+    <meta property="og:site_name" content={businessName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content="Piace Batterie - Batterie auto, moto e industriali a Piacenza" />
+    <meta
+      property="og:image:alt"
+      content="Piace Batterie - Batterie auto, moto e industriali a Piacenza"
+    />
     <meta property="og:locale" content="it_IT" />
 
     <!-- TWITTER / X -->
@@ -86,153 +92,168 @@ const address = {
     />
 
     <!-- STRUCTURED DATA: LOCAL BUSINESS -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "AutoRepair",
-      "@id": `${siteUrl}/#localbusiness`,
-      "name": businessName,
-      "alternateName": "Piace Batterie Piacenza",
-      "description": "Vendita, installazione e assistenza per batterie auto, moto, veicoli industriali, muletti, mezzi agricoli, nautica, tempo libero e sistemi di accumulo a Piacenza.",
-      "url": siteUrl,
-      "image": ogImage,
-      "logo": `${siteUrl}/images/logo.png`,
-      "telephone": phone,
-      "email": email,
-      "priceRange": "€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": address.street,
-        "addressLocality": address.city,
-        "addressRegion": address.province,
-        "postalCode": address.postalCode,
-        "addressCountry": address.country
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 45.0522,
-        "longitude": 9.6930
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "08:30",
-          "closes": "18:30"
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "@id": `${siteUrl}/#localbusiness`,
+        name: businessName,
+        alternateName: "Piace Batterie Piacenza",
+        description:
+          "Vendita, installazione e assistenza per batterie auto, moto, furgoni, camion, veicoli industriali, muletti, mezzi agricoli, nautica, tempo libero e sistemi di accumulo a Piacenza.",
+        url: siteUrl,
+        image: ogImage,
+        logo: `${siteUrl}/logo_piace_batterie.webp`,
+        telephone: phone,
+        email,
+        priceRange: "€€",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: address.street,
+          addressLocality: address.city,
+          addressRegion: address.province,
+          postalCode: address.postalCode,
+          addressCountry: address.country,
         },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "08:30",
-          "closes": "12:30"
-        }
-      ],
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "Piacenza"
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 45.0522,
+          longitude: 9.6930,
         },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Provincia di Piacenza"
-        }
-      ],
-      "makesOffer": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Test batteria gratuito in 5 minuti"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Installazione batterie auto, moto e veicoli industriali"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Assistenza batterie per muletti, mezzi agricoli e logistica"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Smaltimento batterie esauste"
-          }
-        }
-      ],
-      "sameAs": []
-    })}></script>
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+            ],
+            opens: "08:30",
+            closes: "18:30",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Saturday",
+            opens: "08:30",
+            closes: "12:30",
+          },
+        ],
+        areaServed: [
+          {
+            "@type": "City",
+            name: "Piacenza",
+          },
+          {
+            "@type": "AdministrativeArea",
+            name: "Provincia di Piacenza",
+          },
+        ],
+        makesOffer: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Test batteria gratuito in 5 minuti",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Vendita batterie auto, moto, furgoni e camion",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Installazione batterie auto, moto e veicoli industriali",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Assistenza batterie per muletti, mezzi agricoli e logistica",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Smaltimento batterie esauste",
+            },
+          },
+        ],
+      })}
+    />
 
     <!-- STRUCTURED DATA: WEBSITE -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": `${siteUrl}/#website`,
-      "name": businessName,
-      "url": siteUrl,
-      "publisher": {
-        "@id": `${siteUrl}/#localbusiness`
-      },
-      "inLanguage": "it-IT"
-    })}></script>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        name: businessName,
+        url: siteUrl,
+        publisher: {
+          "@id": `${siteUrl}/#localbusiness`,
+        },
+        inLanguage: "it-IT",
+      })}
+    />
 
-    <!-- STRUCTURED DATA: NAVIGATION / IMPORTANT PAGES -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Sezioni principali Piace Batterie",
-      "itemListElement": [
-        {
-          "@type": "SiteNavigationElement",
-          "position": 1,
-          "name": "Prodotti",
-          "url": `${siteUrl}/prodotti`
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 2,
-          "name": "Servizi",
-          "url": `${siteUrl}/servizi`
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 3,
-          "name": "Contatti",
-          "url": `${siteUrl}/contatti`
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 4,
-          "name": "Privacy Policy",
-          "url": `${siteUrl}/privacy`
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 5,
-          "name": "Cookie Policy",
-          "url": `${siteUrl}/cookie-policy`
-        }
-      ]
-    })}></script>
-
+    <!-- STRUCTURED DATA: NAVIGATION -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Sezioni principali Piace Batterie",
+        itemListElement: [
+          {
+            "@type": "SiteNavigationElement",
+            position: 1,
+            name: "Prodotti",
+            url: `${siteUrl}/prodotti/`,
+          },
+          {
+            "@type": "SiteNavigationElement",
+            position: 2,
+            name: "Servizi",
+            url: `${siteUrl}/servizi/`,
+          },
+          {
+            "@type": "SiteNavigationElement",
+            position: 3,
+            name: "Contatti",
+            url: `${siteUrl}/contatti/`,
+          },
+          {
+            "@type": "SiteNavigationElement",
+            position: 4,
+            name: "Privacy Policy",
+            url: `${siteUrl}/privacy/`,
+          },
+          {
+            "@type": "SiteNavigationElement",
+            position: 5,
+            name: "Cookie Policy",
+            url: `${siteUrl}/cookie-policy/`,
+          },
+        ],
+      })}
+    />
   </head>
 
   <body>
     <Header />
 
-    <main>
+    <main id="main-content">
       <slot />
 
       <LocationModal />
